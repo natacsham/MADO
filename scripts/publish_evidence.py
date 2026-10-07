@@ -39,9 +39,27 @@ def main():
         "parity_passed": parity.get("passed") is True,
         "distribution_passed": distribution.get("passed") is True,
     }
+    presentation_path = ROOT / "evidence/site-presentation-report.json"
+    presentation = read("evidence/site-presentation-report.json") if presentation_path.exists() else None
+    if manifest.get("site_assets_sha256"):
+        checks["presentation_passed"] = (
+            presentation is not None
+            and presentation.get("completed") is True
+            and not presentation.get("errors")
+            and bool(presentation.get("checks"))
+            and all(value is True for value in presentation["checks"].values())
+        )
+        checks["presentation_assets_match"] = presentation is not None and all(
+            presentation.get("source_sha256", {}).get(name) == value
+            for name, value in manifest["site_assets_sha256"].items()
+        )
     smoke_path = ROOT / "evidence/public-smoke.json"
     smoke = read("evidence/public-smoke.json") if smoke_path.exists() else None
-    if smoke is not None:
+    smoke_matches = smoke is not None and all(
+        smoke["build"].get(key) == manifest.get(key)
+        for key in ("core_sha256", "bridge_sha256", "base_zip_sha256", "frontend_sha256", "site_assets_sha256")
+    )
+    if smoke_matches:
         checks["public_smoke_passed"] = (
             smoke.get("completed") is True
             and smoke.get("execution_target") == "PUBLIC_SITE"
@@ -49,10 +67,7 @@ def main():
             and bool(smoke.get("checks"))
             and all(value is True for value in smoke["checks"].values())
         )
-        checks["public_smoke_build_matches"] = all(
-            smoke["build"][key] == manifest[key]
-            for key in ("core_sha256", "bridge_sha256", "base_zip_sha256", "frontend_sha256")
-        )
+        checks["public_smoke_build_matches"] = True
     if not all(checks.values()):
         raise SystemExit(json.dumps(checks, ensure_ascii=False))
     summary = {
@@ -82,13 +97,23 @@ def main():
             "Textos protegidos não redistribuídos: a auditoria documental completa requer as fontes originais.",
         ],
         "reports": {},
+        "public_smoke_status": "VERIFIED_CURRENT_BUILD" if smoke_matches else "PENDING_FOR_CURRENT_BUILD",
     }
     target = ROOT / "web/evidence"
     target.mkdir(exist_ok=True)
     reports = ["technical-report.json", "reasoner-report.json", "regression-report.json", "browser-report.json", "browser-baseline-report.json", "parity-report.json", "public-projection.json", "public-content-audit.json", "distribution-audit.json", "build-manifest.json"]
+    if presentation is not None:
+        reports.append("site-presentation-report.json")
+        summary["results"]["presentation_checks"] = presentation["checks"]
     if smoke is not None:
         reports.append("public-smoke.json")
-        summary["results"]["public_smoke_checks"] = smoke["checks"]
+        if smoke_matches:
+            summary["results"]["public_smoke_checks"] = smoke["checks"]
+        else:
+            summary["historical_public_smoke"] = {
+                "report": "public-smoke.json",
+                "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation.",
+            }
     for name in reports:
         path = ROOT / "evidence" / name
         summary["reports"][name] = {"sha256": digest(path), "url": name}

@@ -100,7 +100,7 @@ try {
     assert.equal(await page.locator('#runtime-error').textContent(),'');
     report.timings.public_load_ms=Date.now()-loadStarted;
     const deployedManifest=await page.evaluate(()=>fetch('./manifest.json',{cache:'no-store'}).then(response=>response.json()));
-    for (const key of ['core_sha256','bridge_sha256','base_zip_sha256','frontend_sha256','files']) assert.deepEqual(deployedManifest[key],report.build[key]);
+    for (const key of ['core_sha256','bridge_sha256','base_zip_sha256','frontend_sha256','site_assets_sha256','files']) assert.deepEqual(deployedManifest[key],report.build[key]);
     report.checks.published_assets_match_verified_build=true;
     await page.locator('#reported-step input[value="yes"]').check();
     await page.locator('#confirm-reported').click(); await idle();

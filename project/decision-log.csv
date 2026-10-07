@@ -7,3 +7,4 @@ DEC-130-05,approved,Retirar citações sem autorização de redistribuição,Pro
 DEC-130-06,approved,Manter seis classes centrais,Não ampliar a taxonomia clínica ou pedagógica,Decisões da tese preservadas,,Apenas elemento auxiliar novo
 DEC-130-07,approved,Usar AMADO como nome do instrumento,Distinguir instrumento da ontologia,Decisão explícita da autora,,Documentação e interface
 DEC-130-08,approved,Não exigir DOI nem aplicar licença aberta,Autoria e referência simples bastam nesta publicação,Decisão explícita da autora,,README e direitos
+DEC-130-09,approved,Simplificar apresentação pública e oferecer ajustes de leitura,Separar metadados técnicos da página inicial e facilitar navegação e descoberta,Pedido explícito da autora em 2026-10-07,,HTML CSS JavaScript de apresentação e metadados sem alterar motor ou ontologia

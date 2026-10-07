@@ -56,3 +56,11 @@ Leia as classes e propriedades no Turtle e abra a distribuição RDF/XML no Prot
 Examine SHACL e consultas separadamente: um reasoner opera sob semântica OWL e não deve ser usado como substituto da detecção operacional de informações ausentes.
 
 Guarde versão, hash, ferramenta, entrada e resultado ao reproduzir uma execução. Sem esses elementos, resultados de versões diferentes podem ser confundidos.
+
+## Ajustes da apresentação pública — 07/10/2026
+
+A página inicial foi simplificada; foram acrescentados ajustes de leitura, retorno ao topo, navegação entre AMADO e MADO e metadados de descoberta. Essa revisão não modifica o motor, a base, as consultas ou os arquivos da ontologia. A identidade desses artefatos é conferida pelos hashes do manifesto.
+
+`evidence/site-presentation-report.json` registra os testes específicos de conteúdo, teclado, contraste, ampliação, largura reduzida, links e metadados. A regressão do AMADO permanece em `browser-report.json`; um teste público somente é considerado atual quando seus arquivos correspondem ao manifesto publicado. Enquanto isso, o relatório consolidado identifica a verificação pública como pendente e mantém o resultado anterior como histórico, sem apresentá-lo como teste da nova interface.
+
+Os controles de leitura não substituem uma avaliação com pessoas usuárias ou leitores de tela. A preparação para busca também não equivale a indexação confirmada: veja [o procedimento de Search Console](indexacao-google.md).

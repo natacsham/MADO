@@ -6,12 +6,28 @@
   <title>AMADO — orientações multimodais</title>
   <meta name="description" content="Explore como o AMADO consulta a ontologia MADO e constrói uma orientação multimodal com fundamentos rastreáveis, no seu navegador.">
   <meta name="referrer" content="no-referrer">
+  <meta name="author" content="Natacsha Ordones Raposo de Melo">
+  <link rel="canonical" href="https://natacsham.github.io/MADO/amado/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="MADO">
+  <meta property="og:title" content="AMADO — orientações multimodais fundamentadas">
+  <meta property="og:description" content="Organize um caso, consulte conhecimentos representados na MADO e confira os fundamentos de uma orientação multimodal.">
+  <meta property="og:url" content="https://natacsham.github.io/MADO/amado/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","@id":"https://natacsham.github.io/MADO/amado/#page","url":"https://natacsham.github.io/MADO/amado/","name":"AMADO — orientações multimodais fundamentadas","description":"Instrumento que consulta a ontologia MADO e compõe orientações dentro dos conhecimentos e padrões representados na base.","inLanguage":"pt-BR","isPartOf":{"@id":"https://natacsham.github.io/MADO/#site"},"author":{"@type":"Person","name":"Natacsha Ordones Raposo de Melo"}}
+  </script>
   <link rel="stylesheet" href="./styles.css?v=1.2.0-rc4-ui3-demo-fix2-conexoes">
 </head>
 <body>
   <a class="skip" href="#main">Ir para o conteúdo</a>
-  <header class="topbar">
+  <header id="inicio" class="topbar" tabindex="-1">
     <div><strong>AMADO</strong><span>Orientações multimodais fundamentadas na MADO</span></div>
+    <nav class="project-nav" aria-label="Navegação do projeto">
+      <a href="../">Início da MADO</a>
+      <a href="../ontologia/">A ontologia</a>
+    </nav>
     <div class="top-actions" aria-label="Ajustes de apresentação">
       <button id="contrast-button" class="quiet" type="button" aria-pressed="false">Alto contraste</button>
       <button id="font-button" class="quiet" type="button">Tamanho do texto: normal</button>
@@ -204,9 +220,11 @@
   </main>
   <footer>
     Texto, teclado, contraste e ampliação estão disponíveis. A leitura em voz alta usa somente uma voz local quando disponível. O ditado remoto está desativado nesta versão; nenhum áudio é gravado pelo AMADO. O provedor da página pode manter registros técnicos de acesso, não o conteúdo do caso.
-    <small class="version-note">AMADO Web 1 · MADO 1.3.0-rc1 · derivação pública experimental; versão da tese preservada</small>
+    <p><a class="back-top" href="#inicio" data-site-top>↑ Voltar ao topo</a> · <a href="../">Início da MADO</a></p>
+    <small class="version-note">Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo · MADO 1.3.0-rc1 — versão candidata</small>
   </footer>
   <noscript><p>O AMADO precisa de JavaScript e WebAssembly para executar as consultas. Você ainda pode <a href="../">ler a explicação da pesquisa</a>.</p></noscript>
   <script type="module" src="./app.js"></script>
+  <script defer src="../site.js"></script>
 </body>
 </html>

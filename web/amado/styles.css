@@ -43,8 +43,12 @@ button, input, select, textarea, summary, a { outline-offset: 4px; }
 .skip:focus { left: 12px; top: 12px; background: #fff; padding: 10px; z-index: 50; }
 .topbar {
   background: var(--primary-dark); color: #fff; padding: 16px max(20px, calc((100% - 1120px) / 2));
-  display: flex; justify-content: space-between; gap: 20px; align-items: center;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center;
 }
+.project-nav { display: flex; flex-wrap: wrap; gap: .4rem 1rem; }
+.project-nav a { color: #fff; display: inline-flex; align-items: center; min-height: 2.75rem; text-underline-offset: .2em; font-weight: 650; }
+.back-top { display: inline-flex; align-items: center; min-height: 2.75rem; font-weight: 650; }
+@media (forced-colors: active) { .project-nav a { color: LinkText; } }
 .topbar > div:first-child { display: flex; flex-direction: column; }
 .topbar strong { font-size: 1.4rem; }
 .topbar span { opacity: .95; }

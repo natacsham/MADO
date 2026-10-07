@@ -21,6 +21,8 @@ def main():
         assert sha(ROOT / name) == digest, name
     for name, digest in m["frontend_sha256"].items():
         assert sha(APP / name) == digest, name
+    for name, digest in m.get("site_assets_sha256", {}).items():
+        assert sha(ROOT / "web" / name) == digest, name
     for name, item in m["runtime"].items():
         assert sha(APP / "runtime" / name) == item["sha256"], name
     for name, digest in m["license_notices"].items():

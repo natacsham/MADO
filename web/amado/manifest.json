@@ -43,11 +43,18 @@
   "case_history": false,
   "llm": false,
   "frontend_sha256": {
-    "index.html": "0d07466090daa1a8fbc010a81c7c23af9b444267feffedb4c13f2192afaf5644",
+    "index.html": "79ff0517d92430ea5d00296ecf97d0e4475dc8217295a3690f56d69f4990e3dc",
     "app.js": "beb4857f0bdee0d9fd31ff7322cc3ee706c6a5ae50dc134d492cae05abce0732",
-    "styles.css": "7ef5539367edf2e0a1448960567be3dc7a7273baa9696ee754f92830b2050279",
+    "styles.css": "b582bf3fa8a52dbe265cd5dfcaad571512ebdf5dd8c475fd5bc1e2ab69a68776",
     "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
     "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc"
+  },
+  "site_assets_sha256": {
+    "index.html": "d2758fde3530ee25590b2619f68371eb643b08e13b7e0203c09799da38e7fece",
+    "ontologia/index.html": "6c937e583bb917072464356448534f6962a69cdf527fbd1068c9a656772ea97b",
+    "site.css": "29831306d52cfc78ad7a11e9de0ca4ac9fc596322dc1efc0ef346d04f21a0ce7",
+    "site.js": "a3eb7f35361525baf4af2e60462f96c528ff3fb3da8d97431657361e46321648",
+    "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
   },
   "files": {
     "data/knowledge-base.json": "8e2e8f9e6e40c331fcf6960f7ddac60e6b772c4d2692a70688b40ed1acfe94fc",

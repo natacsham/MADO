@@ -3,13 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MADO: representação do conhecimento do Arcabouço Multimodal para Acessibilidade Digital. Conheça a pesquisa de Natacsha Ordones Raposo de Melo e experimente o AMADO.">
-  <title>MADO — Conhecimento articulado para decisões multimodais</title>
+  <meta name="description" content="Conheça a MADO, ontologia da pesquisa de doutorado de Natacsha Ordones Raposo de Melo sobre acessibilidade digital, conhecimento articulado e interação multimodal.">
+  <meta name="author" content="Natacsha Ordones Raposo de Melo">
+  <title>MADO — Ontologia para Acessibilidade e Interação Multimodal</title>
+  <link rel="canonical" href="https://natacsham.github.io/MADO/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="MADO">
+  <meta property="og:url" content="https://natacsham.github.io/MADO/">
+  <meta property="og:title" content="MADO — Ontologia para Acessibilidade e Interação Multimodal">
+  <meta property="og:description" content="Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo. Conheça a ontologia MADO e experimente o instrumento AMADO.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MADO — Ontologia para Acessibilidade e Interação Multimodal">
+  <meta name="twitter:description" content="Conhecimento articulado, interação multimodal e decisões rastreáveis na pesquisa de doutorado de Natacsha Ordones Raposo de Melo.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://natacsham.github.io/MADO/#site",
+        "url": "https://natacsham.github.io/MADO/",
+        "name": "MADO",
+        "description": "Projeto de pesquisa de doutorado sobre representação do conhecimento, interação multimodal e acessibilidade digital.",
+        "inLanguage": "pt-BR",
+        "author": { "@id": "https://natacsham.github.io/MADO/ontologia/#autoria" },
+        "about": { "@id": "https://natacsham.github.io/MADO/ontologia/#mado" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://natacsham.github.io/MADO/ontologia/#autoria",
+        "name": "Natacsha Ordones Raposo de Melo"
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://natacsham.github.io/MADO/ontologia/#mado",
+        "url": "https://natacsham.github.io/MADO/ontologia/",
+        "name": "MADO — Ontologia do Arcabouço Multimodal para Acessibilidade Digital",
+        "genre": "Ontologia",
+        "inLanguage": "pt-BR",
+        "description": "Representação semântica de conhecimentos, articulações, critérios, contextos e decisões de acessibilidade multimodal.",
+        "author": { "@id": "https://natacsham.github.io/MADO/ontologia/#autoria" }
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo principal</a>
-  <header class="site-header">
+  <header id="inicio" class="site-header" tabindex="-1">
     <div class="wrap header-inner">
       <a class="brand" href="./" aria-label="MADO, início"><span class="brand-mark" aria-hidden="true">M</span>MADO</a>
       <nav class="nav" aria-label="Navegação principal">
@@ -19,11 +62,23 @@
       </nav>
     </div>
   </header>
-  <main id="conteudo">
+  <div class="reading-bar" data-site-accessibility hidden>
+    <div class="wrap reading-inner">
+      <strong>Ajustes de leitura</strong>
+      <div class="reading-actions" role="group" aria-label="Ajustes de leitura">
+        <button type="button" data-font-decrease aria-label="Diminuir texto" aria-disabled="true">A−</button>
+        <button type="button" data-font-increase aria-label="Aumentar texto">A+</button>
+        <button type="button" data-font-reset>Texto original</button>
+        <button type="button" data-site-contrast aria-pressed="false">Alto contraste</button>
+      </div>
+      <p class="reading-status" data-reading-status role="status" aria-atomic="true">Texto: 100%</p>
+    </div>
+  </div>
+  <main id="conteudo" tabindex="-1">
     <section class="hero" aria-labelledby="titulo">
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow">Pesquisa de doutorado · Acessibilidade digital</p>
+          <p class="eyebrow">Interação multimodal</p>
           <h1 id="titulo">Conhecimento que se conecta. Decisões que se explicam.</h1>
           <p class="lead">A MADO representa como conhecimentos sobre acessibilidade e interação multimodal podem ser relacionados e empregados em decisões fundamentadas.</p>
           <p class="author"><strong>MADO — Ontologia do Arcabouço Multimodal para Acessibilidade Digital</strong><br>Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo.</p>
@@ -31,7 +86,6 @@
             <a class="button" href="amado/">Experimentar o AMADO</a>
             <a class="button secondary" href="#exemplo">Entender por um exemplo</a>
           </div>
-          <p class="micro"><span class="version">1.3.0-rc1 · versão candidata</span> Evolução posterior à versão da tese, que permanece preservada.</p>
         </div>
         <div>
           <ol class="mini-flow" aria-label="Relações que tornam uma orientação explicável">
@@ -92,6 +146,7 @@
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="wrap footer-grid"><div><p><strong>MADO · AMADO</strong> — pesquisa de Natacsha Ordones Raposo de Melo.</p><p>Versão candidata 1.3.0-rc1. Sem licença aberta de reutilização nesta etapa.</p></div><nav aria-label="Informações do projeto"><a href="ontologia/#verificacao">Verificação e limites</a><br><a href="ontologia/#autoria">Autoria e disponibilização</a><br><a href="https://github.com/natacsham/MADO">Código, documentação e licenças no GitHub</a></nav></div></footer>
+  <footer class="site-footer"><div class="wrap footer-grid"><div><p>Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo.</p><a class="back-top" href="#inicio" data-site-top>↑ Voltar ao topo</a></div><nav aria-label="Informações do projeto"><a href="ontologia/#verificacao">Verificação e limites</a><br><a href="ontologia/#autoria">Autoria e disponibilização</a><br><a href="https://github.com/natacsham/MADO">Código, documentação e licenças no GitHub</a></nav></div></footer>
+  <script defer src="site.js"></script>
 </body>
 </html>

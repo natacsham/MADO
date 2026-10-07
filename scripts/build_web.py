@@ -79,6 +79,10 @@ def build():
             name: sha(APP / name)
             for name in ("index.html", "app.js", "styles.css", "worker.mjs", "client.mjs")
         },
+        "site_assets_sha256": {
+            name: sha(WEB / name)
+            for name in ("index.html", "ontologia/index.html", "site.css", "site.js", "sitemap.xml")
+        },
         "files": {
             p.relative_to(ROOT).as_posix(): sha(p)
             for p in paths
