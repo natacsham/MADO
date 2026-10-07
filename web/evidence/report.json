@@ -1,0 +1,331 @@
+{
+  "version": "1.3.0-rc1",
+  "instrument": "AMADO",
+  "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
+  "compiled_at_utc": "2026-10-07T04:13:02.512585+00:00",
+  "checks": {
+    "technical_passed": true,
+    "technical_engine_matches": true,
+    "web_engine_matches_native": true,
+    "reasoner_passed": true,
+    "reasoner_graph_matches": true,
+    "regression_passed": true,
+    "regression_base_matches": true,
+    "browser_completed": true,
+    "browser_engine_matches": true,
+    "browser_bridge_matches": true,
+    "browser_frontend_matches": true,
+    "browser_base_matches": true,
+    "parity_passed": true,
+    "distribution_passed": true
+  },
+  "results": {
+    "unit_tests": 56,
+    "ontology_triples": 13457,
+    "shacl": {
+      "violations": 0,
+      "warnings": 65,
+      "passed": true
+    },
+    "runtime_shacl": {
+      "violations": 0,
+      "warnings": 65,
+      "passed": true
+    },
+    "owl_2_dl": true,
+    "hermit_consistency": true,
+    "runtime_query_rows": {
+      "CQ-001": 96,
+      "CQ-002": 28,
+      "CQ-003": 236,
+      "CQ-004": 273,
+      "CQ-005": 3,
+      "CQ-006": 7,
+      "CQ-007": 7,
+      "CQ-008": 1
+    },
+    "regression_checks": {
+      "four_examples_generate": true,
+      "game_block_removes_configuration": true,
+      "diagnosis_alone_suspends": true,
+      "unconfirmed_suspends": true,
+      "novel_combination_composes_two_functions": true,
+      "removing_voice_changes_decision": true,
+      "base_unchanged": true
+    },
+    "browser_checks": {
+      "published_assets_match_verified_build": true,
+      "public_interview_seven_configurations": true,
+      "stop_speech_remains_operable_while_busy": true,
+      "repeated_generation_preserves_seven_configurations": true,
+      "public_mobile_reflow_reduced_motion": true,
+      "accessible_progress_and_control_names": true,
+      "measured_palette_contrast": true,
+      "public_screen_reader_example": true,
+      "public_clear_discards_case": true,
+      "no_case_network_requests": true
+    },
+    "parity": {
+      "type": "SYNTHETIC_NATIVE_BROWSER_PARITY_NOT_HUMAN_EVALUATION",
+      "executed_at": "2026-10-07T04:00:28.159Z",
+      "normalization": [
+        "Somente horário de execução e sufixos aleatórios de contexto, participante e decisão são desconsiderados.",
+        "Linhas SPARQL e topologia do grafo são comparadas como conjuntos ordenados canonicamente, preservando duplicatas.",
+        "A ordem interna de GROUP_CONCAT é normalizada apenas nos campos declarados pelas consultas.",
+        "Listas de identificadores, articulações, trajetória e correspondências de recuperação são relações sem ordem e são normalizadas.",
+        "A ordem das configurações, passos práticos e demais listas é preservada."
+      ],
+      "native_sha256": "70f95c81750b9de0f9deeb0141d5d8046e8eee72f65ba34dc4b24965f4c3fcd7",
+      "browser_sha256": "7fbab9bfdea6c068323392ea32b1512592fab55d8d85cc950a73e6e703d71955",
+      "cases": {
+        "principal": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-ORGANIZAR-CONTEUDO-PERSISTENTE",
+            "PAD-EXPRESSAO-AUTORAL-FALA-AUDIO",
+            "PAD-REPRESENTACAO-VISUAL-EXPLICADA",
+            "PAD-VIDEO-PROCESSO",
+            "PAD-JOGO-CONSOLIDACAO-FEEDBACK",
+            "PAD-PAPEIS-TURNOS-AUTORIA",
+            "PAD-REVISAO-CONFIRMACAO"
+          ],
+          "query_rows": {
+            "CQ-001": 96,
+            "CQ-002": 28,
+            "CQ-003": 236,
+            "CQ-004": 273,
+            "CQ-005": 3,
+            "CQ-006": 7,
+            "CQ-007": 7,
+            "CQ-008": 1
+          },
+          "native_canonical_sha256": "ea5334c8bc8869d507e024cb9d63a11248cdd7c8f19cf5a11b585ca3c17d4438",
+          "browser_canonical_sha256": "ea5334c8bc8869d507e024cb9d63a11248cdd7c8f19cf5a11b585ca3c17d4438",
+          "differences": []
+        },
+        "principal_sem_jogo": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-ORGANIZAR-CONTEUDO-PERSISTENTE",
+            "PAD-EXPRESSAO-AUTORAL-FALA-AUDIO",
+            "PAD-REPRESENTACAO-VISUAL-EXPLICADA",
+            "PAD-VIDEO-PROCESSO",
+            "PAD-PAPEIS-TURNOS-AUTORIA",
+            "PAD-REVISAO-CONFIRMACAO"
+          ],
+          "query_rows": {
+            "CQ-001": 97,
+            "CQ-002": 28,
+            "CQ-003": 214,
+            "CQ-004": 246,
+            "CQ-005": 3,
+            "CQ-006": 6,
+            "CQ-007": 6,
+            "CQ-008": 1
+          },
+          "native_canonical_sha256": "b95833aacc90e262dd7e11537f3192bd4243819b30fdcff2849481f98e73a5ff",
+          "browser_canonical_sha256": "b95833aacc90e262dd7e11537f3192bd4243819b30fdcff2849481f98e73a5ff",
+          "differences": []
+        },
+        "leitor_tela": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-CONTEUDO-WEB-EQUIVALENTE"
+          ],
+          "query_rows": {
+            "CQ-001": 33,
+            "CQ-002": 4,
+            "CQ-003": 11,
+            "CQ-004": 30,
+            "CQ-005": 2,
+            "CQ-006": 1,
+            "CQ-007": 1,
+            "CQ-008": 1
+          },
+          "native_canonical_sha256": "daea2a77f2ae2418cba051e7bbad8701ff8d43ce285c040a8d90cac8a11a0ad9",
+          "browser_canonical_sha256": "daea2a77f2ae2418cba051e7bbad8701ff8d43ce285c040a8d90cac8a11a0ad9",
+          "differences": []
+        },
+        "mobilidade_ruido": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-ORIENTACAO-AUDIO-RECUPERAVEL",
+            "PAD-RETORNO-HAPTICO-RUIDO"
+          ],
+          "query_rows": {
+            "CQ-001": 27,
+            "CQ-002": 7,
+            "CQ-003": 23,
+            "CQ-004": 48,
+            "CQ-005": 2,
+            "CQ-006": 2,
+            "CQ-007": 2,
+            "CQ-008": 1
+          },
+          "native_canonical_sha256": "ed00f355594915b77006928df0585510cab7182ef552e7f63d9d9fb6ca557fcb",
+          "browser_canonical_sha256": "ed00f355594915b77006928df0585510cab7182ef552e7f63d9d9fb6ca557fcb",
+          "differences": []
+        },
+        "comunicacao": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-COMUNICACAO-MULTIFORMATO"
+          ],
+          "query_rows": {
+            "CQ-001": 40,
+            "CQ-002": 6,
+            "CQ-003": 9,
+            "CQ-004": 24,
+            "CQ-005": 1,
+            "CQ-006": 1,
+            "CQ-007": 1,
+            "CQ-008": 2
+          },
+          "native_canonical_sha256": "bdbd5e1b71dfe5724798fe57e29ee298acf53fe6ff09f6dccafa65afaf05c2d9",
+          "browser_canonical_sha256": "bdbd5e1b71dfe5724798fe57e29ee298acf53fe6ff09f6dccafa65afaf05c2d9",
+          "differences": []
+        },
+        "diagnostico_isolado": {
+          "equal": true,
+          "status": "SUSPENSA_POR_CARACTERIZACAO_OU_COBERTURA_INSUFICIENTE",
+          "configurations": [],
+          "query_rows": {
+            "CQ-001": 8,
+            "CQ-002": 0,
+            "CQ-003": 0,
+            "CQ-004": 0,
+            "CQ-005": 0,
+            "CQ-006": 0,
+            "CQ-007": 0,
+            "CQ-008": 5
+          },
+          "native_canonical_sha256": "14a5e57e0d42401f7644585e4b15312d02c9b1e50b7801505245ce709e6b3555",
+          "browser_canonical_sha256": "14a5e57e0d42401f7644585e4b15312d02c9b1e50b7801505245ce709e6b3555",
+          "differences": []
+        },
+        "sem_confirmacao": {
+          "equal": true,
+          "status": "SUSPENSA_POR_CARACTERIZACAO_OU_COBERTURA_INSUFICIENTE",
+          "configurations": [],
+          "query_rows": {
+            "CQ-001": 107,
+            "CQ-002": 28,
+            "CQ-003": 0,
+            "CQ-004": 0,
+            "CQ-005": 0,
+            "CQ-006": 0,
+            "CQ-007": 0,
+            "CQ-008": 12
+          },
+          "native_canonical_sha256": "a8f928974f9da794489df8ee80828d442d1e407d2de80b515a56366fa42a7968",
+          "browser_canonical_sha256": "a8f928974f9da794489df8ee80828d442d1e407d2de80b515a56366fa42a7968",
+          "differences": []
+        },
+        "combinacao_nao_cadastrada": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-CONTEUDO-WEB-EQUIVALENTE",
+            "PAD-COMUNICACAO-MULTIFORMATO"
+          ],
+          "query_rows": {
+            "CQ-001": 53,
+            "CQ-002": 8,
+            "CQ-003": 20,
+            "CQ-004": 54,
+            "CQ-005": 2,
+            "CQ-006": 2,
+            "CQ-007": 2,
+            "CQ-008": 2
+          },
+          "native_canonical_sha256": "b6b72c581f7dc12a17846effb343bad9a4e148ea9283a60b641de8080a5cd8c1",
+          "browser_canonical_sha256": "b6b72c581f7dc12a17846effb343bad9a4e148ea9283a60b641de8080a5cd8c1",
+          "differences": []
+        },
+        "combinacao_sem_voz": {
+          "equal": true,
+          "status": "GERADA",
+          "configurations": [
+            "PAD-CONTEUDO-WEB-EQUIVALENTE"
+          ],
+          "query_rows": {
+            "CQ-001": 55,
+            "CQ-002": 8,
+            "CQ-003": 11,
+            "CQ-004": 30,
+            "CQ-005": 2,
+            "CQ-006": 1,
+            "CQ-007": 1,
+            "CQ-008": 4
+          },
+          "native_canonical_sha256": "5a95d3e10ccd5e37047f59301c6255bc52ec5a365a7d5445c98fa4ff5a52c279",
+          "browser_canonical_sha256": "5a95d3e10ccd5e37047f59301c6255bc52ec5a365a7d5445c98fa4ff5a52c279",
+          "differences": []
+        }
+      },
+      "missing_in_browser": [],
+      "unexpected_in_browser": [],
+      "comparator_self_checks": {
+        "rejects_changed_configuration_order": true,
+        "rejects_changed_modal_function": true,
+        "accepts_unordered_knowledge_ids": true
+      },
+      "passed": true
+    }
+  },
+  "limits": [
+    "Esta revisão posterior não substitui a versão da tese nem sua avaliação humana.",
+    "Os casos de regressão são sintéticos; não são logs ou pareceres da especialista.",
+    "Sem prova de eficácia educacional, generalização ou interpretação irrestrita de narrativas.",
+    "65 avisos documentais da base permanecem visíveis; não foram preenchidos artificialmente.",
+    "NVDA e VoiceOver não avaliados; os testes não constituem conformidade WCAG integral.",
+    "Textos protegidos não redistribuídos: a auditoria documental completa requer as fontes originais."
+  ],
+  "reports": {
+    "technical-report.json": {
+      "sha256": "c677acdf4cdc275b89cd3a33e8705ed6ee90d28d62e30107e77927686b250aa9",
+      "url": "technical-report.json"
+    },
+    "reasoner-report.json": {
+      "sha256": "b8a0e44906a362506172561497189dd8e8427037f395a59cf56eec1036a57e6e",
+      "url": "reasoner-report.json"
+    },
+    "regression-report.json": {
+      "sha256": "74e76ada6808ce4f2497a11c5f1bd62e71dcfaa3d7aa38c7346c63b98dc4daea",
+      "url": "regression-report.json"
+    },
+    "browser-report.json": {
+      "sha256": "59e43a7634e16812997da32972e9ec68fdcf8aa3f9923878931cbdc7beeddd14",
+      "url": "browser-report.json"
+    },
+    "browser-baseline-report.json": {
+      "sha256": "195f8d36a70749bde2e6498e7f44ba35b8299addc91d05ced78630ef09bdf878",
+      "url": "browser-baseline-report.json"
+    },
+    "parity-report.json": {
+      "sha256": "80810837175afc7ece79ca9e181d9fe1502298f9071122e06e5175f8315e0f55",
+      "url": "parity-report.json"
+    },
+    "public-projection.json": {
+      "sha256": "95ece700f198d83071d3f7607355dd4331c8b37a58dd67cd0914574fe32e9bcd",
+      "url": "public-projection.json"
+    },
+    "public-content-audit.json": {
+      "sha256": "c6c1c5311c202261c51e81d43a9e53b7c15747afbd2daa859ab0b29cc9f3df57",
+      "url": "public-content-audit.json"
+    },
+    "distribution-audit.json": {
+      "sha256": "9c50d70e7dc911f947a914819192686d4d1cae7dad37b2ae909741b1a0b7a72e",
+      "url": "distribution-audit.json"
+    },
+    "build-manifest.json": {
+      "sha256": "3b8932b13ae8551ce913853d5dccbdc450adb9f6b4cb73bf229475c7e572864f",
+      "url": "build-manifest.json"
+    }
+  }
+}

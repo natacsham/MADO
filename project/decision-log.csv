@@ -1,0 +1,9 @@
+id,status,decision,reason,origin,supersedes,impact
+DEC-130-01,approved,Preservar versão da tese,Separar evolução de evidências anteriores,Plano aprovado pela autora,,Repositório novo
+DEC-130-02,approved,AplicacaoDeCriterio registra apoio situado,Evitar produto cartesiano entre critérios e conhecimentos,Auditoria de código e base,,OWL SHACL CQ4 compositor e testes
+DEC-130-03,approved,Separar recuperação de autorização,Articulação não deve eliminar impedimentos,Plano aprovado pela autora,,Motor e explicação
+DEC-130-04,approved,Sem armazenamento de casos,Demonstrador público sem histórico,Plano aprovado pela autora,,Worker por aba e limpeza
+DEC-130-05,approved,Retirar citações sem autorização de redistribuição,Proteger conteúdo de terceiros mantendo referência e localização,Plano aprovado pela autora,,Projeção pública e formas SHACL
+DEC-130-06,approved,Manter seis classes centrais,Não ampliar a taxonomia clínica ou pedagógica,Decisões da tese preservadas,,Apenas elemento auxiliar novo
+DEC-130-07,approved,Usar AMADO como nome do instrumento,Distinguir instrumento da ontologia,Decisão explícita da autora,,Documentação e interface
+DEC-130-08,approved,Não exigir DOI nem aplicar licença aberta,Autoria e referência simples bastam nesta publicação,Decisão explícita da autora,,README e direitos
