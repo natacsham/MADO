@@ -1,6 +1,6 @@
 {
   "type": "SYNTHETIC_NATIVE_BROWSER_PARITY_NOT_HUMAN_EVALUATION",
-  "executed_at": "2026-10-07T04:00:28.159Z",
+  "executed_at": "2026-10-07T04:44:15.311Z",
   "normalization": [
     "Somente horário de execução e sufixos aleatórios de contexto, participante e decisão são desconsiderados.",
     "Linhas SPARQL e topologia do grafo são comparadas como conjuntos ordenados canonicamente, preservando duplicatas.",
@@ -9,7 +9,7 @@
     "A ordem das configurações, passos práticos e demais listas é preservada."
   ],
   "native_sha256": "70f95c81750b9de0f9deeb0141d5d8046e8eee72f65ba34dc4b24965f4c3fcd7",
-  "browser_sha256": "7fbab9bfdea6c068323392ea32b1512592fab55d8d85cc950a73e6e703d71955",
+  "browser_sha256": "27a9fd3f2dd2041dc31ba7465dc2c5306998cc90db718941ec2b5afc6f9a3fcf",
   "cases": {
     "principal": {
       "equal": true,

@@ -244,8 +244,9 @@ try{
 }catch(error){report.completed=false;report.failure=error.message;console.error(error);process.exitCode=1;}
 finally{
   report.finished_at_utc=new Date().toISOString();
-  const output=path.join(root,'evidence','site-presentation-report.json');
+  const reportName=process.env.AMADO_SITE_URL?'site-public-report.json':'site-presentation-report.json';
+  const output=path.join(root,'evidence',reportName);
   await fs.writeFile(output,JSON.stringify(report,null,2)+'\n');
   await browser.close();await new Promise(resolve=>server.close(resolve));
-  console.log(JSON.stringify({completed:report.completed,checks_passed:Object.values(report.checks).filter(x=>x===true).length,checks_total:Object.keys(report.checks).length,report:'evidence/site-presentation-report.json',failure:report.failure}));
+  console.log(JSON.stringify({completed:report.completed,checks_passed:Object.values(report.checks).filter(x=>x===true).length,checks_total:Object.keys(report.checks).length,report:'evidence/'+reportName,failure:report.failure}));
 }
