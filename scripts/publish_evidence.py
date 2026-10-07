@@ -123,10 +123,16 @@ def main():
     if guided is not None:
         reports.append("guided-report.json")
         summary["results"]["guided_view_checks"] = guided["checks"]
+        guided_baseline = guided.get("change_verification", {}).get("baseline_report")
+        if guided_baseline and Path(guided_baseline).name == guided_baseline and guided_baseline not in reports:
+            reports.append(guided_baseline)
     guided_public_path = ROOT / "evidence/guided-public-report.json"
     if guided_public_path.exists():
         guided_public = read("evidence/guided-public-report.json")
         reports.append("guided-public-report.json")
+        public_guided_baseline = guided_public.get("change_verification", {}).get("baseline_report")
+        if public_guided_baseline and Path(public_guided_baseline).name == public_guided_baseline and public_guided_baseline not in reports:
+            reports.append(public_guided_baseline)
         guided_public_current = all(
             guided_public.get("build", {}).get(key) == manifest.get(key)
             for key in ("core_sha256", "bridge_sha256", "base_zip_sha256", "frontend_sha256", "site_assets_sha256")

@@ -79,6 +79,19 @@
 .guided-view[data-guide-stage="3"] #free-panel { display: none !important; }
 @media (max-width: 58rem) { .guided-view .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .guided-view .guide-progress button { gap: .5rem; padding: .75rem; } }
 @media (max-width: 40rem) { .guided-view .guide-progress ol { grid-template-columns: minmax(0, 1fr); gap: .4rem; } .guided-view .guide-progress button { min-height: 3rem; } .guided-view .guide-progress small { display: none; } .guided-view .summary-grid { grid-template-columns: minmax(0, 1fr); } .guided-view .guide-config-availability { font-size: .94rem; } .guided-view .title-row > div { width: 100%; } }
+/* Small-screen gutters must not double with text enlargement: preserve reading
+   width instead of nesting several rem-sized paddings inside a 320 px view. */
+@media (max-width: 40rem) {
+  body.guided-view main { padding-inline: 12px; }
+  .guided-view .card { padding: 12px; }
+  .guided-view .guide-progress button { padding: 12px; }
+  .guided-view .guide-configuration { padding: 0; }
+  .guided-view .guide-configuration > summary { padding: 14px 10px; }
+  .guided-view .guide-config-body { padding: 10px; }
+  .guided-view .foundation, .guided-view .guide-help { padding: 8px 10px; }
+  .guided-view .expected-result, .guided-view .confirmation, .guided-view .limit { padding: 12px; }
+  .guided-view .summary-grid > article { padding: 10px; }
+}
 html[data-contrast="high"] .guided-view { --soft: #fff; background: #fff; color: #000; }
 html[data-contrast="high"] .guided-view .guide-progress button { color: #000; border-color: #000; }
 html[data-contrast="high"] .guided-view .guide-progress button[aria-current="step"] { color: #fff; background: #003a4b; }

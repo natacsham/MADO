@@ -11,8 +11,8 @@
     "no_case_network_requests": true
   },
   "timings": {
-    "public_load_ms": 7153,
-    "public_generation_ms": 37686
+    "public_load_ms": 4584,
+    "public_generation_ms": 24454
   },
   "external_requests": [],
   "errors": [],
@@ -75,7 +75,7 @@
       "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc",
       "guiado.html": "05a4a8e588391a3070bc45a383b9138dc9f93e5a2aa0750c34876bde8780e6d0",
       "guided.js": "3dcaf686742a9af2cd65c37b215a4d341f7ce1ec720f42d0701352535e661236",
-      "guided.css": "db2a9e441c7e5345f44d82ec7021521db4ea2776a94e262529980fd205047b67",
+      "guided.css": "9aa00af8658e94f29e0c2632b6b7f40a44830f149fea530c651279a6a577f7d2",
       "views.css": "f96607c67d4d40b74810742e70afb916eed34c7ce0f342e595dc2626a69809f7"
     },
     "site_assets_sha256": {
@@ -307,7 +307,7 @@
   ],
   "completed": true,
   "type": "SYNTHETIC_BROWSER_REGRESSION_NOT_HUMAN_SESSION",
-  "executed_at": "2026-10-07T12:50:47.871Z",
+  "executed_at": "2026-10-07T13:01:42.578Z",
   "change_verification": {
     "baseline_report": "browser-before-guided-view.json",
     "baseline_build": {

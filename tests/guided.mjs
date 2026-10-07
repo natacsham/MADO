@@ -28,6 +28,7 @@ const server=http.createServer(async(req,res)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base=(process.env.AMADO_GUIDED_BASE||`http://127.0.0.1:${server.address().port}/MADO/amado/`).replace(/\/?$/,'/');
 const origin=new URL(base).origin;
+const layoutDelta=process.env.AMADO_LAYOUT_DELTA==='1';
 const sha=data=>crypto.createHash('sha256').update(data).digest('hex');
 const report={scope:'Visão guiada comparada à apresentação original, sem alteração ou nova validação da ontologia.',execution_target:process.env.AMADO_GUIDED_BASE?'PUBLIC_SITE':'LOCAL_SUBPATH',checks:{},errors:[],external_requests:[],request_methods:[],timings:{},started_at_utc:new Date().toISOString(),limitations:['Não é declaração de conformidade WCAG.','NVDA, VoiceOver e síntese audível não avaliados.','Casos sintéticos; não representa sessão humana.','Não repete a regressão semântica completa do motor.']};
 if(process.env.AMADO_DEPLOYMENT_COMMIT)report.repository_commit_at_test=process.env.AMADO_DEPLOYMENT_COMMIT;
@@ -161,12 +162,23 @@ try{
   for(let n=0;n<20;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
   check('text_reaches_200',await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===36);
   await reflow('result_reflow_320_text_200');
+  if(layoutDelta){
+    report.mobile_reading_width=await first.evaluate(el=>{
+      const summary=el.querySelector(':scope > summary'),s=getComputedStyle(summary);
+      return {card_width:el.getBoundingClientRect().width,text_width:summary.clientWidth-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight),font_size:getComputedStyle(document.documentElement).fontSize};
+    });
+    // Project readability check, not a numeric WCAG requirement. The usable
+    // text area matters; record the enclosing card width without an arbitrary
+    // extra minimum that would depend on the original page's outer gutters.
+    check('mobile_reading_width_preserved',report.mobile_reading_width.text_width>=220);
+  }
   await page.screenshot({path:path.join(artifacts,'result-mobile-200.png')});
   await page.locator('#guide-progress').screenshot({path:path.join(artifacts,'steps-mobile-200.png')});
   await first.screenshot({path:path.join(artifacts,'configuration-mobile-200.png')});
   await page.locator('[data-font-reset]').click();await page.emulateMedia({forcedColors:'active',reducedMotion:'reduce'});await reflow('forced_colors_reflow');
   check('forced_colors_and_reduced_motion',await page.evaluate(()=>matchMedia('(forced-colors:active)').matches&&matchMedia('(prefers-reduced-motion:reduce)').matches));
   await page.emulateMedia({forcedColors:'none',reducedMotion:'reduce'});await page.setViewportSize({width:1280,height:900});
+  if(!layoutDelta){
   await page.locator('[data-guide-step="2"]').click();await stage(2);
   check('back_preserves_confirmation',await page.locator('#mapping-confirmed').isChecked());
   await page.locator('[data-guide-step="3"]').click();await stage(3);
@@ -206,12 +218,24 @@ try{
   failBase=false;await page.locator('#clear-case').click();await idle(page);await stage(1);
   check('clear_recovers_failed_runtime',await text(page,'#runtime-error')===''&&await page.locator('#health').getAttribute('data-state')==='ready'&&!await page.locator('#saida').isVisible());
   await page.screenshot({path:path.join(artifacts,'start-desktop.png'),fullPage:true});
+  }
   check('no_storage',await page.evaluate(async()=>localStorage.length===0&&sessionStorage.length===0&&document.cookie===''&&(await indexedDB.databases()).length===0&&(await caches.keys()).length===0));
   check('no_external_or_case_upload',report.external_requests.length===0&&report.request_methods.every(method=>method==='GET'));
   check('no_javascript_errors',report.errors.length===0);
   const finalManifest=JSON.parse(await fs.readFile(path.join(web,'amado/manifest.json'),'utf8'));
   check('manifest_not_changed_during_run',JSON.stringify(finalManifest)===JSON.stringify(report.build));
   const served=await context.request.get(base+'manifest.json');check('served_manifest_matches',JSON.stringify(await served.json())===JSON.stringify(report.build));
+  if(layoutDelta){
+    const baselineName=process.env.AMADO_GUIDED_BASE?'guided-public-before-layout-polish.json':'guided-before-layout-polish.json';
+    const baseline=JSON.parse(await fs.readFile(path.join(root,'evidence',baselineName),'utf8'));
+    assert.equal(baseline.completed,true);
+    for(const key of ['core_sha256','base_zip_sha256','bridge_sha256','files','site_assets_sha256'])assert.deepEqual(baseline.build[key],report.build[key]);
+    assert.deepEqual(Object.keys(baseline.source_sha256),Object.keys(report.source_sha256));
+    for(const [name,value] of Object.entries(baseline.source_sha256))if(name!=='guided.css')assert.equal(value,report.source_sha256[name]);
+    check('css_only_invariants_confirmed',true);
+    report.scope='Delta de layout da visão guiada: somente espaçamento móvel em guided.css; motor e comportamento preservados por comparação de hashes.';
+    report.change_verification={baseline_report:baselineName,baseline_build:baseline.build,baseline_check_count:Object.values(baseline.checks).filter(Boolean).length,change:'Espaçamentos laterais móveis em pixels para preservar largura de leitura quando o texto é ampliado; nenhuma mudança na lógica do adaptador ou do motor.',scope:'Reexecutados caso principal, equivalência com a visão original, confirmações, teclado, disclosures, contraste e reflow 320 px/200%. Os testes completos de outro exemplo, narrativa insuficiente, invalidação, limpeza e recuperação pertencem ao baseline de 60 verificações identificado; não foram repetidos após este ajuste somente de CSS.',unchanged_engine_base_bridge_queries:true,unchanged_guided_javascript:true};
+  }
   report.completed=true;
 }catch(error){report.completed=false;report.failure=String(error.stack||error).replaceAll(root,'<workspace>').replaceAll(root.replaceAll('\\','/'),'<workspace>');console.error(error);await page.screenshot({path:path.join(artifacts,'failure.png'),fullPage:true}).catch(()=>{});process.exitCode=1;}
 finally{
