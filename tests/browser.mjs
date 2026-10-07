@@ -28,6 +28,7 @@ const server = http.createServer(async(req,res) => {
 await new Promise(resolve => server.listen(0,'127.0.0.1',resolve));
 const publicURL=process.env.AMADO_PUBLIC_URL || '';
 const shellDelta=process.env.AMADO_SHELL_DELTA==='1';
+const contentDelta=process.env.AMADO_CONTENT_DELTA==='1';
 const origin = publicURL ? new URL(publicURL).origin : `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch({headless:true,executablePath:process.env.AMADO_CHROMIUM || path.join(process.env.LOCALAPPDATA,'ms-playwright/chromium-1243/chrome-win64/chrome.exe')});
 const context = await browser.newContext({viewport:{width:1280,height:900}});
@@ -92,7 +93,7 @@ async function generateFree() {
   return Date.now()-started;
 }
 try {
-  if (publicURL || process.env.AMADO_DELTA_ONLY === '1' || shellDelta) {
+  if (publicURL || process.env.AMADO_DELTA_ONLY === '1' || shellDelta || contentDelta) {
     const directedURL=publicURL || origin+'/mado/amado/';
     if (publicURL) report.public_url=publicURL;
     const loadStarted=Date.now();
@@ -422,12 +423,26 @@ try {
   report.failure=String(error.stack || error); process.exitCode=1;
   await page.screenshot({path:path.join(artifacts,'failure.png'),fullPage:true});
 } finally {
-  const reportName=publicURL ? 'public-smoke.json' : shellDelta ? 'report-shell-delta.json' : process.env.AMADO_DELTA_ONLY === '1' ? 'report-delta.json' : process.env.AMADO_RECOVERY_ONLY === '1' ? 'report-recovery.json' : process.env.AMADO_PROBES_ONLY === '1' ? 'report-probes.json' : 'report.json';
+  const reportName=publicURL ? 'public-smoke.json' : contentDelta ? 'report-content-delta.json' : shellDelta ? 'report-shell-delta.json' : process.env.AMADO_DELTA_ONLY === '1' ? 'report-delta.json' : process.env.AMADO_RECOVERY_ONLY === '1' ? 'report-recovery.json' : process.env.AMADO_PROBES_ONLY === '1' ? 'report-probes.json' : 'report.json';
   await fs.writeFile(path.join(artifacts,reportName),JSON.stringify(report,null,2));
   if (report.completed) {
     const publicPath=path.join(root,'evidence',publicURL ? 'public-smoke.json' : 'browser-report.json');
     const publicReport={...report,type:'SYNTHETIC_BROWSER_REGRESSION_NOT_HUMAN_SESSION',executed_at:new Date().toISOString()};
-    if(!publicURL && shellDelta){
+    if(!publicURL && contentDelta){
+      const baseline=JSON.parse(await fs.readFile(path.join(root,'evidence/browser-before-content-refinement.json'),'utf8'));
+      for(const key of ['core_sha256','bridge_sha256','base_zip_sha256','files'])assert.deepEqual(baseline.build[key],report.build[key]);
+      for(const name of ['app.js','styles.css','worker.mjs','client.mjs'])assert.equal(baseline.build.frontend_sha256[name],report.build.frontend_sha256[name]);
+      publicReport.change_verification={
+        baseline_report:'browser-before-content-refinement.json',baseline_build:baseline.build,
+        baseline_check_count:Object.values(baseline.checks).filter(x=>x===true).length,
+        previous_baseline_report:baseline.change_verification?.baseline_report,
+        change:'Refinamento editorial da apresentação e da página técnica; no AMADO, somente o nome do link de navegação. Motor, base, ponte, consultas e scripts do instrumento preservados.',
+        scope:'Delta de apresentação: execução real do caso principal com sete configurações, exemplo de leitor de tela, reflow e limpeza. A regressão semântica completa e os testes de recuperação pertencem aos relatórios anteriores preservados; não foram repetidos para esta edição de conteúdo.',
+        unchanged_engine_base_bridge_queries:true,
+        unchanged_amado_app_worker_client_styles:true
+      };
+      await fs.writeFile(publicPath,JSON.stringify(publicReport,null,2));
+    }else if(!publicURL && shellDelta){
       const baseline=JSON.parse(await fs.readFile(path.join(root,'evidence/browser-before-unified-shell.json'),'utf8'));
       for(const key of ['core_sha256','bridge_sha256','base_zip_sha256','files'])assert.deepEqual(baseline.build[key],report.build[key]);
       publicReport.change_verification={

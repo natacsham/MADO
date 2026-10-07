@@ -43,16 +43,16 @@
   "case_history": false,
   "llm": false,
   "frontend_sha256": {
-    "index.html": "8e386c7c145169f6256025e1cf4e6e16e37279a675cf11c570c6227181a8fe42",
+    "index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
     "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
     "styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
     "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
     "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc"
   },
   "site_assets_sha256": {
-    "index.html": "77f764c9d3645d2b2bbac4c66f3a724a7e43032c5aa664524ca5d190fb8cae91",
-    "ontologia/index.html": "3f14b9135c335c44d9a1b8fb2f87b095fcf7dc936917291aea89bb2169090c5d",
-    "site.css": "55d4e00dd8151e50c7641c1384a177ffee94c0187e765a6e54824e16706b8695",
+    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+    "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
+    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
     "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"

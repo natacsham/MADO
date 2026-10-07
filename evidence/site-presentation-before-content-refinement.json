@@ -2,7 +2,7 @@
   "scope": "Conteúdo, navegação, SEO técnico e apresentação acessível; não revalida motor ou ontologia.",
   "execution_target": "LOCAL_SUBPATH",
   "browser": "154.0.8037.98",
-  "started_at_utc": "2026-10-07T05:31:03.236Z",
+  "started_at_utc": "2026-10-07T05:03:10.119Z",
   "checks": {
     "site_assets_match_manifest": true,
     "served_site_assets_match": true,
@@ -33,15 +33,11 @@
     "home_contrast_high": true,
     "home_top_link_focus": true,
     "home_no_unexplained_identifiers": true,
-    "home_explanatory_example_preserved": true,
-    "home_no_three_artifact_triptych": true,
     "home_authorship_and_acronym": true,
     "home_authorial_voice": true,
-    "home_static_card_keeps_geometry": true,
-    "home_static_card_not_click_target": true,
+    "home_hover_keeps_content_geometry": true,
+    "home_subtle_hover_not_focusable": true,
     "home_hover_respects_reduced_motion": true,
-    "home_pointer_only_actual_controls": true,
-    "home_local_links_and_anchors": true,
     "home_reflow_320": true,
     "home_mobile_text_200_reflow": true,
     "home_forced_colors_reflow": true,
@@ -75,43 +71,11 @@
     "ontology_contrast_high": true,
     "ontology_top_link_focus": true,
     "ontology_authorship_and_acronym": true,
-    "ontology_no_repeated_record_example": true,
-    "ontology_six_native_concept_disclosures": true,
-    "ontology_concept_1_keyboard_focus": true,
-    "ontology_concept_1_pointer_means_action": true,
-    "ontology_concept_1_keyboard_opens": true,
-    "ontology_concept_1_has_definition": true,
-    "ontology_concept_1_keyboard_closes": true,
-    "ontology_concept_2_keyboard_focus": true,
-    "ontology_concept_2_pointer_means_action": true,
-    "ontology_concept_2_keyboard_opens": true,
-    "ontology_concept_2_has_definition": true,
-    "ontology_concept_2_keyboard_closes": true,
-    "ontology_concept_3_keyboard_focus": true,
-    "ontology_concept_3_pointer_means_action": true,
-    "ontology_concept_3_keyboard_opens": true,
-    "ontology_concept_3_has_definition": true,
-    "ontology_concept_3_keyboard_closes": true,
-    "ontology_concept_4_keyboard_focus": true,
-    "ontology_concept_4_pointer_means_action": true,
-    "ontology_concept_4_keyboard_opens": true,
-    "ontology_concept_4_has_definition": true,
-    "ontology_concept_4_keyboard_closes": true,
-    "ontology_concept_5_keyboard_focus": true,
-    "ontology_concept_5_pointer_means_action": true,
-    "ontology_concept_5_keyboard_opens": true,
-    "ontology_concept_5_has_definition": true,
-    "ontology_concept_5_keyboard_closes": true,
-    "ontology_concept_6_keyboard_focus": true,
-    "ontology_concept_6_pointer_means_action": true,
-    "ontology_concept_6_keyboard_opens": true,
-    "ontology_concept_6_has_definition": true,
-    "ontology_concept_6_keyboard_closes": true,
-    "ontology_relations_definition_list": true,
-    "ontology_pointer_only_actual_controls": true,
-    "ontology_local_links_and_anchors": true,
+    "ontology_authorial_voice": true,
+    "ontology_hover_keeps_content_geometry": true,
+    "ontology_subtle_hover_not_focusable": true,
+    "ontology_hover_respects_reduced_motion": true,
     "ontology_reflow_320": true,
-    "ontology_open_concept_reflow_320": true,
     "ontology_mobile_text_200_reflow": true,
     "ontology_forced_colors_reflow": true,
     "ontology_forced_colors_and_reduced_motion": true,
@@ -148,7 +112,6 @@
     "amado_top_link": true,
     "amado_top_focus": true,
     "amado_contrast_sample": true,
-    "amado_local_links_and_anchors": true,
     "amado_reflow_320": true,
     "amado_mobile_text_200_reflow": true,
     "amado_forced_colors_reflow": true,
@@ -156,7 +119,6 @@
     "amado_no_persistent_storage": true,
     "amado_preferences_not_restored": true,
     "distinct_page_titles": true,
-    "home_and_ontology_have_distinct_content": true,
     "sitemap_three_pages": true,
     "no_external_requests_or_case_post": true,
     "no_javascript_errors": true
@@ -311,6 +273,18 @@
         },
         {
           "selector": "summary",
+          "text": "Sem cadastro e sem histórico",
+          "foreground": "rgb(25, 59, 64)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 12.0623549832488,
+          "minimum": 4.5
+        },
+        {
+          "selector": "summary",
           "text": "Quando não há conhecimento suficiente",
           "foreground": "rgb(25, 59, 64)",
           "background": [
@@ -419,7 +393,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "A ontologia",
           "foreground": "rgb(7, 92, 96)",
           "background": [
             255,
@@ -553,6 +527,18 @@
         },
         {
           "selector": "summary",
+          "text": "Sem cadastro e sem histórico",
+          "foreground": "rgb(0, 0, 0)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 21,
+          "minimum": 4.5
+        },
+        {
+          "selector": "summary",
           "text": "Quando não há conhecimento suficiente",
           "foreground": "rgb(0, 0, 0)",
           "background": [
@@ -661,7 +647,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "A ontologia",
           "foreground": "rgb(0, 58, 75)",
           "background": [
             255,
@@ -709,139 +695,44 @@
         }
       ],
       "technical_terms_visible": [],
-      "long_main_paragraphs": [
-        "Nesta pesquisa, construí a MADO (Multimodal Accessibility Decision Ontology) para representar como conhecimentos sobre acessibilidade e interação multimodal podem ser relacionados e empregados em decisões fundamentadas.",
-        "Normas, estudos, artefatos, personas e resultados oferecem conhecimentos diferentes. Investiguei como relacioná-los, preservar suas condições e tornar seu emprego em uma nova decisão verificável.",
-        "No Arcabouço Multimodal para Acessibilidade Digital, organizei esse percurso: a MADO representa o conhecimento e suas relações; o AMADO permite consultar essa mesma base e acompanhar a construção de uma orientação.",
-        "Na produção coletiva de um recurso digital, uma contribuição falada pode precisar ser revista e relacionada a imagens. A pergunta não é apenas “qual mídia adicionar?”, mas “qual função cada forma de expressão precisa cumprir?”.",
-        "Na base, relacionei preservação do significado, organização da atenção e informação recuperável. Acrescentar formatos sem definir seus papéis pode apenas criar competição.",
-        "A fala preserva expressão; o texto breve mantém pontos recuperáveis; a imagem pode representar relações, com alternativa para sua informação essencial. Cada configuração precisa de sustentação e condições próprias.",
-        "Não é uma receita universal. O exemplo explica registros da base. A seleção depende de tarefa, recursos, papéis e condições confirmadas. Vídeo ou jogo não se tornam obrigatórios por serem multimodais.",
-        "Não basta oferecer texto, áudio e imagem. É preciso dizer o que cada um faz, como se complementam, qual informação precisa ser preservada e o que muda se uma rota não puder ser usada.",
-        "Construí e registrei as articulações ao relacionar as fontes da pesquisa. O instrumento seleciona e combina elementos representados; não cria sozinho novas teorias nem interpreta qualquer narrativa."
-      ],
       "hover": {
         "before": {
-          "width": 560,
-          "height": 361.484375,
+          "width": 371.203125,
+          "height": 235.28125,
           "transform": "none",
           "border": "rgb(185, 206, 203)",
           "shadow": "none",
-          "transition": "0.18s, 0.18s",
-          "tabindex": null,
-          "cursor": "auto"
+          "transition": "0.18s, 0.18s, 0.18s",
+          "tabindex": null
         },
         "hovered": {
-          "width": 560,
-          "height": 361.484375,
-          "transform": "none",
+          "width": 371.203125,
+          "height": 235.28125,
+          "transform": "matrix(1, 0, 0, 1, 0, -3)",
           "border": "rgb(7, 92, 96)",
-          "shadow": "rgba(21, 63, 57, 0.08) 0px 6.4px 16px 0px",
-          "transition": "0.18s, 0.18s",
-          "tabindex": null,
-          "cursor": "auto"
+          "shadow": "rgba(21, 63, 57, 0.094) 0px 9.6px 19.2px 0px",
+          "transition": "0.18s, 0.18s, 0.18s",
+          "tabindex": null
         },
         "reduced": {
-          "width": 560,
-          "height": 361.484375,
+          "width": 371.203125,
+          "height": 235.28125,
           "transform": "none",
           "border": "rgb(7, 92, 96)",
-          "shadow": "rgba(21, 63, 57, 0.08) 0px 6.4px 16px 0px",
+          "shadow": "rgba(21, 63, 57, 0.094) 0px 9.6px 19.2px 0px",
           "transition": "0s",
-          "tabindex": null,
-          "cursor": "auto"
+          "tabindex": null
         }
-      },
-      "false_pointer_targets": [],
-      "local_links": [
-        {
-          "href": "/MADO/#conteudo",
-          "text": "Ir para o conteúdo principal",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "MMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "Entenda a MADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/",
-          "text": "Modelo e arquivos",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/",
-          "text": "Experimente o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/",
-          "text": "Experimentar o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/#exemplo",
-          "text": "Entender por um exemplo",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#modelo",
-          "text": "Conhecer o modelo que organiza esse raciocínio",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/",
-          "text": "Abrir o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#autoria",
-          "text": "Sobre o uso dos dados",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/#inicio",
-          "text": "↑ Voltar ao topo",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#verificacao",
-          "text": "Verificação e limites",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#autoria",
-          "text": "Autoria e disponibilização",
-          "status": 200,
-          "anchor_exists": true
-        }
-      ]
+      }
     },
     "ontology": {
       "metadata": {
-        "title": "Modelo e arquivos da MADO — documentação técnica",
+        "title": "Modelo da MADO — Conhecimento Multimodal Articulado",
         "lang": "pt-BR",
         "author": "Natacsha Ordones Raposo de Melo",
-        "description": "Documentação técnica da MADO: classes, relações, OWL, SHACL, consultas SPARQL, arquivos para o Protégé e relatórios de verificação.",
+        "description": "Explore classes, relações e um exemplo rastreável da ontologia MADO. Consulte o modelo, os arquivos técnicos e os limites da verificação da pesquisa.",
         "canonical": "https://natacsham.github.io/MADO/ontologia/",
-        "og_title": "Modelo e arquivos da MADO — documentação técnica",
+        "og_title": "Modelo da MADO — Conhecimento Multimodal Articulado",
         "og_url": "https://natacsham.github.io/MADO/ontologia/",
         "jsonld": [
           {
@@ -896,7 +787,7 @@
       "contrast_default": [
         {
           "selector": "h1",
-          "text": "Modelo e arquivos da MADO",
+          "text": "O que está por trás de uma orientação?",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             247,
@@ -908,7 +799,7 @@
         },
         {
           "selector": "h2",
-          "text": "Núcleo do modelo",
+          "text": "Seis conceitos centrais",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -920,7 +811,7 @@
         },
         {
           "selector": "h2",
-          "text": "Como o modelo é colocado em uso",
+          "text": "Do significado preservado à organização do conteúdo",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             247,
@@ -932,7 +823,7 @@
         },
         {
           "selector": "h2",
-          "text": "Arquivos e verificações",
+          "text": "Representar, consultar e compor são operações diferentes.",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -956,7 +847,7 @@
         },
         {
           "selector": "p",
-          "text": "Documentação técnica",
+          "text": "Representação e fundamentação",
           "foreground": "rgb(7, 92, 96)",
           "background": [
             247,
@@ -980,7 +871,7 @@
         },
         {
           "selector": "summary",
-          "text": "Fonte",
+          "text": "Como a estrutura preserva a fundamentação?",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -992,7 +883,7 @@
         },
         {
           "selector": "summary",
-          "text": "Conhecimento multimodal articulado",
+          "text": "O AMADO usa inteligência artificial generativa?",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -1004,7 +895,7 @@
         },
         {
           "selector": "summary",
-          "text": "Critério de decisão multimodal",
+          "text": "Por que uma decisão pode ficar suspensa?",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -1012,18 +903,6 @@
             255
           ],
           "ratio": 12.0623549832488,
-          "minimum": 4.5
-        },
-        {
-          "selector": "a.button",
-          "text": "Consultar relatório técnico (JSON)",
-          "foreground": "rgb(255, 255, 255)",
-          "background": [
-            7,
-            92,
-            96
-          ],
-          "ratio": 7.752515241008432,
           "minimum": 4.5
         },
         {
@@ -1076,7 +955,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "A ontologia",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -1126,7 +1005,7 @@
       "contrast_high": [
         {
           "selector": "h1",
-          "text": "Modelo e arquivos da MADO",
+          "text": "O que está por trás de uma orientação?",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1138,7 +1017,7 @@
         },
         {
           "selector": "h2",
-          "text": "Núcleo do modelo",
+          "text": "Seis conceitos centrais",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1150,7 +1029,7 @@
         },
         {
           "selector": "h2",
-          "text": "Como o modelo é colocado em uso",
+          "text": "Do significado preservado à organização do conteúdo",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1162,7 +1041,7 @@
         },
         {
           "selector": "h2",
-          "text": "Arquivos e verificações",
+          "text": "Representar, consultar e compor são operações diferentes.",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1186,7 +1065,7 @@
         },
         {
           "selector": "p",
-          "text": "Documentação técnica",
+          "text": "Representação e fundamentação",
           "foreground": "rgb(0, 58, 75)",
           "background": [
             255,
@@ -1210,7 +1089,7 @@
         },
         {
           "selector": "summary",
-          "text": "Fonte",
+          "text": "Como a estrutura preserva a fundamentação?",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1222,7 +1101,7 @@
         },
         {
           "selector": "summary",
-          "text": "Conhecimento multimodal articulado",
+          "text": "O AMADO usa inteligência artificial generativa?",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1234,7 +1113,7 @@
         },
         {
           "selector": "summary",
-          "text": "Critério de decisão multimodal",
+          "text": "Por que uma decisão pode ficar suspensa?",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1242,18 +1121,6 @@
             255
           ],
           "ratio": 21,
-          "minimum": 4.5
-        },
-        {
-          "selector": "a.button",
-          "text": "Consultar relatório técnico (JSON)",
-          "foreground": "rgb(255, 255, 255)",
-          "background": [
-            0,
-            58,
-            75
-          ],
-          "ratio": 12.303564830665552,
           "minimum": 4.5
         },
         {
@@ -1306,7 +1173,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "A ontologia",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -1353,153 +1220,35 @@
           "minimum": 4.5
         }
       ],
-      "long_main_paragraphs": [
-        "Na MADO (Multimodal Accessibility Decision Ontology), representei conceitos, relações e condições de uso do conhecimento. Aqui você pode inspecionar essa estrutura, consultada pelo AMADO.",
-        "AplicacaoDeCriterio liga uma configuração a um critério e a seus conhecimentos de apoio e origens específicos. Essa aplicação não se reduz à relação geral fundamentadoPor.",
-        "Perfil OWL 2 DL e HermiT; SHACL; oito questões de competência; testes de fundamentação, incompatibilidade, retirada de recursos e insuficiência; comparação entre execução local e navegador.",
-        "Textos de terceiros sem autorização e registros privados não são redistribuídos. Referências e localizações permanecem disponíveis; a conferência documental exige consultar as fontes.",
-        "MELO, Natacsha Ordones Raposo de. MADO — Ontologia do Arcabouço Multimodal para Acessibilidade Digital: ontologia e instrumento AMADO. Versão 1.3.0-rc1. Repositório do projeto.",
-        "Ao citar uma execução, registre a versão e o relatório. Não há licença aberta de reutilização concedida nesta etapa; fontes e dependências conservam suas atribuições e condições próprias.",
-        "O caso fica na memória da página e é descartado ao limpar, atualizar, fechar ou trocar de aba do instrumento. Não exige cadastro e não é incorporado automaticamente à base.",
-        "Evite dados identificáveis. A hospedagem pode manter registros técnicos de acesso, mas o AMADO não envia o conteúdo do caso. Incorporar conhecimento exige curadoria documentada em outra versão."
-      ],
-      "concept_disclosures": [
-        {
-          "label": "Fonte",
-          "keyboard_open_close": true
+      "hover": {
+        "before": {
+          "width": 568,
+          "height": 167.765625,
+          "transform": "none",
+          "border": "rgb(185, 206, 203)",
+          "shadow": "none",
+          "transition": "0.18s, 0.18s, 0.18s",
+          "tabindex": null
         },
-        {
-          "label": "Conhecimento multimodal articulado",
-          "keyboard_open_close": true
+        "hovered": {
+          "width": 568,
+          "height": 167.765625,
+          "transform": "matrix(1, 0, 0, 1, 0, -3)",
+          "border": "rgb(7, 92, 96)",
+          "shadow": "rgba(21, 63, 57, 0.094) 0px 9.6px 19.2px 0px",
+          "transition": "0.18s, 0.18s, 0.18s",
+          "tabindex": null
         },
-        {
-          "label": "Critério de decisão multimodal",
-          "keyboard_open_close": true
-        },
-        {
-          "label": "Contexto de interação digital",
-          "keyboard_open_close": true
-        },
-        {
-          "label": "Decisão de acessibilidade multimodal",
-          "keyboard_open_close": true
-        },
-        {
-          "label": "Resultado",
-          "keyboard_open_close": true
+        "reduced": {
+          "width": 568,
+          "height": 167.765625,
+          "transform": "none",
+          "border": "rgb(7, 92, 96)",
+          "shadow": "rgba(21, 63, 57, 0.094) 0px 9.6px 19.2px 0px",
+          "transition": "0s",
+          "tabindex": null
         }
-      ],
-      "false_pointer_targets": [],
-      "local_links": [
-        {
-          "href": "/MADO/ontologia/#conteudo",
-          "text": "Ir para o conteúdo principal",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "MMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "Entenda a MADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/",
-          "text": "Modelo e arquivos",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/",
-          "text": "Experimente o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "MADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#modelo",
-          "text": "Modelo",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#camadas",
-          "text": "Implementação",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#arquivos",
-          "text": "Arquivos e verificações",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#autoria",
-          "text": "Autoria",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/evidence/report.json",
-          "text": "Consultar relatório técnico (JSON)",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/downloads/main.ttl",
-          "text": "Modelo da MADO (Turtle)",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/downloads/mado-public.ttl",
-          "text": "Grafo público (Turtle)",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/downloads/mado.owl",
-          "text": "Arquivo para o Protégé (RDF/XML)",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/downloads/main.shacl.ttl",
-          "text": "Restrições de integridade (SHACL/Turtle)",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/#inicio",
-          "text": "↑ Voltar ao topo",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "Voltar à apresentação",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/",
-          "text": "Experimentar o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        }
-      ]
+      }
     },
     "amado": {
       "metadata": {
@@ -1666,7 +1415,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "A ontologia",
           "foreground": "rgb(7, 92, 96)",
           "background": [
             255,
@@ -1824,7 +1573,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "A ontologia",
           "foreground": "rgb(0, 58, 75)",
           "background": [
             255,
@@ -1857,56 +1606,6 @@
           ],
           "ratio": 14.735800377717528,
           "minimum": 4.5
-        }
-      ],
-      "local_links": [
-        {
-          "href": "/MADO/amado/#main",
-          "text": "Ir para o conteúdo",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "MMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "Entenda a MADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/ontologia/",
-          "text": "Modelo e arquivos",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/",
-          "text": "Experimente o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "Entender a MADO e o AMADO",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/amado/#inicio",
-          "text": "↑ Voltar ao topo",
-          "status": 200,
-          "anchor_exists": true
-        },
-        {
-          "href": "/MADO/",
-          "text": "Início da MADO",
-          "status": 200,
-          "anchor_exists": true
         }
       ]
     }
@@ -2015,16 +1714,16 @@
     "case_history": false,
     "llm": false,
     "frontend_sha256": {
-      "index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
+      "index.html": "8e386c7c145169f6256025e1cf4e6e16e37279a675cf11c570c6227181a8fe42",
       "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
       "styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
       "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
       "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc"
     },
     "site_assets_sha256": {
-      "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
-      "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-      "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+      "index.html": "77f764c9d3645d2b2bbac4c66f3a724a7e43032c5aa664524ca5d190fb8cae91",
+      "ontologia/index.html": "3f14b9135c335c44d9a1b8fb2f87b095fcf7dc936917291aea89bb2169090c5d",
+      "site.css": "55d4e00dd8151e50c7641c1384a177ffee94c0187e765a6e54824e16706b8695",
       "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
       "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
       "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
@@ -2044,28 +1743,28 @@
     }
   },
   "source_sha256": {
-    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
-    "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+    "index.html": "77f764c9d3645d2b2bbac4c66f3a724a7e43032c5aa664524ca5d190fb8cae91",
+    "ontologia/index.html": "3f14b9135c335c44d9a1b8fb2f87b095fcf7dc936917291aea89bb2169090c5d",
+    "site.css": "55d4e00dd8151e50c7641c1384a177ffee94c0187e765a6e54824e16706b8695",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-    "amado/index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
+    "amado/index.html": "8e386c7c145169f6256025e1cf4e6e16e37279a675cf11c570c6227181a8fe42",
     "amado/styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
     "amado/app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
     "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
   },
   "site_assets_sha256": {
-    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
-    "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+    "index.html": "77f764c9d3645d2b2bbac4c66f3a724a7e43032c5aa664524ca5d190fb8cae91",
+    "ontologia/index.html": "3f14b9135c335c44d9a1b8fb2f87b095fcf7dc936917291aea89bb2169090c5d",
+    "site.css": "55d4e00dd8151e50c7641c1384a177ffee94c0187e765a6e54824e16706b8695",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
     "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
   },
   "served_site_assets_sha256": {
-    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
-    "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+    "index.html": "77f764c9d3645d2b2bbac4c66f3a724a7e43032c5aa664524ca5d190fb8cae91",
+    "ontologia/index.html": "3f14b9135c335c44d9a1b8fb2f87b095fcf7dc936917291aea89bb2169090c5d",
+    "site.css": "55d4e00dd8151e50c7641c1384a177ffee94c0187e765a6e54824e16706b8695",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
     "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
@@ -2095,10 +1794,6 @@
       "viewport": 320,
       "scroll": 320
     },
-    "ontology_open_concept_reflow_320": {
-      "viewport": 320,
-      "scroll": 320
-    },
     "ontology_mobile_text_200_reflow": {
       "viewport": 320,
       "scroll": 320
@@ -2124,7 +1819,6 @@
       "scroll": 320
     }
   },
-  "repeated_main_paragraphs": [],
   "sitemap_urls": [
     "https://natacsham.github.io/MADO/",
     "https://natacsham.github.io/MADO/ontologia/",
@@ -2135,5 +1829,5 @@
     "reason": "robots.txt deve estar na raiz da origem; o projeto está em /MADO/. Submissão do sitemap ao mecanismo de busca é uma etapa externa."
   },
   "completed": true,
-  "finished_at_utc": "2026-10-07T05:31:24.000Z"
+  "finished_at_utc": "2026-10-07T05:03:35.347Z"
 }

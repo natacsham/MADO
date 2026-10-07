@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore classes, relações e um exemplo rastreável da ontologia MADO. Consulte o modelo, os arquivos técnicos e os limites da verificação da pesquisa.">
+  <meta name="description" content="Documentação técnica da MADO: classes, relações, OWL, SHACL, consultas SPARQL, arquivos para o Protégé e relatórios de verificação.">
   <meta name="author" content="Natacsha Ordones Raposo de Melo">
-  <title>Modelo da MADO — Conhecimento Multimodal Articulado</title>
+  <title>Modelo e arquivos da MADO — documentação técnica</title>
   <link rel="canonical" href="https://natacsham.github.io/MADO/ontologia/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="MADO">
   <meta property="og:url" content="https://natacsham.github.io/MADO/ontologia/">
-  <meta property="og:title" content="Modelo da MADO — Conhecimento Multimodal Articulado">
-  <meta property="og:description" content="Entenda como fontes, conhecimentos, critérios, contextos e configurações modais se conectam na ontologia MADO.">
+  <meta property="og:title" content="Modelo e arquivos da MADO — documentação técnica">
+  <meta property="og:description" content="Consulte o núcleo do modelo, os vínculos de fundamentação, os arquivos e as verificações da MADO.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Modelo da MADO — Conhecimento Multimodal Articulado">
-  <meta name="twitter:description" content="Classes, relações, exemplo rastreável, arquivos e limites da verificação da ontologia MADO, de Natacsha Ordones Raposo de Melo.">
+  <meta name="twitter:title" content="Modelo e arquivos da MADO — documentação técnica">
+  <meta name="twitter:description" content="Classes, relações, implementação e arquivos da ontologia MADO, de Natacsha Ordones Raposo de Melo.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,9 +50,9 @@
   <link rel="stylesheet" href="../site.css">
   <link rel="stylesheet" href="../shell.css">
 </head>
-<body>
+<body class="technical-page">
   <a class="skip" href="#conteudo">Ir para o conteúdo principal</a>
-  <header id="inicio" class="site-header" tabindex="-1"><div class="wrap header-inner"><a class="brand" href="../" aria-label="MADO, início"><span class="brand-mark" aria-hidden="true">M</span>MADO</a><nav class="nav" aria-label="Navegação principal"><a href="../">Entenda a MADO</a><a href="./" aria-current="page">A ontologia</a><a href="../amado/">Experimente o AMADO</a></nav></div></header>
+  <header id="inicio" class="site-header" tabindex="-1"><div class="wrap header-inner"><a class="brand" href="../" aria-label="MADO, início"><span class="brand-mark" aria-hidden="true">M</span>MADO</a><nav class="nav" aria-label="Navegação principal"><a href="../">Entenda a MADO</a><a href="./" aria-current="page">Modelo e arquivos</a><a href="../amado/">Experimente o AMADO</a></nav></div></header>
   <div class="reading-bar" data-site-accessibility hidden>
     <div class="wrap reading-inner">
       <strong>Ajustes de leitura</strong>
@@ -66,36 +66,75 @@
     </div>
   </div>
   <main id="conteudo" tabindex="-1">
-    <div class="wrap"><nav class="breadcrumb" aria-label="Localização"><ol><li><a href="../">MADO</a></li><li aria-current="page">A ontologia</li></ol></nav><div class="page-title"><p class="eyebrow">Representação e fundamentação</p><h1>O que está por trás de uma orientação?</h1><p class="lead">Na MADO (Multimodal Accessibility Decision Ontology), representei conceitos, relações e condições para examinar como um conhecimento foi empregado. O modelo explica a estrutura; o executor demonstra um uso delimitado dela.</p><span class="version">MADO 1.3.0-rc1 · versão candidata</span><nav aria-label="Nesta página"><ul class="link-list"><li><a href="#modelo">Modelo</a></li><li><a href="#exemplo-tecnico">Exemplo</a></li><li><a href="#camadas">Execução</a></li><li><a href="#verificacao">Verificação</a></li><li><a href="#arquivos">Arquivos</a></li><li><a href="#autoria">Autoria</a></li></ul></nav></div></div>
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Localização"><ol><li><a href="../">MADO</a></li><li aria-current="page">Modelo e arquivos</li></ol></nav>
+      <div class="page-title">
+        <p class="eyebrow">Documentação técnica</p>
+        <h1>Modelo e arquivos da MADO</h1>
+        <p class="lead">Na MADO (<span lang="en">Multimodal Accessibility Decision Ontology</span>), representei conceitos, relações e condições de uso do conhecimento. Aqui você pode inspecionar essa estrutura, consultada pelo AMADO.</p>
+        <span class="version">MADO 1.3.0-rc1 · versão candidata</span>
+        <nav aria-label="Nesta página"><ul class="link-list"><li><a href="#modelo">Modelo</a></li><li><a href="#camadas">Implementação</a></li><li><a href="#arquivos">Arquivos e verificações</a></li><li><a href="#autoria">Autoria</a></li></ul></nav>
+      </div>
+    </div>
 
-    <section class="section white" id="modelo" aria-labelledby="modelo-titulo"><div class="wrap"><div class="section-head"><h2 id="modelo-titulo">Seis conceitos centrais</h2><p>A ontologia não procura representar todas as situações humanas. Ela organiza o conhecimento necessário ao raciocínio e às condições contempladas nesta pesquisa.</p></div><dl class="terms">
-      <div><dt>Fonte</dt><dd>Registro ou artefato efetivamente analisado para fundamentar conhecimento. Bibliografia apenas citada permanece distinguida.<span class="technical">Fonte</span></dd></div>
-      <div><dt>Conhecimento multimodal articulado</dt><dd>Compreensão construída ao relacionar conteúdos, com perspectiva, condições e limites registrados.<span class="technical">ConhecimentoMultimodalArticulado</span></dd></div>
-      <div><dt>Critério de decisão multimodal</dt><dd>Direcionamento, cuidado ou restrição empregado para decidir em um contexto. Não determina uma resposta sozinho.<span class="technical">CriterioDeDecisaoMultimodal</span></dd></div>
-      <div><dt>Contexto de interação digital</dt><dd>Tarefa, objetivo, participação, barreiras, necessidades e recursos pertinentes ao caso, incluindo o que ainda falta conhecer.<span class="technical">ContextoDeInteracaoDigital</span></dd></div>
-      <div><dt>Decisão de acessibilidade multimodal</dt><dd>Emprego situado dos conhecimentos e critérios, expresso em configurações de modos e recursos.<span class="technical">DecisaoDeAcessibilidadeMultimodal</span></dd></div>
-      <div><dt>Resultado</dt><dd>Resultado documentado de aplicação ou avaliação. Uma expectativa não deve ser apresentada como efeito já observado.<span class="technical">Resultado</span></dd></div>
-    </dl><details><summary>Como a estrutura preserva a fundamentação?</summary><p><strong>ArticulacaoDocumentada</strong> registra conteúdos relacionados, conhecimento resultante, fontes, confirmação e limites. <strong>ConfiguracaoModalDaDecisao</strong> registra função, modalidade, recurso, responsável e alternativa.</p><p><strong>AplicacaoDeCriterio</strong> mantém a associação exata entre uma configuração, um critério, seus conhecimentos de apoio e suas origens. Evita que duas listas independentes sejam interpretadas como todas as combinações possíveis.</p><p>Estudos, artefatos, trechos, personas e perspectivas mantêm seus papéis próprios. <strong>ParticipacaoNoContexto</strong> descreve condições e papéis situados, sem criar uma classe de deficiência.</p></details></div></section>
+    <section class="section white" id="modelo" aria-labelledby="modelo-titulo"><div class="wrap">
+      <div class="section-head"><h2 id="modelo-titulo">Núcleo do modelo</h2><p>Abra um conceito para consultar sua definição e o identificador usado nos arquivos.</p></div>
+      <div class="concept-grid">
+        <details><summary>Fonte</summary><p>Registro ou artefato efetivamente analisado. Uma referência apenas citada não se torna automaticamente fonte do conhecimento.</p><code>Fonte</code></details>
+        <details><summary>Conhecimento multimodal articulado</summary><p>Compreensão resultante da relação entre conteúdos, com fontes, perspectiva, condições e limites registrados.</p><code>ConhecimentoMultimodalArticulado</code></details>
+        <details><summary>Critério de decisão multimodal</summary><p>Direcionamento, cuidado ou restrição que orienta uma escolha situada. Não determina a decisão sozinho.</p><code>CriterioDeDecisaoMultimodal</code></details>
+        <details><summary>Contexto de interação digital</summary><p>Caracterização de tarefa, objetivo, participação, barreiras, necessidades, recursos e informações ausentes.</p><code>ContextoDeInteracaoDigital</code></details>
+        <details><summary>Decisão de acessibilidade multimodal</summary><p>Emprego situado de conhecimentos e critérios, expresso em configurações de modalidades e recursos.</p><code>DecisaoDeAcessibilidadeMultimodal</code></details>
+        <details><summary>Resultado</summary><p>Resultado documentado de aplicação ou avaliação, distinto de um efeito apenas esperado.</p><code>Resultado</code></details>
+      </div>
+      <details id="relacoes"><summary>Relações centrais e fundamentação situada</summary>
+        <p>Os vínculos abaixo são relações do modelo, não uma sequência automática de inferência.</p>
+        <dl class="model-relations">
+          <div><dt><code>derivadoDe</code></dt><dd>Conhecimento → Fonte</dd></div>
+          <div><dt><code>fundamentadoPor</code></dt><dd>Critério → Conhecimento</dd></div>
+          <div><dt><code>respondeA</code></dt><dd>Decisão → Contexto</dd></div>
+          <div><dt><code>sustentadaPor</code></dt><dd>Decisão → Conhecimento</dd></div>
+          <div><dt><code>produziuResultado</code></dt><dd>Decisão → Resultado</dd></div>
+          <div><dt><code>registradoEm</code></dt><dd>Resultado → Fonte</dd></div>
+        </dl>
+        <p><code>ArticulacaoDocumentada</code> registra como conteúdos se relacionam. <code>ConfiguracaoModalDaDecisao</code> reúne modalidade, função, recurso, responsável e alternativa.</p>
+        <p><code>AplicacaoDeCriterio</code> liga uma configuração a um critério e a seus conhecimentos de apoio e origens específicos. Essa aplicação não se reduz à relação geral <code>fundamentadoPor</code>.</p>
+        <p>Estudos, artefatos, trechos, personas e perspectivas preservam a proveniência. <code>ParticipacaoNoContexto</code> descreve papéis e condições situadas; não há classe de deficiência.</p>
+      </details>
+    </div></section>
 
-    <section class="section" id="exemplo-tecnico" aria-labelledby="exemplo-titulo"><div class="wrap"><div class="section-head"><p class="eyebrow">Uma ligação que pode ser conferida</p><h2 id="exemplo-titulo">Do significado preservado à organização do conteúdo</h2><p>O exemplo abaixo explica registros da base. Não é uma nova avaliação empírica e não garante que todos os registros sejam aplicáveis a qualquer caso.</p></div><ol class="steps">
-      <li><div><h3>Articulação registrada: ART-REF-03</h3><p>Relaciona alternativas perceptivas e função das mídias. Seus conhecimentos de entrada incluem K10, K17, K19, K26, K27 e K29; os resultantes incluem K42 e K43.</p><p class="micro">Condição: imagem, desenho ou vídeo participa do conteúdo essencial. Limite: conferir a função da alternativa, não apenas sua presença.</p></div></li>
-      <li><div><h3>Compreensão resultante: K43</h3><p>Mais modalidades não bastam. Elas precisam de papéis distintos, ordem compreensível e controle para evitar competição e perda de continuidade.</p><p class="micro">Registrei esta relação como reconstrução analítica; ela não foi produzida automaticamente pelo AMADO.</p></div></li>
-      <li><div><h3>Complemento de outra articulação: K38</h3><p>Uma unidade revisável de conteúdo relaciona ideia central, representação, alternativas, autoria, fonte e revisão. K38 acrescenta a estrutura persistente; não é produto de ART-REF-03.</p><p class="micro">Sua aplicação conserva condições específicas de produção e revisão e de disponibilidade de recurso. Não se presume validade universal.</p></div></li>
-      <li><div><h3>Aplicação do critério: CA02</h3><p>No padrão de organização persistente, CA02 é apoiado especificamente por <strong>K38 e K43</strong>, com as origens ORI-0012, ORI-0013 e ORI-0014.</p><p class="micro">Isso não autoriza atribuir ao critério todos os conhecimentos presentes na configuração.</p></div></li>
-      <li><div><h3>Configuração: manter o conteúdo recuperável</h3><p>O padrão organiza blocos curtos, ideia central, autoria e revisão. O texto mantém uma sequência retomável. Fala, imagem ou vídeo precisam de configurações e funções próprias para integrar a mesma decisão.</p><p class="micro">Padrão: PAD-ORGANIZAR-CONTEUDO-PERSISTENTE. Há requisitos de tarefa, modo, necessidade ou barreira e papel responsável.</p></div></li>
-    </ol><div class="note"><p><strong>O que a articulação acrescenta?</strong> A diferença deve aparecer na execução comparativa: conhecimentos elegíveis, funções e configurações que foram acrescentados ou alterados. Recuperar mais registros, sem efeito fundamentado, não demonstra uma orientação melhor.</p></div></div></section>
+    <section class="section" id="camadas" aria-labelledby="camadas-titulo"><div class="wrap">
+      <div class="section-head"><h2 id="camadas-titulo">Como o modelo é colocado em uso</h2><p>O AMADO é o instrumento deste projeto para consultar a MADO e compor a orientação. Cada tecnologia cumpre uma função nessa execução.</p></div>
+      <dl class="implementation-list">
+        <div><dt>RDF e OWL 2 DL</dt><dd>Representação de classes, relações, dados e axiomas. O HermiT verifica consistência e inferências.</dd></div>
+        <div><dt>SHACL</dt><dd>Verificação da integridade dos registros e dos vínculos exigidos.</dd></div>
+        <div><dt>SPARQL</dt><dd>Consultas das oito questões de competência, incluindo contexto, conhecimentos, critérios e proveniência.</dd></div>
+        <div><dt>Composição no AMADO</dt><dd>Motor Python no navegador, sem LLM. Verifica condições e combina padrões documentados; a interface apresenta a decisão e seus fundamentos.</dd></div>
+      </dl>
+      <p class="micro"><a href="https://github.com/natacsham/MADO/tree/main/queries">Consultar as questões em SPARQL</a> · <a href="https://github.com/natacsham/MADO/blob/main/docs/reproduzir.md">Reproduzir a execução</a></p>
+    </div></section>
 
-    <section class="section white" id="camadas" aria-labelledby="camadas-titulo"><div class="wrap"><div class="section-head"><h2 id="camadas-titulo">Representar, consultar e compor são operações diferentes.</h2><p>Uma ontologia não é, sozinha, um sistema que interpreta texto e escreve respostas. A MADO e o AMADO têm responsabilidades distintas.</p></div><div class="cards">
-      <article class="card"><h3>Representação</h3><p><strong>RDF e OWL</strong> descrevem recursos, relações e axiomas. O reasoner examina consistência e inferências sob esses axiomas.</p></article>
-      <article class="card"><h3>Verificação e consulta</h3><p><strong>SHACL</strong> verifica integridade. <strong>SPARQL</strong> recupera contexto, conhecimentos e proveniência. Encontrar não significa autorizar uso.</p></article>
-      <article class="card"><h3>Composição e apresentação</h3><p>O <strong>motor determinístico</strong> verifica condições e combina padrões. A interface mostra orientação, alternativas, limites e fundamentação.</p></article>
-    </div><details><summary>O AMADO usa inteligência artificial generativa?</summary><p>Não utiliza LLM. O motor Python é executado no navegador, em um processo separado da interface, consultando os arquivos públicos e compondo configurações documentadas.</p><p>Construí as articulações e os padrões a partir do conhecimento reunido na pesquisa. O AMADO não cria novos princípios nem garante interpretar qualquer narrativa. Sua novidade operacional deve ser examinada na seleção situada, e não presumida pelo identificador novo de uma decisão.</p></details><details><summary>Por que uma decisão pode ficar suspensa?</summary><p>Informação essencial pode estar ausente; um recurso pode estar impedido; uma relação pode não estar confirmada; ou a base pode não conter conhecimento e padrões suficientes para a tarefa. Esses estados precisam ser informados, sem resposta fictícia de emergência.</p></details></div></section>
+    <section class="section white" id="arquivos" aria-labelledby="arquivos-titulo"><div class="wrap split">
+      <div><h2 id="arquivos-titulo">Arquivos e verificações</h2>
+        <p id="verificacao">Os relatórios identificam versão, entradas, ferramentas, testes e limites. Verificação técnica não substitui avaliação humana ou demonstração de efeitos em uso.</p>
+        <p><a class="button" href="../evidence/report.json">Consultar relatório técnico (JSON)</a></p>
+        <details><summary>Escopo das verificações</summary><p>Perfil OWL 2 DL e HermiT; SHACL; oito questões de competência; testes de fundamentação, incompatibilidade, retirada de recursos e insuficiência; comparação entre execução local e navegador.</p><p>Os relatórios distinguem testes atuais de evidências anteriores. Não há declaração de conformidade integral de acessibilidade nem de eficácia educacional.</p></details>
+        <p class="micro">Textos de terceiros sem autorização e registros privados não são redistribuídos. Referências e localizações permanecem disponíveis; a conferência documental exige consultar as fontes.</p>
+      </div>
+      <div><ul class="download-list">
+        <li><a href="../downloads/main.ttl" download>Modelo da MADO (Turtle)</a><span>Classes, propriedades e axiomas.</span></li>
+        <li><a href="../downloads/mado-public.ttl" download>Grafo público (Turtle)</a><span>Modelo e dados para inspeção.</span></li>
+        <li><a href="../downloads/mado.owl" download>Arquivo para o Protégé (RDF/XML)</a><span>Confira a versão ao carregar.</span></li>
+        <li><a href="../downloads/main.shacl.ttl" download>Restrições de integridade (SHACL/Turtle)</a><span>Condições verificáveis dos registros.</span></li>
+      </ul><p class="micro">Os downloads são arquivos técnicos. As definições em HTML acima oferecem uma entrada de leitura ao modelo.</p></div>
+    </div></section>
 
-    <section class="section" id="verificacao" aria-labelledby="verificacao-titulo"><div class="wrap split"><div><p class="eyebrow">Evidências proporcionais às afirmações</p><h2 id="verificacao-titulo">Cada resultado pertence a uma versão e a um teste.</h2><p>Esta revisão tem verificações próprias. Aprovação técnica anterior, revisão especializada da orientação e efeitos de uso são evidências diferentes.</p><p><strong>Não se afirma aqui</strong> melhoria educacional, compreensão universal de narrativas ou conformidade integral de acessibilidade.</p></div><div><details open><summary>Como conferir a revisão atual</summary><p>Consulte o relatório gerado para conhecer ferramentas, entradas, testes executados, resultados e limitações. Um teste descrito na documentação não está automaticamente aprovado.</p><p><a href="../evidence/report.json">Abrir relatório de verificação desta versão (JSON)</a></p><p class="micro">Capturas de tela complementam, mas não substituem, resultados reproduzíveis. Avaliações com leitor de tela e participantes precisam de registro específico.</p></details><details><summary>O que precisa ser testado?</summary><ul><li>Perfil OWL 2 DL, consistência e integridade SHACL.</li><li>Oito questões de competência e vínculos exatos de fundamentação.</li><li>Condições incompatíveis, dados ausentes e retirada de recursos.</li><li>Recuperação isolada versus articulada.</li><li>Equivalência semântica entre execução nativa e navegador.</li><li>Privacidade, teclado, foco, ampliação e tecnologias assistivas.</li></ul></details></div></div></section>
-
-    <section class="section white" id="arquivos" aria-labelledby="arquivos-titulo"><div class="wrap split"><div><p class="eyebrow">Material técnico</p><h2 id="arquivos-titulo">Explore os arquivos da distribuição pública.</h2><p>Os arquivos preservam identificadores e relações necessários à inspeção. Textos de terceiros sem autorização e registros privados não fazem parte desta distribuição.</p><p>Quando um trecho não é redistribuído, sua referência e localização permitem consultar a fonte. Uma indicação de texto omitido não substitui o documento original.</p><p class="micro">São arquivos técnicos, não documentos de leitura acessível garantida. A explicação desta página oferece uma entrada em HTML.</p></div><div><ul class="download-list"><li><a href="../downloads/main.ttl" download>Modelo da MADO (Turtle)</a><span>Classes, propriedades e axiomas.</span></li><li><a href="../downloads/mado-public.ttl" download>Grafo da distribuição pública (Turtle)</a><span>Representação e dados públicos para inspeção.</span></li><li><a href="../downloads/mado.owl" download>Ontologia para abrir no Protégé (RDF/XML)</a><span>Confira a versão ao carregar o arquivo.</span></li><li><a href="../downloads/main.shacl.ttl" download>Restrições de integridade (SHACL/Turtle)</a><span>Condições verificáveis dos registros e vínculos.</span></li></ul></div></div></section>
-
-    <section class="section" id="autoria" aria-labelledby="autoria-titulo"><div class="wrap reading"><h2 id="autoria-titulo">Autoria, pesquisa e disponibilização</h2><p><strong>Natacsha Ordones Raposo de Melo</strong><br>Projeto de pesquisa de doutorado <em>Arcabouço Multimodal para Acessibilidade Digital</em>.</p><p>A MADO representa o raciocínio da pesquisa; o AMADO é seu instrumento computacional delimitado. Autores das fontes e perspectivas participantes conservam suas atribuições.</p><details><summary>Como referenciar este projeto</summary><p>MELO, Natacsha Ordones Raposo de. <em>MADO — Ontologia do Arcabouço Multimodal para Acessibilidade Digital: ontologia e instrumento AMADO.</em> Versão 1.3.0-rc1. Repositório do projeto.</p><p>Não há DOI exigido para consultar ou compreender o trabalho. Ao citar uma execução, registre também a versão e o relatório correspondente.</p></details><details><summary>Condições de disponibilização</summary><p>Não foi concedida licença aberta de reutilização nesta etapa. A publicação não deve ser interpretada como licença MIT ou autorização geral para redistribuir textos e dados de terceiros. Dependências mantêm suas próprias licenças.</p></details><details><summary>Privacidade e incorporação de novos conhecimentos</summary><p>O demonstrador não exige cadastro, não mantém histórico de casos e não incorpora automaticamente suas respostas à base. O caso atual permanece em memória até limpar, atualizar ou fechar a página.</p><p>Não informe dados identificáveis. A hospedagem pode conservar registros técnicos de acesso. Incorporar conhecimento exige curadoria documentada e uma versão futura; não acontece durante a consulta pública.</p></details></div></section>
+    <section class="section" id="autoria" aria-labelledby="autoria-titulo"><div class="wrap reading">
+      <h2 id="autoria-titulo">Autoria e disponibilização</h2>
+      <p><strong>Natacsha Ordones Raposo de Melo</strong><br>Projeto de pesquisa de doutorado <em>Arcabouço Multimodal para Acessibilidade Digital</em>.</p>
+      <details><summary>Referência e condições de uso</summary><p>MELO, Natacsha Ordones Raposo de. <em>MADO — Ontologia do Arcabouço Multimodal para Acessibilidade Digital: ontologia e instrumento AMADO.</em> Versão 1.3.0-rc1. Repositório do projeto.</p><p>Ao citar uma execução, registre a versão e o relatório. Não há licença aberta de reutilização concedida nesta etapa; fontes e dependências conservam suas atribuições e condições próprias.</p></details>
+      <details><summary>Privacidade no AMADO</summary><p>O caso fica na memória da página e é descartado ao limpar, atualizar, fechar ou trocar de aba do instrumento. Não exige cadastro e não é incorporado automaticamente à base.</p><p>Evite dados identificáveis. A hospedagem pode manter registros técnicos de acesso, mas o AMADO não envia o conteúdo do caso. Incorporar conhecimento exige curadoria documentada em outra versão.</p></details>
+    </div></section>
   </main>
   <footer class="site-footer"><div class="wrap footer-grid"><div><p>Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo.</p><a class="back-top" href="#inicio" data-site-top>↑ Voltar ao topo</a></div><nav aria-label="Próximos caminhos"><a href="../">Voltar à apresentação</a><br><a href="../amado/">Experimentar o AMADO</a></nav></div></footer>
   <script defer src="../site.js"></script>

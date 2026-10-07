@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-07T05:12:33.527526+00:00",
+  "compiled_at_utc": "2026-10-07T05:33:14.204716+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -19,9 +19,7 @@
     "parity_passed": true,
     "distribution_passed": true,
     "presentation_passed": true,
-    "presentation_assets_match": true,
-    "public_smoke_passed": true,
-    "public_smoke_build_matches": true
+    "presentation_assets_match": true
   },
   "results": {
     "unit_tests": 56,
@@ -58,16 +56,9 @@
       "base_unchanged": true
     },
     "browser_checks": {
-      "reading_controls_usable_during_loading": true,
-      "loading_status_announced": true,
-      "ready_and_loading_messages_distinct": true,
       "published_assets_match_verified_build": true,
       "public_interview_seven_configurations": true,
-      "reading_controls_usable_during_generation": true,
-      "stop_speech_remains_operable_while_busy": true,
-      "repeated_generation_preserves_seven_configurations": true,
       "public_mobile_reflow_reduced_motion": true,
-      "tab_switch_returns_ready_status": true,
       "accessible_progress_and_control_names": true,
       "measured_palette_contrast": true,
       "public_screen_reader_example": true,
@@ -316,11 +307,15 @@
       "home_contrast_high": true,
       "home_top_link_focus": true,
       "home_no_unexplained_identifiers": true,
+      "home_explanatory_example_preserved": true,
+      "home_no_three_artifact_triptych": true,
       "home_authorship_and_acronym": true,
       "home_authorial_voice": true,
-      "home_hover_keeps_content_geometry": true,
-      "home_subtle_hover_not_focusable": true,
+      "home_static_card_keeps_geometry": true,
+      "home_static_card_not_click_target": true,
       "home_hover_respects_reduced_motion": true,
+      "home_pointer_only_actual_controls": true,
+      "home_local_links_and_anchors": true,
       "home_reflow_320": true,
       "home_mobile_text_200_reflow": true,
       "home_forced_colors_reflow": true,
@@ -354,11 +349,43 @@
       "ontology_contrast_high": true,
       "ontology_top_link_focus": true,
       "ontology_authorship_and_acronym": true,
-      "ontology_authorial_voice": true,
-      "ontology_hover_keeps_content_geometry": true,
-      "ontology_subtle_hover_not_focusable": true,
-      "ontology_hover_respects_reduced_motion": true,
+      "ontology_no_repeated_record_example": true,
+      "ontology_six_native_concept_disclosures": true,
+      "ontology_concept_1_keyboard_focus": true,
+      "ontology_concept_1_pointer_means_action": true,
+      "ontology_concept_1_keyboard_opens": true,
+      "ontology_concept_1_has_definition": true,
+      "ontology_concept_1_keyboard_closes": true,
+      "ontology_concept_2_keyboard_focus": true,
+      "ontology_concept_2_pointer_means_action": true,
+      "ontology_concept_2_keyboard_opens": true,
+      "ontology_concept_2_has_definition": true,
+      "ontology_concept_2_keyboard_closes": true,
+      "ontology_concept_3_keyboard_focus": true,
+      "ontology_concept_3_pointer_means_action": true,
+      "ontology_concept_3_keyboard_opens": true,
+      "ontology_concept_3_has_definition": true,
+      "ontology_concept_3_keyboard_closes": true,
+      "ontology_concept_4_keyboard_focus": true,
+      "ontology_concept_4_pointer_means_action": true,
+      "ontology_concept_4_keyboard_opens": true,
+      "ontology_concept_4_has_definition": true,
+      "ontology_concept_4_keyboard_closes": true,
+      "ontology_concept_5_keyboard_focus": true,
+      "ontology_concept_5_pointer_means_action": true,
+      "ontology_concept_5_keyboard_opens": true,
+      "ontology_concept_5_has_definition": true,
+      "ontology_concept_5_keyboard_closes": true,
+      "ontology_concept_6_keyboard_focus": true,
+      "ontology_concept_6_pointer_means_action": true,
+      "ontology_concept_6_keyboard_opens": true,
+      "ontology_concept_6_has_definition": true,
+      "ontology_concept_6_keyboard_closes": true,
+      "ontology_relations_definition_list": true,
+      "ontology_pointer_only_actual_controls": true,
+      "ontology_local_links_and_anchors": true,
       "ontology_reflow_320": true,
+      "ontology_open_concept_reflow_320": true,
       "ontology_mobile_text_200_reflow": true,
       "ontology_forced_colors_reflow": true,
       "ontology_forced_colors_and_reduced_motion": true,
@@ -395,6 +422,7 @@
       "amado_top_link": true,
       "amado_top_focus": true,
       "amado_contrast_sample": true,
+      "amado_local_links_and_anchors": true,
       "amado_reflow_320": true,
       "amado_mobile_text_200_reflow": true,
       "amado_forced_colors_reflow": true,
@@ -402,19 +430,10 @@
       "amado_no_persistent_storage": true,
       "amado_preferences_not_restored": true,
       "distinct_page_titles": true,
+      "home_and_ontology_have_distinct_content": true,
       "sitemap_three_pages": true,
       "no_external_requests_or_case_post": true,
       "no_javascript_errors": true
-    },
-    "public_smoke_checks": {
-      "published_assets_match_verified_build": true,
-      "public_interview_seven_configurations": true,
-      "public_mobile_reflow_reduced_motion": true,
-      "accessible_progress_and_control_names": true,
-      "measured_palette_contrast": true,
-      "public_screen_reader_example": true,
-      "public_clear_discards_case": true,
-      "no_case_network_requests": true
     }
   },
   "limits": [
@@ -439,7 +458,7 @@
       "url": "regression-report.json"
     },
     "browser-report.json": {
-      "sha256": "028133c55eebc88582d248ecf9069f32da65bb3cfe17dc7829dd5d4e3f18cf67",
+      "sha256": "dc367e34a5d4b6a36d72e8a759a402d4056e9fbc4dae3e877cba92f865edeac2",
       "url": "browser-report.json"
     },
     "browser-baseline-report.json": {
@@ -459,19 +478,19 @@
       "url": "public-content-audit.json"
     },
     "distribution-audit.json": {
-      "sha256": "186f676a90e5bca66102997451eb4cdc6fc7f42d11dfa62aaf4ffc4c5a6addc5",
+      "sha256": "2765d68b2fa9079fd500a2b47c0406360f58941972399c4458d66a6c508cbf36",
       "url": "distribution-audit.json"
     },
     "build-manifest.json": {
-      "sha256": "e0e28ff18259a1163e1371ea6b91fcd954c33a75544c3ad1098ea17b905fdb7d",
+      "sha256": "5d320e21e22941a1353e619e8ce006486681dcb97ccc583aeadca1792d14ba38",
       "url": "build-manifest.json"
     },
-    "browser-before-unified-shell.json": {
-      "sha256": "43973d49b103d244a5dd8d7c15e4a7420ee99dca0a17c855c7677f9fdee11e4f",
-      "url": "browser-before-unified-shell.json"
+    "browser-before-content-refinement.json": {
+      "sha256": "028133c55eebc88582d248ecf9069f32da65bb3cfe17dc7829dd5d4e3f18cf67",
+      "url": "browser-before-content-refinement.json"
     },
     "site-presentation-report.json": {
-      "sha256": "42e1eb67e2c5852a4a63bc1570c23e7daa51542524c0a9cf06cb7e5fe7dbe7cc",
+      "sha256": "6f9a7e5eea9d17348a2c2e3da62679fcc6c9b911fc032eb4a482dbcd7fde95ec",
       "url": "site-presentation-report.json"
     },
     "public-smoke.json": {
@@ -479,5 +498,9 @@
       "url": "public-smoke.json"
     }
   },
-  "public_smoke_status": "VERIFIED_CURRENT_BUILD"
+  "public_smoke_status": "PENDING_FOR_CURRENT_BUILD",
+  "historical_public_smoke": {
+    "report": "public-smoke.json",
+    "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation."
+  }
 }

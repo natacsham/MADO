@@ -114,6 +114,34 @@ async function assertReflow(key){
   }
   check(key,size.scroll<=size.viewport+1);return size;
 }
+const localTargets=new Map();
+async function checkLocalLinks(name){
+  const links=await page.locator('a[href]').evaluateAll(nodes=>nodes.map(el=>({href:el.href,text:el.textContent.trim()})));
+  const currentDocument=new URL(page.url());currentDocument.hash='';
+  const currentIds=await page.locator('[id],a[name]').evaluateAll(nodes=>nodes.map(el=>el.id||el.getAttribute('name')));
+  const checked=[];
+  for(const link of links){
+    const target=new URL(link.href);
+    if(target.origin!==origin || !target.pathname.startsWith(new URL(base).pathname))continue;
+    const anchor=decodeURIComponent(target.hash.slice(1));target.hash='';
+    if(!localTargets.has(target.href)){
+      const response=await context.request.get(target.href);
+      const contentType=response.headers()['content-type']||'';
+      const html=contentType.includes('text/html')?await response.text():null;
+      const ids=html===null?[]:await page.evaluate(text=>{
+        const doc=new DOMParser().parseFromString(text,'text/html');
+        return [...doc.querySelectorAll('[id],a[name]')].map(el=>el.id||el.getAttribute('name'));
+      },html);
+      localTargets.set(target.href,{status:response.status(),ids,html:html!==null});
+    }
+    const resource=localTargets.get(target.href);
+    const ids=target.href===currentDocument.href?currentIds:resource.ids;
+    const item={href:target.pathname+(anchor?'#'+anchor:''),text:link.text,status:resource.status,anchor_exists:!anchor||ids.includes(anchor)};
+    checked.push(item);
+  }
+  report.pages[name].local_links=checked;
+  check(name+'_local_links_and_anchors',checked.length>0&&checked.every(link=>link.status===200&&link.anchor_exists));
+}
 try{
   check('site_assets_match_manifest',Object.keys(report.site_assets_sha256).length>=5 && JSON.stringify(report.site_assets_sha256)===JSON.stringify(report.build.site_assets_sha256));
   report.served_site_assets_sha256={};
@@ -149,7 +177,7 @@ try{
     check(name+'_jsonld_schema',metadata.jsonld.every(x=>x['@context']==='https://schema.org' && Boolean(x['@type']||x['@graph'])));
     check(name+'_author_metadata',metadata.author==='Natacsha Ordones Raposo de Melo');
     const navigation=await page.locator('header.site-header .nav a').allInnerTexts();
-    check(name+'_shared_navigation',JSON.stringify(navigation.map(x=>x.trim()))===JSON.stringify(['Entenda a MADO','A ontologia','Experimente o AMADO']));
+    check(name+'_shared_navigation',JSON.stringify(navigation.map(x=>x.trim()))===JSON.stringify(['Entenda a MADO','Modelo e arquivos','Experimente o AMADO']));
     check(name+'_single_current_navigation',await page.locator('header.site-header .nav a[aria-current="page"]').count()===1);
     check(name+'_shared_shell_loaded',await page.locator('link[rel="stylesheet"][href$="shell.css"]').count()===1);
     check(name+'_no_positive_tabindex',await page.locator('[tabindex]').evaluateAll(nodes=>nodes.every(x=>Number(x.getAttribute('tabindex'))<=0)));
@@ -210,29 +238,72 @@ try{
       const body=await page.locator('body').innerText();
       report.pages[name].technical_terms_visible=body.match(/\b(?:RDF|OWL|SHACL|SPARQL|Pyodide|K\d{2}|CA\d{2}|ART-[A-Z]+-\d+)\b/g)||[];
       check('home_no_unexplained_identifiers',report.pages[name].technical_terms_visible.length===0);
+      check('home_explanatory_example_preserved',await page.locator('#exemplo .steps>li').count()>=3);
+      const cardTitles=await page.locator('main .cards h3').allInnerTexts();
+      check('home_no_three_artifact_triptych',!['Arcabouço','MADO','AMADO'].every(term=>cardTitles.some(title=>title.trim()===term)));
     }
     if(name!=='amado'){
       const text=await page.locator('body').innerText();
       check(name+'_authorship_and_acronym',text.includes('Natacsha Ordones Raposo de Melo')&&text.includes('Multimodal Accessibility Decision Ontology'));
-      check(name+'_authorial_voice',name==='home'?text.includes('construí a MADO'):text.includes('representei conceitos'));
-      const card=page.locator(name==='home'?'main .card':'main .terms>div').first();
-      const snapshot=()=>card.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {width:r.width,height:r.height,transform:s.transform,border:s.borderColor,shadow:s.boxShadow,transition:s.transitionDuration,tabindex:el.getAttribute('tabindex')};});
-      await page.emulateMedia({reducedMotion:'no-preference'});
-      await page.mouse.move(0,0);await settled();const before=await snapshot();
-      await card.hover();await card.evaluate(async el=>{await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})));});
-      const hovered=await snapshot();report.pages[name].hover={before,hovered};
-      check(name+'_hover_keeps_content_geometry',Math.abs(hovered.width-before.width)<1&&Math.abs(hovered.height-before.height)<1);
-      check(name+'_subtle_hover_not_focusable',hovered.transform==='matrix(1, 0, 0, 1, 0, -3)'&&hovered.tabindex===null);
-      await page.emulateMedia({reducedMotion:'reduce'});await settled();
-      const reduced=await snapshot();report.pages[name].hover.reduced=reduced;
-      check(name+'_hover_respects_reduced_motion',reduced.transform==='none'&&reduced.transition.split(',').every(x=>parseFloat(x)===0));
+      if(name==='home')check('home_authorial_voice',text.includes('construí a MADO'));
+      report.pages[name].long_main_paragraphs=await page.locator('main p').evaluateAll(nodes=>nodes.map(el=>el.textContent.replace(/\s+/g,' ').trim()).filter(text=>text.length>170));
+      if(name==='home'){
+        const card=page.locator('main .card').first();
+        const snapshot=()=>card.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {width:r.width,height:r.height,transform:s.transform,border:s.borderColor,shadow:s.boxShadow,transition:s.transitionDuration,tabindex:el.getAttribute('tabindex'),cursor:s.cursor};});
+        await page.emulateMedia({reducedMotion:'no-preference'});
+        await page.mouse.move(0,0);await settled();const before=await snapshot();
+        await card.hover();await card.evaluate(async el=>{await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})));});
+        const hovered=await snapshot();report.pages[name].hover={before,hovered};
+        check('home_static_card_keeps_geometry',Math.abs(hovered.width-before.width)<1&&Math.abs(hovered.height-before.height)<1&&hovered.transform==='none');
+        check('home_static_card_not_click_target',hovered.tabindex===null&&hovered.cursor!=='pointer');
+        await page.emulateMedia({reducedMotion:'reduce'});await settled();
+        const reduced=await snapshot();report.pages[name].hover.reduced=reduced;
+        check('home_hover_respects_reduced_motion',reduced.transform==='none'&&reduced.transition.split(',').every(x=>parseFloat(x)===0));
+      }else{
+        check('ontology_no_repeated_record_example',!/\b(?:ART-REF-03|K43)\b/.test(text)&&await page.locator('#exemplo-tecnico').count()===0);
+        const disclosures=page.locator('main .concept-grid > details');
+        check('ontology_six_native_concept_disclosures',await disclosures.count()===6&&await disclosures.locator(':scope > summary').count()===6);
+        report.pages[name].concept_disclosures=[];
+        for(let index=0;index<6;index++){
+          const item=disclosures.nth(index),summary=item.locator(':scope > summary');
+          if(await item.getAttribute('open')!==null)await summary.click();
+          await keyboardFocus(`main .concept-grid > details:nth-child(${index+1}) > summary`);
+          const label=(await summary.innerText()).trim();
+          check('ontology_concept_'+(index+1)+'_keyboard_focus',await summary.evaluate(el=>el===document.activeElement));
+          check('ontology_concept_'+(index+1)+'_pointer_means_action',await summary.evaluate(el=>getComputedStyle(el).cursor)==='pointer');
+          await page.keyboard.press('Enter');
+          check('ontology_concept_'+(index+1)+'_keyboard_opens',await item.getAttribute('open')!==null);
+          const detailText=await item.locator(':scope > :not(summary)').allInnerTexts();
+          check('ontology_concept_'+(index+1)+'_has_definition',detailText.join(' ').trim().length>40);
+          await page.keyboard.press('Space');
+          check('ontology_concept_'+(index+1)+'_keyboard_closes',await item.getAttribute('open')===null&&await summary.evaluate(el=>el===document.activeElement));
+          report.pages[name].concept_disclosures.push({label,keyboard_open_close:true});
+        }
+        check('ontology_relations_definition_list',await page.locator('#relacoes .model-relations dt').count()===6&&await page.locator('#relacoes .model-relations dd').count()===6);
+      }
+      report.pages[name].false_pointer_targets=await page.locator('main *').evaluateAll(nodes=>nodes.filter(el=>el.checkVisibility()&&getComputedStyle(el).cursor==='pointer'&&!el.closest('a[href],button,summary')).map(el=>({tag:el.tagName,text:el.textContent.trim().slice(0,70)})));
+      check(name+'_pointer_only_actual_controls',report.pages[name].false_pointer_targets.length===0);
     }
+    await checkLocalLinks(name);
     await page.screenshot({path:path.join(artifacts,name+'-desktop.png'),fullPage:true});
+    if(name==='ontology'){
+      const summary=page.locator('.concept-grid > details > summary').first();
+      await summary.click();
+      await page.screenshot({path:path.join(artifacts,'ontology-desktop-concept-open.png'),fullPage:true});
+      await summary.click();
+    }
     await page.setViewportSize({width:320,height:900});
     await assertReflow(name+'_reflow_320');
     await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
     await page.screenshot({path:path.join(artifacts,name+'-mobile.png'),fullPage:true});
     await page.screenshot({path:path.join(artifacts,name+'-mobile-viewport.png')});
+    if(name==='ontology'){
+      const summary=page.locator('.concept-grid > details > summary').first();
+      await summary.click();
+      await assertReflow('ontology_open_concept_reflow_320');
+      await page.screenshot({path:path.join(artifacts,'ontology-mobile-concept-open.png'),fullPage:true});
+      await summary.click();
+    }
     {
       for(let n=0;n<25;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
       await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
@@ -254,6 +325,9 @@ try{
     }
   }
   check('distinct_page_titles',new Set(titles).size===3);
+  const homeParagraphs=new Set(report.pages.home.long_main_paragraphs);
+  report.repeated_main_paragraphs=report.pages.ontology.long_main_paragraphs.filter(text=>homeParagraphs.has(text));
+  check('home_and_ontology_have_distinct_content',report.repeated_main_paragraphs.length===0);
   const sitemapResponse=await context.request.get(base+'sitemap.xml');
   const sitemap=await sitemapResponse.text();
   report.sitemap_urls=[...sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(x=>x[1]);
