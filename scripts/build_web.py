@@ -81,7 +81,7 @@ def build():
         },
         "site_assets_sha256": {
             name: sha(WEB / name)
-            for name in ("index.html", "ontologia/index.html", "site.css", "site.js", "sitemap.xml")
+            for name in ("index.html", "ontologia/index.html", "site.css", "shell.css", "site.js", "sitemap.xml")
         },
         "files": {
             p.relative_to(ROOT).as_posix(): sha(p)

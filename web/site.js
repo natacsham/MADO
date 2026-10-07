@@ -3,13 +3,14 @@ const root = document.documentElement;
 const readingTools = document.querySelector('[data-site-accessibility]');
 if (readingTools) {
   let scale = 100;
+  const baseFontSize = parseFloat(getComputedStyle(root).fontSize);
   const decrease = readingTools.querySelector('[data-font-decrease]');
   const increase = readingTools.querySelector('[data-font-increase]');
   const status = readingTools.querySelector('[data-reading-status]');
   const contrast = readingTools.querySelector('[data-site-contrast]');
   const setScale = value => {
     scale = Math.max(100, Math.min(200, value));
-    root.style.fontSize = `${scale}%`;
+    root.style.fontSize = scale === 100 ? '' : `${baseFontSize * scale / 100}px`;
     // Keep boundary controls focusable and explain their unavailable state.
     decrease.setAttribute('aria-disabled', String(scale === 100));
     increase.setAttribute('aria-disabled', String(scale === 200));
@@ -22,6 +23,7 @@ if (readingTools) {
     const enabled = root.dataset.contrast !== 'high';
     if (enabled) root.dataset.contrast = 'high';
     else delete root.dataset.contrast;
+    document.body.classList.toggle('high-contrast', enabled);
     contrast.setAttribute('aria-pressed', String(enabled));
   });
   setScale(100);

@@ -27,6 +27,7 @@ const server = http.createServer(async(req,res) => {
 });
 await new Promise(resolve => server.listen(0,'127.0.0.1',resolve));
 const publicURL=process.env.AMADO_PUBLIC_URL || '';
+const shellDelta=process.env.AMADO_SHELL_DELTA==='1';
 const origin = publicURL ? new URL(publicURL).origin : `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch({headless:true,executablePath:process.env.AMADO_CHROMIUM || path.join(process.env.LOCALAPPDATA,'ms-playwright/chromium-1243/chrome-win64/chrome.exe')});
 const context = await browser.newContext({viewport:{width:1280,height:900}});
@@ -91,11 +92,40 @@ async function generateFree() {
   return Date.now()-started;
 }
 try {
-  if (publicURL || process.env.AMADO_DELTA_ONLY === '1') {
+  if (publicURL || process.env.AMADO_DELTA_ONLY === '1' || shellDelta) {
     const directedURL=publicURL || origin+'/mado/amado/';
     if (publicURL) report.public_url=publicURL;
     const loadStarted=Date.now();
-    await page.goto(directedURL); await idle();
+    if(shellDelta){
+      faultMode='delay';
+      const loadingAsset=new Promise(resolve=>{delayObserved=resolve;});
+      await page.goto(directedURL);
+      await Promise.race([loadingAsset,new Promise((_,reject)=>setTimeout(()=>reject(new Error('Loading asset interception not reached')),30000))]);
+      assert.equal(await page.locator('#main').getAttribute('aria-busy'),'true');
+      assert.equal(await page.locator('#clear-case').isEnabled(),true);
+      assert.equal(await page.locator('#stop-speech').isEnabled(),true);
+      assert.equal(await page.locator('[data-font-increase]').isEnabled(),true);
+      assert.equal(await page.locator('[data-site-contrast]').isEnabled(),true);
+      report.loading_status=await page.locator('#health').evaluate(el=>({text:el.textContent,role:el.getAttribute('role'),state:el.dataset.state,background:getComputedStyle(el).backgroundColor,border:getComputedStyle(el).borderLeftColor}));
+      assert.equal(report.loading_status.role,'status');
+      assert.equal(report.loading_status.state,'loading');
+      assert(report.loading_status.text.trim().length>0);
+      await page.locator('[data-font-increase]').click();
+      assert.equal(await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)),22.5);
+      await page.locator('[data-font-reset]').click();
+      await page.locator('[data-site-contrast]').click();
+      assert.equal(await page.locator('html').getAttribute('data-contrast'),'high');
+      await page.locator('[data-site-contrast]').click();
+      report.checks.reading_controls_usable_during_loading=true;
+      report.checks.loading_status_announced=true;
+      faultMode='';for(const route of delayedRoutes.splice(0))await route.continue().catch(()=>{});
+      await idle();
+      report.ready_status=await page.locator('#health').evaluate(el=>({text:el.textContent,role:el.getAttribute('role'),state:el.dataset.state,background:getComputedStyle(el).backgroundColor,border:getComputedStyle(el).borderLeftColor}));
+      assert.notEqual(report.ready_status.text,report.loading_status.text);
+      assert.equal(report.ready_status.state,'ready');
+      assert.notEqual(report.ready_status.background,report.loading_status.background);
+      report.checks.ready_and_loading_messages_distinct=true;
+    }else{await page.goto(directedURL);await idle();}
     assert.match(await page.locator('#health').textContent(),/AMADO pronto/);
     assert.equal(await page.locator('#runtime-error').textContent(),'');
     report.timings.public_load_ms=Date.now()-loadStarted;
@@ -111,7 +141,7 @@ try {
     assert.equal(await page.locator('#modal-configuration .mode-card').count(),7);
     report.timings.public_generation_ms=Date.now()-generationStarted;
     report.checks.public_interview_seven_configurations=true;
-    if (process.env.AMADO_DELTA_ONLY === '1') {
+    if (process.env.AMADO_DELTA_ONLY === '1' || shellDelta) {
       // No voice is synthesized here; this checks the stop control's action
       // while the real worker is busy, without an OS-voice dependency.
       await page.evaluate(()=>{
@@ -124,6 +154,12 @@ try {
       assert.equal(await page.locator('#main').getAttribute('aria-busy'),'true');
       assert.equal(await page.locator('#generate-known').isDisabled(),true);
       assert.equal(await page.locator('#stop-speech').isEnabled(),true);
+      if(shellDelta){
+        assert.equal(await page.locator('[data-font-increase]').isEnabled(),true);
+        assert.equal(await page.locator('[data-site-contrast]').isEnabled(),true);
+        assert.equal(await page.locator('#clear-case').isEnabled(),true);
+        report.checks.reading_controls_usable_during_generation=true;
+      }
       await page.locator('#stop-speech').click();
       assert.equal(await page.evaluate(()=>window.amadoCancelCalls),1);
       assert.equal(await page.locator('#speech-status').textContent(),'Leitura interrompida.');
@@ -143,6 +179,10 @@ try {
     report.checks.public_mobile_reflow_reduced_motion=true;
     await page.setViewportSize({width:1280,height:900});
     await page.locator('#free-tab').click(); await idle();
+    if(shellDelta){
+      assert.equal(await page.locator('#health').getAttribute('data-state'),'ready');
+      report.checks.tab_switch_returns_ready_status=true;
+    }
     await page.locator('#template-select').selectOption('CTX-DEMO-WEB-LEITOR-TELA'); await idle();
     await generateFree();
     assert.equal(await page.locator('#decision-status').textContent(),'Orientação construída');
@@ -347,10 +387,16 @@ try {
       await page.goto(origin+'/mado/amado/'); await idle();
       assert((await page.locator('#runtime-error').textContent()).trim().length>0);
       assert.equal(await page.locator('#saida').isVisible(),false);
+      assert.equal(await page.locator('#health').getAttribute('data-state'),'error');
+      assert.equal(await page.locator('#health').evaluate(el=>el.classList.contains('status')),true);
+      report.error_status_samples??={};
+      report.error_status_samples[mode]=await page.locator('#health').evaluate(el=>({text:el.textContent,role:el.getAttribute('role'),state:el.dataset.state,background:getComputedStyle(el).backgroundColor,border:getComputedStyle(el).borderLeftColor}));
+      report.checks[mode+'_failure_has_distinct_error_state']=true;
       faultMode='';
       await page.locator('#clear-case').click(); await idle();
       assert.equal(await page.locator('#runtime-error').textContent(),'');
       assert.match(await page.locator('#health').textContent(),/AMADO pronto/);
+      assert.equal(await page.locator('#health').getAttribute('data-state'),'ready');
       report.checks[mode+'_failure_recovers']=true;
     }
     faultMode='delay';
@@ -376,12 +422,25 @@ try {
   report.failure=String(error.stack || error); process.exitCode=1;
   await page.screenshot({path:path.join(artifacts,'failure.png'),fullPage:true});
 } finally {
-  const reportName=publicURL ? 'public-smoke.json' : process.env.AMADO_DELTA_ONLY === '1' ? 'report-delta.json' : process.env.AMADO_RECOVERY_ONLY === '1' ? 'report-recovery.json' : process.env.AMADO_PROBES_ONLY === '1' ? 'report-probes.json' : 'report.json';
+  const reportName=publicURL ? 'public-smoke.json' : shellDelta ? 'report-shell-delta.json' : process.env.AMADO_DELTA_ONLY === '1' ? 'report-delta.json' : process.env.AMADO_RECOVERY_ONLY === '1' ? 'report-recovery.json' : process.env.AMADO_PROBES_ONLY === '1' ? 'report-probes.json' : 'report.json';
   await fs.writeFile(path.join(artifacts,reportName),JSON.stringify(report,null,2));
   if (report.completed) {
     const publicPath=path.join(root,'evidence',publicURL ? 'public-smoke.json' : 'browser-report.json');
     const publicReport={...report,type:'SYNTHETIC_BROWSER_REGRESSION_NOT_HUMAN_SESSION',executed_at:new Date().toISOString()};
-    if (!publicURL && process.env.AMADO_DELTA_ONLY === '1') {
+    if(!publicURL && shellDelta){
+      const baseline=JSON.parse(await fs.readFile(path.join(root,'evidence/browser-before-unified-shell.json'),'utf8'));
+      for(const key of ['core_sha256','bridge_sha256','base_zip_sha256','files'])assert.deepEqual(baseline.build[key],report.build[key]);
+      publicReport.change_verification={
+        baseline_report:'browser-before-unified-shell.json',baseline_build:baseline.build,
+        baseline_check_count:Object.values(baseline.checks).filter(x=>x===true).length,
+        baseline_structured_probes:baseline.checks.structured_probes,
+        change:'Cabeçalho e barra de leitura unificados, handlers antigos de apresentação removidos, estados de execução e textos públicos ajustados. Nenhuma alteração no motor, base, ponte ou consultas.',
+        scope:'Delta de interface: carregamento real com controle de leitura disponível, caso principal e sua reconstrução, exemplo de leitor de tela, interrupção de fala durante geração, reflow, limpeza e ausência de envio do caso. As nove sondagens semânticas pertencem ao baseline preservado, não foram reexecutadas nesta revisão.',
+        unchanged_engine_base_bridge_queries:true,
+        voice_limit:'Verificada a chamada de interrupção; não houve síntese audível nem avaliação com leitor de tela.'
+      };
+      await fs.writeFile(publicPath,JSON.stringify(publicReport,null,2));
+    }else if (!publicURL && process.env.AMADO_DELTA_ONLY === '1') {
       const previous=JSON.parse(await fs.readFile(publicPath,'utf8'));
       for (const key of ['core_sha256','base_zip_sha256','bridge_sha256','files']) assert.deepEqual(previous.build[key],report.build[key]);
       await fs.writeFile(path.join(root,'evidence/browser-baseline-report.json'),JSON.stringify(previous,null,2));

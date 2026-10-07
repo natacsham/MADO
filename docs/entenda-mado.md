@@ -6,12 +6,12 @@ Uma norma pode indicar um requisito. Um estudo pode revelar uma barreira. Uma pe
 
 A **Articulação Multimodal do Conhecimento** é o processo intelectual e metodológico de construir essas relações. O **Conhecimento Multimodal Articulado** é uma compreensão resultante desse processo, com fontes, perspectiva, condições de aplicação e limites registrados.
 
-A MADO representa esse raciocínio. O AMADO torna possível examinar um emprego operacional delimitado dele.
+Construí a MADO (Multimodal Accessibility Decision Ontology) para representar esse raciocínio. O AMADO torna possível examinar um emprego operacional delimitado dele.
 
 ## O percurso representado
 
 1. **Fonte:** de onde vem o conteúdo efetivamente analisado. Uma referência citada em um artigo não se torna, por isso, fonte diretamente analisada.
-2. **Articulação:** qual relação a pesquisadora estabeleceu entre os conteúdos, com qual fundamento e nível de confirmação.
+2. **Articulação:** qual relação estabeleci entre os conteúdos, com qual fundamento e nível de confirmação.
 3. **Conhecimento:** o que essa relação permite compreender e em que condições pode ser usado.
 4. **Critério:** qual direcionamento, cuidado ou restrição ajuda a decidir.
 5. **Contexto:** o que precisa ser realizado, por quem, com quais condições e recursos.

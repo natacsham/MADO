@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-07T04:48:35.655013+00:00",
+  "compiled_at_utc": "2026-10-07T05:07:49.961333+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -19,9 +19,7 @@
     "parity_passed": true,
     "distribution_passed": true,
     "presentation_passed": true,
-    "presentation_assets_match": true,
-    "public_smoke_passed": true,
-    "public_smoke_build_matches": true
+    "presentation_assets_match": true
   },
   "results": {
     "unit_tests": 56,
@@ -58,43 +56,20 @@
       "base_unchanged": true
     },
     "browser_checks": {
-      "subpath_and_keyboard_skip": true,
-      "remote_dictation_disabled": true,
-      "keyboard_tab_navigation": true,
-      "confirmation_required": true,
-      "interview_seven_configurations": true,
+      "reading_controls_usable_during_loading": true,
+      "loading_status_announced": true,
+      "ready_and_loading_messages_distinct": true,
+      "published_assets_match_verified_build": true,
+      "public_interview_seven_configurations": true,
+      "reading_controls_usable_during_generation": true,
+      "stop_speech_remains_operable_while_busy": true,
+      "repeated_generation_preserves_seven_configurations": true,
+      "public_mobile_reflow_reduced_motion": true,
+      "tab_switch_returns_ready_status": true,
       "accessible_progress_and_control_names": true,
       "measured_palette_contrast": true,
-      "mobility": true,
-      "trace_concepts_and_relations": true,
-      "public_source_disclosure": true,
-      "resource_change_removes_configuration": true,
-      "screen_reader": true,
-      "communication": true,
-      "tab_switch_discards_case": true,
-      "unknown_narrative_suspends": true,
-      "no_storage_or_research_controls": true,
-      "reflow_320": true,
-      "text_enlargement": true,
-      "clear_destroys_current": true,
-      "refresh_does_not_restore": true,
-      "simultaneous_tabs_isolated": true,
-      "clear_keeps_readonly_base_available": true,
-      "novel_combination_and_resource_change": true,
-      "structured_probes": [
-        "principal",
-        "principal_sem_jogo",
-        "leitor_tela",
-        "mobilidade_ruido",
-        "comunicacao",
-        "diagnostico_isolado",
-        "sem_confirmacao",
-        "combinacao_nao_cadastrada",
-        "combinacao_sem_voz"
-      ],
-      "hash_failure_recovers": true,
-      "network_failure_recovers": true,
-      "cancel_loading_and_reinitialize": true,
+      "public_screen_reader_example": true,
+      "public_clear_discards_case": true,
       "no_case_network_requests": true
     },
     "parity": {
@@ -317,12 +292,17 @@
       "home_semantic_document": true,
       "home_seo": true,
       "home_jsonld_schema": true,
+      "home_author_metadata": true,
+      "home_shared_navigation": true,
+      "home_single_current_navigation": true,
+      "home_shared_shell_loaded": true,
       "home_no_positive_tabindex": true,
       "home_skip_link_first": true,
       "home_skip_link_focus": true,
       "home_toolbar_present": true,
       "home_native_named_buttons": true,
       "home_keyboard_visible_focus": true,
+      "home_preserved_font_base": true,
       "home_keyboard_text_enlargement": true,
       "home_text_200_percent": true,
       "home_text_200_reflow": true,
@@ -334,6 +314,11 @@
       "home_contrast_high": true,
       "home_top_link_focus": true,
       "home_no_unexplained_identifiers": true,
+      "home_authorship_and_acronym": true,
+      "home_authorial_voice": true,
+      "home_hover_keeps_content_geometry": true,
+      "home_subtle_hover_not_focusable": true,
+      "home_hover_respects_reduced_motion": true,
       "home_reflow_320": true,
       "home_mobile_text_200_reflow": true,
       "home_forced_colors_reflow": true,
@@ -345,12 +330,17 @@
       "ontology_semantic_document": true,
       "ontology_seo": true,
       "ontology_jsonld_schema": true,
+      "ontology_author_metadata": true,
+      "ontology_shared_navigation": true,
+      "ontology_single_current_navigation": true,
+      "ontology_shared_shell_loaded": true,
       "ontology_no_positive_tabindex": true,
       "ontology_skip_link_first": true,
       "ontology_skip_link_focus": true,
       "ontology_toolbar_present": true,
       "ontology_native_named_buttons": true,
       "ontology_keyboard_visible_focus": true,
+      "ontology_preserved_font_base": true,
       "ontology_keyboard_text_enlargement": true,
       "ontology_text_200_percent": true,
       "ontology_text_200_reflow": true,
@@ -361,6 +351,11 @@
       "ontology_contrast_keyboard_toggle": true,
       "ontology_contrast_high": true,
       "ontology_top_link_focus": true,
+      "ontology_authorship_and_acronym": true,
+      "ontology_authorial_voice": true,
+      "ontology_hover_keeps_content_geometry": true,
+      "ontology_subtle_hover_not_focusable": true,
+      "ontology_hover_respects_reduced_motion": true,
       "ontology_reflow_320": true,
       "ontology_mobile_text_200_reflow": true,
       "ontology_forced_colors_reflow": true,
@@ -372,33 +367,42 @@
       "amado_semantic_document": true,
       "amado_seo": true,
       "amado_jsonld_schema": true,
+      "amado_author_metadata": true,
+      "amado_shared_navigation": true,
+      "amado_single_current_navigation": true,
+      "amado_shared_shell_loaded": true,
       "amado_no_positive_tabindex": true,
       "amado_skip_link_first": true,
       "amado_skip_link_focus": true,
+      "amado_toolbar_present": true,
+      "amado_native_named_buttons": true,
+      "amado_keyboard_visible_focus": true,
+      "amado_preserved_font_base": true,
+      "amado_keyboard_text_enlargement": true,
+      "amado_text_200_percent": true,
+      "amado_text_200_reflow": true,
+      "amado_font_reset": true,
+      "amado_font_not_below_100": true,
+      "amado_status_semantics": true,
+      "amado_contrast_default": true,
+      "amado_contrast_keyboard_toggle": true,
+      "amado_contrast_high": true,
+      "amado_top_link_focus": true,
       "amado_home_navigation": true,
       "amado_home_subpath": true,
-      "amado_text_200_reflow": true,
       "amado_top_link": true,
       "amado_top_focus": true,
       "amado_contrast_sample": true,
       "amado_reflow_320": true,
+      "amado_mobile_text_200_reflow": true,
       "amado_forced_colors_reflow": true,
       "amado_forced_colors_and_reduced_motion": true,
       "amado_no_persistent_storage": true,
+      "amado_preferences_not_restored": true,
       "distinct_page_titles": true,
       "sitemap_three_pages": true,
       "no_external_requests_or_case_post": true,
       "no_javascript_errors": true
-    },
-    "public_smoke_checks": {
-      "published_assets_match_verified_build": true,
-      "public_interview_seven_configurations": true,
-      "public_mobile_reflow_reduced_motion": true,
-      "accessible_progress_and_control_names": true,
-      "measured_palette_contrast": true,
-      "public_screen_reader_example": true,
-      "public_clear_discards_case": true,
-      "no_case_network_requests": true
     }
   },
   "limits": [
@@ -423,7 +427,7 @@
       "url": "regression-report.json"
     },
     "browser-report.json": {
-      "sha256": "43973d49b103d244a5dd8d7c15e4a7420ee99dca0a17c855c7677f9fdee11e4f",
+      "sha256": "028133c55eebc88582d248ecf9069f32da65bb3cfe17dc7829dd5d4e3f18cf67",
       "url": "browser-report.json"
     },
     "browser-baseline-report.json": {
@@ -443,15 +447,19 @@
       "url": "public-content-audit.json"
     },
     "distribution-audit.json": {
-      "sha256": "5c0545b08175cc6e0358dfb3c611b94c24795633a6a399f47f0c0c2bdcc5fbbc",
+      "sha256": "186f676a90e5bca66102997451eb4cdc6fc7f42d11dfa62aaf4ffc4c5a6addc5",
       "url": "distribution-audit.json"
     },
     "build-manifest.json": {
-      "sha256": "b2d738fbeee1b6f86e5681305ac87fee630b4040c64772e51f93a82023e962c4",
+      "sha256": "e0e28ff18259a1163e1371ea6b91fcd954c33a75544c3ad1098ea17b905fdb7d",
       "url": "build-manifest.json"
     },
+    "browser-before-unified-shell.json": {
+      "sha256": "43973d49b103d244a5dd8d7c15e4a7420ee99dca0a17c855c7677f9fdee11e4f",
+      "url": "browser-before-unified-shell.json"
+    },
     "site-presentation-report.json": {
-      "sha256": "445dc87232d3ff329af8f95ae86ccc6671de000a95dbc6f4b58703f84bd32e06",
+      "sha256": "42e1eb67e2c5852a4a63bc1570c23e7daa51542524c0a9cf06cb7e5fe7dbe7cc",
       "url": "site-presentation-report.json"
     },
     "public-smoke.json": {
@@ -459,5 +467,9 @@
       "url": "public-smoke.json"
     }
   },
-  "public_smoke_status": "VERIFIED_CURRENT_BUILD"
+  "public_smoke_status": "PENDING_FOR_CURRENT_BUILD",
+  "historical_public_smoke": {
+    "report": "public-smoke.json",
+    "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation."
+  }
 }

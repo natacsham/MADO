@@ -62,6 +62,13 @@ h2 { font-size: 1.6rem; margin: .25rem 0 1rem; }
 h3 { font-size: 1.12rem; }
 .eyebrow { font-size: .79rem; letter-spacing: .1em; font-weight: 850; color: #0c6579; margin: 0; }
 .notice, .status { border-left: 5px solid var(--primary); padding: .75rem 1rem; background: var(--soft); }
+/* Readiness is conveyed by the live text as well as color. */
+#health { border-radius: .4rem; border: 1px solid #a7c5b9; border-left-width: 5px; }
+#health[data-state="loading"] { color: #614200; background: #fff3d1; border-color: #9d7217; }
+#health[data-state="ready"] { color: #164f3e; background: #e6f4ed; border-color: #47836d; }
+#health[data-state="error"] { color: #7d1818; background: #fff4f4; border-color: #a32929; }
+.high-contrast #health { color: #000; border-color: #111; }
+@media (forced-colors: active) { #health[data-state] { color: CanvasText; background: Canvas; border-color: CanvasText; } }
 .tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
 .tabs button[aria-selected="false"] { background: #fff; color: var(--primary-dark); border: 2px solid var(--border); }
 .lead { font-size: 1.12rem; }

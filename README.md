@@ -2,7 +2,7 @@
 
 **Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo.**
 
-A MADO representa conhecimentos sobre acessibilidade e interação multimodal, as relações construídas entre eles e as condições em que podem orientar uma decisão. O **AMADO** é o instrumento que permite consultar essa representação e acompanhar a fundamentação de uma orientação.
+Nesta pesquisa, construí a **MADO (Multimodal Accessibility Decision Ontology)** para representar conhecimentos sobre acessibilidade e interação multimodal, as relações entre eles e as condições em que podem orientar uma decisão. O **AMADO** é o instrumento que permite consultar essa representação e acompanhar a fundamentação de uma orientação.
 
 **Versão deste projeto: 1.3.0-rc1 — candidata, posterior à versão da tese.** A tese V21 e a MADO 1.2.0-RC4 permanecem preservadas. Os resultados de avaliações anteriores não são automaticamente resultados desta revisão.
 
@@ -10,7 +10,7 @@ A MADO representa conhecimentos sobre acessibilidade e interação multimodal, a
 
 Conhecimentos úteis ficam distribuídos entre normas, publicações, estudos, artefatos, personas e resultados. Encontrar esses documentos não basta para decidir **como combinar formas de interação para uma pessoa, uma tarefa e determinadas condições**.
 
-A pesquisa investiga a articulação desses conhecimentos: o que pode ser relacionado, o que essa relação permite compreender, em quais condições é pertinente e até onde pode ser empregado em uma nova decisão.
+Investiguei a articulação desses conhecimentos: o que pode ser relacionado, o que essa relação permite compreender, em quais condições é pertinente e até onde pode ser empregado em uma nova decisão.
 
 | Elemento | Papel no projeto |
 | --- | --- |
@@ -34,7 +34,7 @@ A página pública reúne [**Entenda a MADO**](https://natacsham.github.io/MADO/
 
 ## O que é conhecimento multimodal articulado?
 
-Não é apenas um conjunto de citações nem um resumo de um artigo. É uma compreensão construída pela pesquisadora ao relacionar conteúdos: convergências, complementações, condições, refinamentos ou limites.
+Não é apenas um conjunto de citações nem um resumo de um artigo. Na pesquisa, construí essa compreensão ao relacionar conteúdos e registrar convergências, complementações, condições, refinamentos e limites.
 
 Um exemplo é relacionar a necessidade de **retomar uma explicação**, a **preservação do significado entre formatos** e a **organização da atenção**. Essa articulação pode fundamentar uma configuração em que a fala preserva a expressão da pessoa, o texto mantém pontos recuperáveis e a imagem representa relações, cada qual com função e condições explícitas.
 

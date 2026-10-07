@@ -8,9 +8,9 @@ Considere a produção coletiva de um recurso digital. Uma contribuição falada
 
 O problema funcional não é “esta pessoa tem determinado diagnóstico”. É: **como preservar a expressão e o significado sem depender de um único momento de fala, nem fazer os formatos competirem pela atenção?**
 
-## 2. O que foi articulado pela pesquisadora
+## 2. O que articulei entre os conhecimentos
 
-Na base, `ART-REF-03` relaciona conhecimentos de estudos e referências sobre alternativas perceptivas e função das mídias. Ela registra:
+Na base, registrei em `ART-REF-03` a relação entre conhecimentos de estudos e referências sobre alternativas perceptivas e função das mídias. Esse registro contém:
 
 - Conhecimentos de entrada: `K10`, `K17`, `K19`, `K26`, `K27` e `K29`.
 - Conhecimentos resultantes: `K42` e `K43`.

@@ -102,6 +102,9 @@ def main():
     target = ROOT / "web/evidence"
     target.mkdir(exist_ok=True)
     reports = ["technical-report.json", "reasoner-report.json", "regression-report.json", "browser-report.json", "browser-baseline-report.json", "parity-report.json", "public-projection.json", "public-content-audit.json", "distribution-audit.json", "build-manifest.json"]
+    baseline = browser.get("change_verification", {}).get("baseline_report")
+    if baseline and Path(baseline).name == baseline and baseline not in reports:
+        reports.append(baseline)
     if presentation is not None:
         reports.append("site-presentation-report.json")
         summary["results"]["presentation_checks"] = presentation["checks"]

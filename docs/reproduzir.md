@@ -39,6 +39,6 @@ Os testes usam Playwright e um navegador Chromium. `tests/browser.mjs` contém o
 
 ## Reconstrução dos dados públicos
 
-O repositório já contém a projeção pública. `scripts/prepare_public_data.py` existe para a pesquisadora reconstruí-la a partir de sua base documental autorizada; essa base privada não é necessária para executar a demonstração. O script não altera a origem. Citações não autorizadas, avaliações individuais e caminhos locais não fazem parte da distribuição pública.
+O repositório já contém a projeção pública. `scripts/prepare_public_data.py` permite reconstruí-la a partir da base documental autorizada que utilizei na pesquisa; essa base privada não é necessária para executar a demonstração. O script não altera a origem. Citações não autorizadas, avaliações individuais e caminhos locais não fazem parte da distribuição pública.
 
 Não promova um resultado do AMADO automaticamente a conhecimento da ontologia. Uma incorporação exige revisão da fonte, contexto, resultado observado, limites e decisão de curadoria em outra versão.

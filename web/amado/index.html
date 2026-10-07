@@ -19,20 +19,32 @@
   {"@context":"https://schema.org","@type":"WebPage","@id":"https://natacsham.github.io/MADO/amado/#page","url":"https://natacsham.github.io/MADO/amado/","name":"AMADO — orientações multimodais fundamentadas","description":"Instrumento que consulta a ontologia MADO e compõe orientações dentro dos conhecimentos e padrões representados na base.","inLanguage":"pt-BR","isPartOf":{"@id":"https://natacsham.github.io/MADO/#site"},"author":{"@type":"Person","name":"Natacsha Ordones Raposo de Melo"}}
   </script>
   <link rel="stylesheet" href="./styles.css?v=1.2.0-rc4-ui3-demo-fix2-conexoes">
+  <link rel="stylesheet" href="../shell.css">
 </head>
 <body>
   <a class="skip" href="#main">Ir para o conteúdo</a>
-  <header id="inicio" class="topbar" tabindex="-1">
-    <div><strong>AMADO</strong><span>Orientações multimodais fundamentadas na MADO</span></div>
-    <nav class="project-nav" aria-label="Navegação do projeto">
-      <a href="../">Início da MADO</a>
-      <a href="../ontologia/">A ontologia</a>
-    </nav>
-    <div class="top-actions" aria-label="Ajustes de apresentação">
-      <button id="contrast-button" class="quiet" type="button" aria-pressed="false">Alto contraste</button>
-      <button id="font-button" class="quiet" type="button">Tamanho do texto: normal</button>
+  <header id="inicio" class="site-header" tabindex="-1">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="MADO, início"><span class="brand-mark" aria-hidden="true">M</span>MADO</a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="../">Entenda a MADO</a>
+        <a href="../ontologia/">A ontologia</a>
+        <a href="./" aria-current="page">Experimente o AMADO</a>
+      </nav>
     </div>
   </header>
+  <div class="reading-bar" data-site-accessibility hidden>
+    <div class="wrap reading-inner">
+      <strong>Ajustes de leitura</strong>
+      <div class="reading-actions" role="group" aria-label="Ajustes de leitura">
+        <button type="button" data-font-decrease aria-label="Diminuir texto" aria-disabled="true">A−</button>
+        <button id="font-button" type="button" data-font-increase aria-label="Aumentar texto">A+</button>
+        <button type="button" data-font-reset>Texto original</button>
+        <button id="contrast-button" type="button" data-site-contrast aria-pressed="false">Alto contraste</button>
+      </div>
+      <p class="reading-status" data-reading-status role="status" aria-atomic="true">Texto: 100%</p>
+    </div>
+  </div>
 
   <main id="main" tabindex="-1">
     <section class="intro" aria-labelledby="page-title">
@@ -40,7 +52,7 @@
       <h1 id="page-title">Compreender o caso e construir uma orientação</h1>
       <p>Confira como o caso foi compreendido, confirme a organização das informações e veja o que o conhecimento da pesquisa acrescenta à decisão.</p>
       <p class="notice"><strong>Sem histórico:</strong> seu caso é processado neste navegador e não é salvo. Atualizar, fechar, limpar ou trocar de aba descarta o caso atual. Não informe nomes ou outros dados identificáveis.</p>
-      <p id="health" class="status" role="status">Carregando o ambiente de execução…</p>
+      <p id="health" class="status" data-state="loading" role="status" aria-atomic="true">Carregando o ambiente de execução…</p>
       <p id="runtime-error" role="alert"></p>
       <div class="actions"><button id="clear-case" class="secondary" type="button">Limpar caso e reiniciar</button><a href="../">Entender a MADO e o AMADO</a></div>
     </section>

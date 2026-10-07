@@ -4,7 +4,6 @@ const $$ = (selector) => [...document.querySelectorAll(selector)];
 let catalog = null;
 let currentCase = null;
 let lastResult = null;
-let fontLevel = 0;
 let activeTab = "known";
 let busy = false;
 let organizedNarrative = null;
@@ -641,8 +640,9 @@ function renderDecision(result) {
 }
 
 function showError(target, error) {
+  if (target === '#health') $('#health').dataset.state = 'error';
   $(target).textContent = error.message || String(error);
-  $(target).className = "error-message";
+  $(target).classList.add("error-message");
   $('#runtime-error').textContent = error.message || String(error);
 }
 
@@ -729,6 +729,7 @@ async function switchTab(name) {
   $("#free-tab").tabIndex = known ? -1 : 0;
   $("#saida").hidden = true;
   if (known) renderKnownContext();
+  $('#health').dataset.state = 'ready';
   $("#health").textContent = 'Pronto. O caso anterior foi descartado; nada foi salvo.';
 }
 $("#known-tab").addEventListener("click", () => runBusy("#health", () => switchTab("known")));
@@ -806,26 +807,16 @@ $$('.dictate').forEach(button => {
 });
 $$('.dictation-status').forEach(node => { node.textContent = 'Ditado remoto desativado nesta versão. Use texto ou teclado.'; });
 
-$("#contrast-button").addEventListener("click", (eventObject) => {
-  document.body.classList.toggle("high-contrast");
-  eventObject.currentTarget.setAttribute("aria-pressed", String(document.body.classList.contains("high-contrast")));
-});
-$("#font-button").addEventListener("click", (eventObject) => {
-  fontLevel = (fontLevel + 1) % 3;
-  document.body.classList.remove("large-text", "largest-text");
-  if (fontLevel === 1) document.body.classList.add("large-text");
-  if (fontLevel === 2) document.body.classList.add("largest-text");
-  eventObject.currentTarget.textContent = `Tamanho do texto: ${["normal", "grande", "muito grande"][fontLevel]}`;
-});
-
 async function load() {
+  $('#health').dataset.state = 'loading';
   const health = await api("/api/health");
-  $("#health").textContent = `AMADO pronto: base carregada no navegador (${health.triples} triplas). A construção pode levar alguns segundos.`;
   catalog = await api("/api/catalog");
   renderRationaleGuide();
   renderReported(); renderTemplates();
   currentCase = await request('start', {template:INTERVIEW_TEMPLATE});
   renderKnownContext();
+  $('#health').dataset.state = 'ready';
+  $("#health").textContent = `AMADO pronto: base carregada no navegador (${health.triples} triplas). A construção pode levar alguns segundos.`;
 }
 
 function clearInputAndResult() {
@@ -857,7 +848,10 @@ $('#clear-case').addEventListener('click', () => {
   $('#health').textContent = 'Caso descartado. Reiniciando o ambiente de execução…';
   runBusy('#health', load);
 });
-window.addEventListener('amado-progress', e => { $('#health').textContent = e.detail; });
+window.addEventListener('amado-progress', e => {
+  $('#health').dataset.state = 'loading';
+  $('#health').textContent = e.detail;
+});
 $$('textarea').forEach(node => { node.maxLength = 10000; node.autocomplete = 'off'; });
 window.addEventListener('pagehide', clearInputAndResult);
 window.addEventListener('pageshow', e => { if (e.persisted) $('#clear-case').click(); });

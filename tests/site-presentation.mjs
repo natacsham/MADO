@@ -42,7 +42,7 @@ if(process.env.AMADO_DEPLOYMENT_COMMIT) report.repository_commit_at_test=process
 const sha=data=>crypto.createHash('sha256').update(data).digest('hex');
 report.build=JSON.parse(await fs.readFile(path.join(web,'amado','manifest.json'),'utf8'));
 report.source_sha256={};
-for(const name of ['index.html','ontologia/index.html','site.css','site.js','amado/index.html','amado/styles.css','amado/app.js','robots.txt','sitemap.xml']){
+for(const name of ['index.html','ontologia/index.html','site.css','shell.css','site.js','amado/index.html','amado/styles.css','amado/app.js','robots.txt','sitemap.xml']){
   try{report.source_sha256[name]=sha(await fs.readFile(path.join(web,name)));}catch{}
 }
 report.site_assets_sha256={};
@@ -132,6 +132,7 @@ try{
     if(name==='amado')await idle();
     const metadata=await page.evaluate(()=>({
       title:document.title,lang:document.documentElement.lang,
+      author:document.querySelector('meta[name="author"]')?.content,
       description:document.querySelector('meta[name="description"]')?.content,
       canonical:document.querySelector('link[rel="canonical"]')?.href,
       og_title:document.querySelector('meta[property="og:title"]')?.content,
@@ -146,6 +147,11 @@ try{
     check(name+'_semantic_document',metadata.lang==='pt-BR'&&metadata.h1_count===1&&metadata.main_count===1);
     check(name+'_seo',metadata.title.length>10&&metadata.description?.length>30&&metadata.canonical===publicBase+rel&&metadata.og_url===metadata.canonical&&Boolean(metadata.og_title)&&metadata.jsonld.length>0&&!/noindex/i.test(metadata.robots||''));
     check(name+'_jsonld_schema',metadata.jsonld.every(x=>x['@context']==='https://schema.org' && Boolean(x['@type']||x['@graph'])));
+    check(name+'_author_metadata',metadata.author==='Natacsha Ordones Raposo de Melo');
+    const navigation=await page.locator('header.site-header .nav a').allInnerTexts();
+    check(name+'_shared_navigation',JSON.stringify(navigation.map(x=>x.trim()))===JSON.stringify(['Entenda a MADO','A ontologia','Experimente o AMADO']));
+    check(name+'_single_current_navigation',await page.locator('header.site-header .nav a[aria-current="page"]').count()===1);
+    check(name+'_shared_shell_loaded',await page.locator('link[rel="stylesheet"][href$="shell.css"]').count()===1);
     check(name+'_no_positive_tabindex',await page.locator('[tabindex]').evaluateAll(nodes=>nodes.every(x=>Number(x.getAttribute('tabindex'))<=0)));
     await page.keyboard.press('Tab');
     const skip=await page.evaluate(()=>({href:document.activeElement?.getAttribute('href'),name:document.activeElement?.textContent}));
@@ -153,7 +159,7 @@ try{
     await page.keyboard.press('Enter');
     check(name+'_skip_link_focus',await page.evaluate(()=>document.activeElement===document.querySelector('main')));
 
-    if(name!=='amado'){
+    {
       const toolbar=page.locator('[data-site-accessibility]');
       check(name+'_toolbar_present',await toolbar.count()===1);
       const selectors=['[data-font-increase]','[data-font-decrease]','[data-font-reset]','[data-site-contrast]'];
@@ -162,6 +168,8 @@ try{
       const focus=await focusSample('[data-font-increase]');report.pages[name].focus=focus;
       check(name+'_keyboard_visible_focus',focus.visible&&focus.in_view&&focus.outline_style!=='none'&&parseFloat(focus.outline_width)>=2);
       const originalSize=await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
+      report.pages[name].font_base=originalSize;
+      check(name+'_preserved_font_base',originalSize===(name==='amado'?18:16));
       await page.keyboard.press('Enter');
       check(name+'_keyboard_text_enlargement',await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))>originalSize);
       for(let n=0;n<25;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
@@ -185,14 +193,12 @@ try{
       await page.locator('[data-site-contrast]').click();
       await page.locator('[data-site-top]').focus();await page.keyboard.press('Enter');await settled();
       check(name+'_top_link_focus',await page.evaluate(()=>document.activeElement?.id==='inicio'));
-    }else{
-      const homeLink=page.locator('header').getByRole('link',{name:'Início da MADO',exact:true});
+    }
+    if(name==='amado'){
+      const homeLink=page.locator('header').getByRole('link',{name:'Entenda a MADO',exact:true});
       check('amado_home_navigation',await homeLink.count()===1);
       const href=await homeLink.getAttribute('href');
       check('amado_home_subpath',new URL(href,page.url()).pathname==='/MADO/');
-      await page.locator('html').evaluate(el=>el.style.fontSize='200%');
-      await assertReflow('amado_text_200_reflow');
-      await page.locator('html').evaluate(el=>el.style.fontSize='');
       const top=page.getByRole('link',{name:/Voltar ao (?:topo|início)/i});
       check('amado_top_link',await top.count()===1);
       await top.focus();await page.keyboard.press('Enter');await settled();
@@ -205,13 +211,29 @@ try{
       report.pages[name].technical_terms_visible=body.match(/\b(?:RDF|OWL|SHACL|SPARQL|Pyodide|K\d{2}|CA\d{2}|ART-[A-Z]+-\d+)\b/g)||[];
       check('home_no_unexplained_identifiers',report.pages[name].technical_terms_visible.length===0);
     }
+    if(name!=='amado'){
+      const text=await page.locator('body').innerText();
+      check(name+'_authorship_and_acronym',text.includes('Natacsha Ordones Raposo de Melo')&&text.includes('Multimodal Accessibility Decision Ontology'));
+      check(name+'_authorial_voice',name==='home'?text.includes('construí a MADO'):text.includes('representei conceitos'));
+      const card=page.locator(name==='home'?'main .card':'main .terms>div').first();
+      const snapshot=()=>card.evaluate(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {width:r.width,height:r.height,transform:s.transform,border:s.borderColor,shadow:s.boxShadow,transition:s.transitionDuration,tabindex:el.getAttribute('tabindex')};});
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.mouse.move(0,0);await settled();const before=await snapshot();
+      await card.hover();await card.evaluate(async el=>{await Promise.all(el.getAnimations().map(a=>a.finished.catch(()=>{})));});
+      const hovered=await snapshot();report.pages[name].hover={before,hovered};
+      check(name+'_hover_keeps_content_geometry',Math.abs(hovered.width-before.width)<1&&Math.abs(hovered.height-before.height)<1);
+      check(name+'_subtle_hover_not_focusable',hovered.transform==='matrix(1, 0, 0, 1, 0, -3)'&&hovered.tabindex===null);
+      await page.emulateMedia({reducedMotion:'reduce'});await settled();
+      const reduced=await snapshot();report.pages[name].hover.reduced=reduced;
+      check(name+'_hover_respects_reduced_motion',reduced.transform==='none'&&reduced.transition.split(',').every(x=>parseFloat(x)===0));
+    }
     await page.screenshot({path:path.join(artifacts,name+'-desktop.png'),fullPage:true});
     await page.setViewportSize({width:320,height:900});
     await assertReflow(name+'_reflow_320');
     await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
     await page.screenshot({path:path.join(artifacts,name+'-mobile.png'),fullPage:true});
     await page.screenshot({path:path.join(artifacts,name+'-mobile-viewport.png')});
-    if(name!=='amado'){
+    {
       for(let n=0;n<25;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
       await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
       await page.screenshot({path:path.join(artifacts,name+'-mobile-200.png')});
@@ -225,9 +247,10 @@ try{
     await page.screenshot({path:path.join(artifacts,name+'-forced-colors.png'),fullPage:true});
     check(name+'_no_persistent_storage',await page.evaluate(async()=>localStorage.length===0&&sessionStorage.length===0&&document.cookie===''&&(await indexedDB.databases()).length===0&&(await caches.keys()).length===0));
     await page.emulateMedia({forcedColors:'none'});
-    if(name!=='amado'){
+    {
       await page.locator('[data-font-increase]').click();await page.locator('[data-site-contrast]').click();await page.reload();
-      check(name+'_preferences_not_restored',await page.locator('html').getAttribute('data-contrast')!=='high'&&await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===16);
+      if(name==='amado')await idle();
+      check(name+'_preferences_not_restored',await page.locator('html').getAttribute('data-contrast')!=='high'&&await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===(name==='amado'?18:16));
     }
   }
   check('distinct_page_titles',new Set(titles).size===3);
