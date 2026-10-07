@@ -1,5 +1,6 @@
 {
   "browser": "154.0.8037.98",
+  "execution_target": "LOCAL_SUBPATH",
   "checks": {
     "published_assets_match_verified_build": true,
     "public_interview_seven_configurations": true,

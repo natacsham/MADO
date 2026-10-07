@@ -39,6 +39,20 @@ def main():
         "parity_passed": parity.get("passed") is True,
         "distribution_passed": distribution.get("passed") is True,
     }
+    smoke_path = ROOT / "evidence/public-smoke.json"
+    smoke = read("evidence/public-smoke.json") if smoke_path.exists() else None
+    if smoke is not None:
+        checks["public_smoke_passed"] = (
+            smoke.get("completed") is True
+            and smoke.get("execution_target") == "PUBLIC_SITE"
+            and not smoke.get("errors")
+            and bool(smoke.get("checks"))
+            and all(value is True for value in smoke["checks"].values())
+        )
+        checks["public_smoke_build_matches"] = all(
+            smoke["build"][key] == manifest[key]
+            for key in ("core_sha256", "bridge_sha256", "base_zip_sha256", "frontend_sha256")
+        )
     if not all(checks.values()):
         raise SystemExit(json.dumps(checks, ensure_ascii=False))
     summary = {
@@ -71,7 +85,11 @@ def main():
     }
     target = ROOT / "web/evidence"
     target.mkdir(exist_ok=True)
-    for name in ("technical-report.json", "reasoner-report.json", "regression-report.json", "browser-report.json", "browser-baseline-report.json", "parity-report.json", "public-projection.json", "public-content-audit.json", "distribution-audit.json", "build-manifest.json"):
+    reports = ["technical-report.json", "reasoner-report.json", "regression-report.json", "browser-report.json", "browser-baseline-report.json", "parity-report.json", "public-projection.json", "public-content-audit.json", "distribution-audit.json", "build-manifest.json"]
+    if smoke is not None:
+        reports.append("public-smoke.json")
+        summary["results"]["public_smoke_checks"] = smoke["checks"]
+    for name in reports:
         path = ROOT / "evidence" / name
         summary["reports"][name] = {"sha256": digest(path), "url": name}
         (target / name).write_bytes(path.read_bytes())

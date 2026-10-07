@@ -45,6 +45,8 @@ await context.route('**/*',route => {
 const page = await context.newPage();
 page.on('pageerror',error => errors.push(error.message));
 const report = {browser:browser.version(),checks:{},timings:{},external_requests:external,errors,limitations:['NVDA não testado','VoiceOver não testado','Não é avaliação de conformidade WCAG','Tempos de laboratório, sem garantia para dispositivos móveis']};
+report.execution_target=publicURL ? 'PUBLIC_SITE' : 'LOCAL_SUBPATH';
+if (process.env.AMADO_DEPLOYMENT_COMMIT) report.repository_commit_at_test=process.env.AMADO_DEPLOYMENT_COMMIT;
 report.build=JSON.parse(await fs.readFile(path.join(web,'amado','manifest.json'),'utf8'));
 const idle = async (target=page) => {
   await target.waitForFunction(() => document.getElementById('main').getAttribute('aria-busy') === 'false',{}, {timeout:180000});

@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-07T04:13:02.512585+00:00",
+  "compiled_at_utc": "2026-10-07T04:20:07.278368+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -17,7 +17,9 @@
     "browser_frontend_matches": true,
     "browser_base_matches": true,
     "parity_passed": true,
-    "distribution_passed": true
+    "distribution_passed": true,
+    "public_smoke_passed": true,
+    "public_smoke_build_matches": true
   },
   "results": {
     "unit_tests": 56,
@@ -276,6 +278,16 @@
         "accepts_unordered_knowledge_ids": true
       },
       "passed": true
+    },
+    "public_smoke_checks": {
+      "published_assets_match_verified_build": true,
+      "public_interview_seven_configurations": true,
+      "public_mobile_reflow_reduced_motion": true,
+      "accessible_progress_and_control_names": true,
+      "measured_palette_contrast": true,
+      "public_screen_reader_example": true,
+      "public_clear_discards_case": true,
+      "no_case_network_requests": true
     }
   },
   "limits": [
@@ -300,7 +312,7 @@
       "url": "regression-report.json"
     },
     "browser-report.json": {
-      "sha256": "59e43a7634e16812997da32972e9ec68fdcf8aa3f9923878931cbdc7beeddd14",
+      "sha256": "5d22c266aa534b8c34dbefa6b294e93804fc445953cb8a7d2e7f073305e273ff",
       "url": "browser-report.json"
     },
     "browser-baseline-report.json": {
@@ -320,12 +332,16 @@
       "url": "public-content-audit.json"
     },
     "distribution-audit.json": {
-      "sha256": "9c50d70e7dc911f947a914819192686d4d1cae7dad37b2ae909741b1a0b7a72e",
+      "sha256": "c9c82c9ba2a721c0d7603700b304dbbd2742a993b01fa67e6fb49aeb9f2db9f2",
       "url": "distribution-audit.json"
     },
     "build-manifest.json": {
       "sha256": "3b8932b13ae8551ce913853d5dccbdc450adb9f6b4cb73bf229475c7e572864f",
       "url": "build-manifest.json"
+    },
+    "public-smoke.json": {
+      "sha256": "0f6a6467337070703c244b7be99ce81124ee4cd69e994470aa89d49fd0117472",
+      "url": "public-smoke.json"
     }
   }
 }
