@@ -2,7 +2,7 @@
   "scope": "Conteúdo, navegação, SEO técnico e apresentação acessível; não revalida motor ou ontologia.",
   "execution_target": "PUBLIC_SITE",
   "browser": "154.0.8037.98",
-  "started_at_utc": "2026-10-07T12:54:19.152Z",
+  "started_at_utc": "2026-10-07T13:11:48.743Z",
   "checks": {
     "site_assets_match_manifest": true,
     "served_site_assets_match": true,
@@ -2039,7 +2039,7 @@
     "Casos e resultados semânticos permanecem vinculados aos relatórios de execução próprios."
   ],
   "public_url": "https://natacsham.github.io/MADO/",
-  "repository_commit_at_test": "06141aa27ce59b5ac4b96b416023922cc813ea0d",
+  "repository_commit_at_test": "005f27d9f2415fed11ca8d69234c911892a6c75b",
   "build": {
     "version": "1.3.0-rc1",
     "instrument": "AMADO",
@@ -2092,7 +2092,7 @@
       "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc",
       "guiado.html": "05a4a8e588391a3070bc45a383b9138dc9f93e5a2aa0750c34876bde8780e6d0",
       "guided.js": "3dcaf686742a9af2cd65c37b215a4d341f7ce1ec720f42d0701352535e661236",
-      "guided.css": "db2a9e441c7e5345f44d82ec7021521db4ea2776a94e262529980fd205047b67",
+      "guided.css": "9aa00af8658e94f29e0c2632b6b7f40a44830f149fea530c651279a6a577f7d2",
       "views.css": "f96607c67d4d40b74810742e70afb916eed34c7ce0f342e595dc2626a69809f7"
     },
     "site_assets_sha256": {
@@ -2210,5 +2210,5 @@
     "reason": "robots.txt deve estar na raiz da origem; o projeto está em /MADO/. Submissão do sitemap ao mecanismo de busca é uma etapa externa."
   },
   "completed": true,
-  "finished_at_utc": "2026-10-07T12:55:02.253Z"
+  "finished_at_utc": "2026-10-07T13:12:27.541Z"
 }

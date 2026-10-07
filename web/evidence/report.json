@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-07T13:08:30.412075+00:00",
+  "compiled_at_utc": "2026-10-07T13:14:13.112705+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -21,7 +21,9 @@
     "presentation_passed": true,
     "presentation_assets_match": true,
     "guided_view_passed": true,
-    "guided_view_build_matches": true
+    "guided_view_build_matches": true,
+    "public_smoke_passed": true,
+    "public_smoke_build_matches": true
   },
   "results": {
     "unit_tests": 56,
@@ -495,6 +497,16 @@
       "manifest_not_changed_during_run": true,
       "served_manifest_matches": true,
       "css_only_invariants_confirmed": true
+    },
+    "public_smoke_checks": {
+      "published_assets_match_verified_build": true,
+      "public_interview_seven_configurations": true,
+      "public_mobile_reflow_reduced_motion": true,
+      "accessible_progress_and_control_names": true,
+      "measured_palette_contrast": true,
+      "public_screen_reader_example": true,
+      "public_clear_discards_case": true,
+      "no_case_network_requests": true
     }
   },
   "limits": [
@@ -539,7 +551,7 @@
       "url": "public-content-audit.json"
     },
     "distribution-audit.json": {
-      "sha256": "03248a2755894142a5b24a034d2be33b5124c959ff3b206fb100dad2c6c4cabd",
+      "sha256": "51d81eaf273ae66b39a22d88bfa86683aebad735d19a4a9845d4235410d9bea2",
       "url": "distribution-audit.json"
     },
     "build-manifest.json": {
@@ -563,18 +575,18 @@
       "url": "guided-before-layout-polish.json"
     },
     "guided-public-report.json": {
-      "sha256": "810cd08e39ff01be081b0af67d527f893862bfe730406a896872c6a1e4e73fac",
+      "sha256": "b3e1dad59dc3fad7fb92fe9fc0e7fa3622e3bb26ae6125a353ab061619c11aaa",
       "url": "guided-public-report.json"
     },
+    "guided-public-before-layout-polish.json": {
+      "sha256": "810cd08e39ff01be081b0af67d527f893862bfe730406a896872c6a1e4e73fac",
+      "url": "guided-public-before-layout-polish.json"
+    },
     "public-smoke.json": {
-      "sha256": "8bc9af7299b65dc82ec53a60d5bf572168e7ec07c25f46dcf92f620cd87dc4e7",
+      "sha256": "5bf703c5a92a71fb0278cae22362bda32bb70689856bcc2176ebe62ee5e2a0df",
       "url": "public-smoke.json"
     }
   },
-  "public_smoke_status": "PENDING_FOR_CURRENT_BUILD",
-  "guided_public_status": "NOT_VERIFIED_CURRENT_BUILD",
-  "historical_public_smoke": {
-    "report": "public-smoke.json",
-    "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation."
-  }
+  "public_smoke_status": "VERIFIED_CURRENT_BUILD",
+  "guided_public_status": "VERIFIED_CURRENT_BUILD"
 }
