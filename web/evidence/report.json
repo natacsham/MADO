@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-07T05:39:42.902843+00:00",
+  "compiled_at_utc": "2026-10-07T12:52:12.268524+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -20,8 +20,8 @@
     "distribution_passed": true,
     "presentation_passed": true,
     "presentation_assets_match": true,
-    "public_smoke_passed": true,
-    "public_smoke_build_matches": true
+    "guided_view_passed": true,
+    "guided_view_build_matches": true
   },
   "results": {
     "unit_tests": 56,
@@ -311,6 +311,11 @@
       "home_no_unexplained_identifiers": true,
       "home_explanatory_example_preserved": true,
       "home_no_three_artifact_triptych": true,
+      "home_problem_content_preserved": true,
+      "home_problem_three_functional_blocks": true,
+      "home_problem_three_desktop_columns": true,
+      "home_problem_static_not_interactive": true,
+      "home_limits_preserved": true,
       "home_authorship_and_acronym": true,
       "home_authorial_voice": true,
       "home_static_card_keeps_geometry": true,
@@ -319,6 +324,7 @@
       "home_pointer_only_actual_controls": true,
       "home_local_links_and_anchors": true,
       "home_reflow_320": true,
+      "home_problem_single_mobile_column": true,
       "home_mobile_text_200_reflow": true,
       "home_forced_colors_reflow": true,
       "home_forced_colors_and_reduced_motion": true,
@@ -424,6 +430,11 @@
       "amado_top_link": true,
       "amado_top_focus": true,
       "amado_contrast_sample": true,
+      "amado_two_presentations_linked": true,
+      "amado_view_change_discloses_discard": true,
+      "guided_view_current_navigation": true,
+      "guided_view_return_link": true,
+      "amado_view_navigation_keyboard_roundtrip": true,
       "amado_local_links_and_anchors": true,
       "amado_reflow_320": true,
       "amado_mobile_text_200_reflow": true,
@@ -437,15 +448,67 @@
       "no_external_requests_or_case_post": true,
       "no_javascript_errors": true
     },
-    "public_smoke_checks": {
-      "published_assets_match_verified_build": true,
-      "public_interview_seven_configurations": true,
-      "public_mobile_reflow_reduced_motion": true,
-      "accessible_progress_and_control_names": true,
-      "measured_palette_contrast": true,
-      "public_screen_reader_example": true,
-      "public_clear_discards_case": true,
-      "no_case_network_requests": true
+    "guided_view_checks": {
+      "served_index_html_matches": true,
+      "served_guiado_html_matches": true,
+      "served_app_js_matches": true,
+      "served_guided_js_matches": true,
+      "served_guided_css_matches": true,
+      "served_views_css_matches": true,
+      "served_styles_css_matches": true,
+      "served_client_mjs_matches": true,
+      "served_worker_mjs_matches": true,
+      "runtime_ready": true,
+      "no_duplicate_ids": true,
+      "two_real_tabs_only": true,
+      "stage_one_only": true,
+      "keyboard_skip_first": true,
+      "keyboard_skip_focus": true,
+      "cannot_skip_confirmation": true,
+      "missing_selection_error_visible": true,
+      "error_does_not_unlock_review": true,
+      "review_is_unconfirmed": true,
+      "obsolete_navigation_message_cleared": true,
+      "review_focus": true,
+      "generation_requires_confirmation": true,
+      "principal_seven_configurations": true,
+      "result_focus": true,
+      "same_content_modes_resources_as_original": true,
+      "practical_disclosures_closed": true,
+      "modes_function_resources_visible_when_closed": true,
+      "configuration_keyboard_opens": true,
+      "configuration_focus_visible": true,
+      "configuration_keyboard_closes": true,
+      "expand_all": true,
+      "collapse_all_preserves_content": true,
+      "measured_text_contrast": true,
+      "measured_high_contrast": true,
+      "result_reflow_320": true,
+      "text_reaches_200": true,
+      "result_reflow_320_text_200": true,
+      "forced_colors_reflow": true,
+      "forced_colors_and_reduced_motion": true,
+      "back_preserves_confirmation": true,
+      "forward_preserves_result": true,
+      "reconfirm_report_invalidates_previous_result": true,
+      "reconfirm_cannot_reopen_stale_result": true,
+      "reconfirmed_report_requires_new_generation": true,
+      "editing_invalidates_old_result": true,
+      "example_requires_review": true,
+      "synchronous_preserved_organization_advances": true,
+      "screen_reader_example_constructed": true,
+      "changed_narrative_invalidates_review": true,
+      "incomplete_narrative_reports_missing": true,
+      "incomplete_narrative_suspends": true,
+      "stop_available_at_every_stage": true,
+      "clear_discards_and_resets": true,
+      "load_failure_is_visible": true,
+      "clear_recovers_failed_runtime": true,
+      "no_storage": true,
+      "no_external_or_case_upload": true,
+      "no_javascript_errors": true,
+      "manifest_not_changed_during_run": true,
+      "served_manifest_matches": true
     }
   },
   "limits": [
@@ -470,7 +533,7 @@
       "url": "regression-report.json"
     },
     "browser-report.json": {
-      "sha256": "dc367e34a5d4b6a36d72e8a759a402d4056e9fbc4dae3e877cba92f865edeac2",
+      "sha256": "84671a7b21c81870d0856bf34e4ba867af40ed87db69d47b98245c20943c1502",
       "url": "browser-report.json"
     },
     "browser-baseline-report.json": {
@@ -490,25 +553,33 @@
       "url": "public-content-audit.json"
     },
     "distribution-audit.json": {
-      "sha256": "2765d68b2fa9079fd500a2b47c0406360f58941972399c4458d66a6c508cbf36",
+      "sha256": "2d7be7b9f802cee7f4c86d36b41d90debdda4058866ed36d93a1eab445d4f967",
       "url": "distribution-audit.json"
     },
     "build-manifest.json": {
-      "sha256": "5d320e21e22941a1353e619e8ce006486681dcb97ccc583aeadca1792d14ba38",
+      "sha256": "b2e8321c89f19d42cdd8c24b9dcd4436d31a15c9d79e5af5114f0e4febe6780a",
       "url": "build-manifest.json"
     },
-    "browser-before-content-refinement.json": {
-      "sha256": "028133c55eebc88582d248ecf9069f32da65bb3cfe17dc7829dd5d4e3f18cf67",
-      "url": "browser-before-content-refinement.json"
+    "browser-before-guided-view.json": {
+      "sha256": "dc367e34a5d4b6a36d72e8a759a402d4056e9fbc4dae3e877cba92f865edeac2",
+      "url": "browser-before-guided-view.json"
     },
     "site-presentation-report.json": {
-      "sha256": "6f9a7e5eea9d17348a2c2e3da62679fcc6c9b911fc032eb4a482dbcd7fde95ec",
+      "sha256": "28572d690cb569aeab6c428c11021f0db4b7e09c4af319f147149d8409747076",
       "url": "site-presentation-report.json"
+    },
+    "guided-report.json": {
+      "sha256": "fde2abef99efba853ba31fadb21303613ba4a471fb71391a85b8e22d52b6dcde",
+      "url": "guided-report.json"
     },
     "public-smoke.json": {
       "sha256": "1da5ea60ec2e37b2eef5d54945054cc6c55d04bc85e8fc8be3a94a0b99cd56f4",
       "url": "public-smoke.json"
     }
   },
-  "public_smoke_status": "VERIFIED_CURRENT_BUILD"
+  "public_smoke_status": "PENDING_FOR_CURRENT_BUILD",
+  "historical_public_smoke": {
+    "report": "public-smoke.json",
+    "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation."
+  }
 }

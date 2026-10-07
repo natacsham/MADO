@@ -77,7 +77,7 @@ def build():
         "llm": False,
         "frontend_sha256": {
             name: sha(APP / name)
-            for name in ("index.html", "app.js", "styles.css", "worker.mjs", "client.mjs")
+            for name in ("index.html", "app.js", "styles.css", "worker.mjs", "client.mjs", "guiado.html", "guided.js", "guided.css", "views.css")
         },
         "site_assets_sha256": {
             name: sha(WEB / name)

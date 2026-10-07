@@ -11,8 +11,8 @@
     "no_case_network_requests": true
   },
   "timings": {
-    "public_load_ms": 5960,
-    "public_generation_ms": 22104
+    "public_load_ms": 7153,
+    "public_generation_ms": 37686
   },
   "external_requests": [],
   "errors": [],
@@ -68,19 +68,23 @@
     "case_history": false,
     "llm": false,
     "frontend_sha256": {
-      "index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
+      "index.html": "97bb67aef40da6d4bdb3751e0bb27a9cc432a86c22363516f06ab5dd9583196a",
       "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
       "styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
       "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
-      "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc"
+      "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc",
+      "guiado.html": "05a4a8e588391a3070bc45a383b9138dc9f93e5a2aa0750c34876bde8780e6d0",
+      "guided.js": "3dcaf686742a9af2cd65c37b215a4d341f7ce1ec720f42d0701352535e661236",
+      "guided.css": "db2a9e441c7e5345f44d82ec7021521db4ea2776a94e262529980fd205047b67",
+      "views.css": "f96607c67d4d40b74810742e70afb916eed34c7ce0f342e595dc2626a69809f7"
     },
     "site_assets_sha256": {
-      "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+      "index.html": "be176aeafbab4ce94fb2d69952e48847ff954629c0913607ec5d5ddc5f0ff28e",
       "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-      "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+      "site.css": "97ed27484857d21725cf027cdba39afbd8263d8273a00c6bd5bdd8fe5249562b",
       "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
       "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-      "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
+      "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
     },
     "files": {
       "data/knowledge-base.json": "8e2e8f9e6e40c331fcf6960f7ddac60e6b772c4d2692a70688b40ed1acfe94fc",
@@ -303,9 +307,9 @@
   ],
   "completed": true,
   "type": "SYNTHETIC_BROWSER_REGRESSION_NOT_HUMAN_SESSION",
-  "executed_at": "2026-10-07T05:32:13.487Z",
+  "executed_at": "2026-10-07T12:50:47.871Z",
   "change_verification": {
-    "baseline_report": "browser-before-content-refinement.json",
+    "baseline_report": "browser-before-guided-view.json",
     "baseline_build": {
       "version": "1.3.0-rc1",
       "instrument": "AMADO",
@@ -351,16 +355,16 @@
       "case_history": false,
       "llm": false,
       "frontend_sha256": {
-        "index.html": "8e386c7c145169f6256025e1cf4e6e16e37279a675cf11c570c6227181a8fe42",
+        "index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
         "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
         "styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
         "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
         "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc"
       },
       "site_assets_sha256": {
-        "index.html": "77f764c9d3645d2b2bbac4c66f3a724a7e43032c5aa664524ca5d190fb8cae91",
-        "ontologia/index.html": "3f14b9135c335c44d9a1b8fb2f87b095fcf7dc936917291aea89bb2169090c5d",
-        "site.css": "55d4e00dd8151e50c7641c1384a177ffee94c0187e765a6e54824e16706b8695",
+        "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+        "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
+        "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
         "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
         "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
         "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
@@ -379,10 +383,12 @@
         "queries/CQ-008.rq": "bbeeb1f09f1092326ba3f4a9a85d413ec6b461ff386484dc136b296e9e90503a"
       }
     },
-    "baseline_check_count": 15,
-    "previous_baseline_report": "browser-before-unified-shell.json",
-    "change": "Refinamento editorial da apresentação e da página técnica; no AMADO, somente o nome do link de navegação. Motor, base, ponte, consultas e scripts do instrumento preservados.",
-    "scope": "Delta de apresentação: execução real do caso principal com sete configurações, exemplo de leitor de tela, reflow e limpeza. A regressão semântica completa e os testes de recuperação pertencem aos relatórios anteriores preservados; não foram repetidos para esta edição de conteúdo.",
+    "baseline_check_count": 8,
+    "previous_baseline_report": "browser-before-content-refinement.json",
+    "change": "Seção do problema reorganizada na Home e acesso a uma visão guiada separada do AMADO. Na visão atual, somente navegação e folha adicional para alternar apresentações; app.js, styles.css, worker, cliente, motor, base e consultas preservados.",
+    "scope": "Regressão dirigida da visão atual: caso principal com sete configurações, exemplo de leitor de tela, reflow, limpeza e ausência de envio do caso. Esta execução não testa a geração da visão guiada, não repete a regressão semântica completa nem os testes de recuperação; esses resultados pertencem a relatórios separados.",
+    "guided_view_report": "guided-report.json",
+    "guided_view_verified_by_this_run": false,
     "unchanged_engine_base_bridge_queries": true,
     "unchanged_amado_app_worker_client_styles": true
   }

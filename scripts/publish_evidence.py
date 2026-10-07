@@ -53,6 +53,18 @@ def main():
             presentation.get("source_sha256", {}).get(name) == value
             for name, value in manifest["site_assets_sha256"].items()
         )
+    guided_path = ROOT / "evidence/guided-report.json"
+    guided = read("evidence/guided-report.json") if guided_path.exists() else None
+    if "guiado.html" in manifest["frontend_sha256"]:
+        checks["guided_view_passed"] = (
+            guided is not None and guided.get("completed") is True
+            and not guided.get("errors") and bool(guided.get("checks"))
+            and all(value is True for value in guided["checks"].values())
+        )
+        checks["guided_view_build_matches"] = guided is not None and all(
+            guided.get("build", {}).get(key) == manifest.get(key)
+            for key in ("core_sha256", "bridge_sha256", "base_zip_sha256", "frontend_sha256", "files")
+        )
     smoke_path = ROOT / "evidence/public-smoke.json"
     smoke = read("evidence/public-smoke.json") if smoke_path.exists() else None
     smoke_matches = smoke is not None and all(
@@ -108,6 +120,25 @@ def main():
     if presentation is not None:
         reports.append("site-presentation-report.json")
         summary["results"]["presentation_checks"] = presentation["checks"]
+    if guided is not None:
+        reports.append("guided-report.json")
+        summary["results"]["guided_view_checks"] = guided["checks"]
+    guided_public_path = ROOT / "evidence/guided-public-report.json"
+    if guided_public_path.exists():
+        guided_public = read("evidence/guided-public-report.json")
+        reports.append("guided-public-report.json")
+        guided_public_current = all(
+            guided_public.get("build", {}).get(key) == manifest.get(key)
+            for key in ("core_sha256", "bridge_sha256", "base_zip_sha256", "frontend_sha256", "site_assets_sha256")
+        )
+        summary["guided_public_status"] = (
+            "VERIFIED_CURRENT_BUILD" if guided_public_current
+            and guided_public.get("completed") is True
+            and not guided_public.get("errors")
+            and bool(guided_public.get("checks"))
+            and all(value is True for value in guided_public["checks"].values())
+            else "NOT_VERIFIED_CURRENT_BUILD"
+        )
     if smoke is not None:
         reports.append("public-smoke.json")
         if smoke_matches:

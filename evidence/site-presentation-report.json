@@ -2,7 +2,7 @@
   "scope": "Conteúdo, navegação, SEO técnico e apresentação acessível; não revalida motor ou ontologia.",
   "execution_target": "LOCAL_SUBPATH",
   "browser": "154.0.8037.98",
-  "started_at_utc": "2026-10-07T05:31:03.236Z",
+  "started_at_utc": "2026-10-07T12:49:59.350Z",
   "checks": {
     "site_assets_match_manifest": true,
     "served_site_assets_match": true,
@@ -35,6 +35,11 @@
     "home_no_unexplained_identifiers": true,
     "home_explanatory_example_preserved": true,
     "home_no_three_artifact_triptych": true,
+    "home_problem_content_preserved": true,
+    "home_problem_three_functional_blocks": true,
+    "home_problem_three_desktop_columns": true,
+    "home_problem_static_not_interactive": true,
+    "home_limits_preserved": true,
     "home_authorship_and_acronym": true,
     "home_authorial_voice": true,
     "home_static_card_keeps_geometry": true,
@@ -43,6 +48,7 @@
     "home_pointer_only_actual_controls": true,
     "home_local_links_and_anchors": true,
     "home_reflow_320": true,
+    "home_problem_single_mobile_column": true,
     "home_mobile_text_200_reflow": true,
     "home_forced_colors_reflow": true,
     "home_forced_colors_and_reduced_motion": true,
@@ -148,6 +154,11 @@
     "amado_top_link": true,
     "amado_top_focus": true,
     "amado_contrast_sample": true,
+    "amado_two_presentations_linked": true,
+    "amado_view_change_discloses_discard": true,
+    "guided_view_current_navigation": true,
+    "guided_view_return_link": true,
+    "amado_view_navigation_keyboard_roundtrip": true,
     "amado_local_links_and_anchors": true,
     "amado_reflow_320": true,
     "amado_mobile_text_200_reflow": true,
@@ -709,10 +720,10 @@
         }
       ],
       "technical_terms_visible": [],
+      "problem_desktop_columns": 3,
       "long_main_paragraphs": [
         "Nesta pesquisa, construí a MADO (Multimodal Accessibility Decision Ontology) para representar como conhecimentos sobre acessibilidade e interação multimodal podem ser relacionados e empregados em decisões fundamentadas.",
-        "Normas, estudos, artefatos, personas e resultados oferecem conhecimentos diferentes. Investiguei como relacioná-los, preservar suas condições e tornar seu emprego em uma nova decisão verificável.",
-        "No Arcabouço Multimodal para Acessibilidade Digital, organizei esse percurso: a MADO representa o conhecimento e suas relações; o AMADO permite consultar essa mesma base e acompanhar a construção de uma orientação.",
+        "Investiguei como relacioná-los, preservar suas condições e tornar seu emprego em uma nova decisão verificável. No Arcabouço Multimodal para Acessibilidade Digital, organizei esse percurso.",
         "Na produção coletiva de um recurso digital, uma contribuição falada pode precisar ser revista e relacionada a imagens. A pergunta não é apenas “qual mídia adicionar?”, mas “qual função cada forma de expressão precisa cumprir?”.",
         "Na base, relacionei preservação do significado, organização da atenção e informação recuperável. Acrescentar formatos sem definir seus papéis pode apenas criar competição.",
         "A fala preserva expressão; o texto breve mantém pontos recuperáveis; a imagem pode representar relações, com alternativa para sua informação essencial. Cada configuração precisa de sustentação e condições próprias.",
@@ -832,7 +843,8 @@
           "status": 200,
           "anchor_exists": true
         }
-      ]
+      ],
+      "problem_mobile_columns": 1
     },
     "ontology": {
       "metadata": {
@@ -1570,6 +1582,18 @@
         },
         {
           "selector": "p",
+          "text": "Ao mudar de visão, o caso aberto é descartado.",
+          "foreground": "rgb(64, 92, 100)",
+          "background": [
+            243,
+            247,
+            248
+          ],
+          "ratio": 6.638774973618689,
+          "minimum": 4.5
+        },
+        {
+          "selector": "p",
           "text": "APOIO À DECISÃO",
           "foreground": "rgb(12, 101, 121)",
           "background": [
@@ -1578,18 +1602,6 @@
             248
           ],
           "ratio": 6.174903529196453,
-          "minimum": 4.5
-        },
-        {
-          "selector": "p",
-          "text": "Confira como o caso foi compreendido, confirme a organização das ",
-          "foreground": "rgb(20, 47, 55)",
-          "background": [
-            243,
-            247,
-            248
-          ],
-          "ratio": 13.054290705015273,
           "minimum": 4.5
         },
         {
@@ -1728,6 +1740,18 @@
         },
         {
           "selector": "p",
+          "text": "Ao mudar de visão, o caso aberto é descartado.",
+          "foreground": "rgb(64, 92, 100)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 7.160206731566718,
+          "minimum": 4.5
+        },
+        {
+          "selector": "p",
           "text": "APOIO À DECISÃO",
           "foreground": "rgb(0, 60, 74)",
           "background": [
@@ -1736,18 +1760,6 @@
             255
           ],
           "ratio": 12.032825928765776,
-          "minimum": 4.5
-        },
-        {
-          "selector": "p",
-          "text": "Confira como o caso foi compreendido, confirme a organização das ",
-          "foreground": "rgb(0, 0, 0)",
-          "background": [
-            255,
-            255,
-            255
-          ],
-          "ratio": 21,
           "minimum": 4.5
         },
         {
@@ -1859,6 +1871,19 @@
           "minimum": 4.5
         }
       ],
+      "view_navigation": [
+        {
+          "text": "Visão atual",
+          "href": "http://127.0.0.1:50533/MADO/amado/",
+          "current": "page"
+        },
+        {
+          "text": "Visão guiada Nova",
+          "href": "http://127.0.0.1:50533/MADO/amado/guiado.html",
+          "current": null
+        }
+      ],
+      "guided_scope": "Somente navegação entre apresentações; funcionamento e geração na visão guiada são avaliados no relatório próprio.",
       "local_links": [
         {
           "href": "/MADO/amado/#main",
@@ -1891,6 +1916,18 @@
           "anchor_exists": true
         },
         {
+          "href": "/MADO/amado/",
+          "text": "Visão atual",
+          "status": 200,
+          "anchor_exists": true
+        },
+        {
+          "href": "/MADO/amado/guiado.html",
+          "text": "Visão guiada Nova",
+          "status": 200,
+          "anchor_exists": true
+        },
+        {
           "href": "/MADO/",
           "text": "Entender a MADO e o AMADO",
           "status": 200,
@@ -1914,6 +1951,41 @@
   "errors": [],
   "external_requests": [],
   "request_methods": [
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
+    "GET",
     "GET",
     "GET",
     "GET",
@@ -2015,19 +2087,23 @@
     "case_history": false,
     "llm": false,
     "frontend_sha256": {
-      "index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
+      "index.html": "97bb67aef40da6d4bdb3751e0bb27a9cc432a86c22363516f06ab5dd9583196a",
       "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
       "styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
       "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
-      "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc"
+      "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc",
+      "guiado.html": "05a4a8e588391a3070bc45a383b9138dc9f93e5a2aa0750c34876bde8780e6d0",
+      "guided.js": "3dcaf686742a9af2cd65c37b215a4d341f7ce1ec720f42d0701352535e661236",
+      "guided.css": "db2a9e441c7e5345f44d82ec7021521db4ea2776a94e262529980fd205047b67",
+      "views.css": "f96607c67d4d40b74810742e70afb916eed34c7ce0f342e595dc2626a69809f7"
     },
     "site_assets_sha256": {
-      "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+      "index.html": "be176aeafbab4ce94fb2d69952e48847ff954629c0913607ec5d5ddc5f0ff28e",
       "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-      "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+      "site.css": "97ed27484857d21725cf027cdba39afbd8263d8273a00c6bd5bdd8fe5249562b",
       "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
       "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-      "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
+      "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
     },
     "files": {
       "data/knowledge-base.json": "8e2e8f9e6e40c331fcf6960f7ddac60e6b772c4d2692a70688b40ed1acfe94fc",
@@ -2044,31 +2120,31 @@
     }
   },
   "source_sha256": {
-    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+    "index.html": "be176aeafbab4ce94fb2d69952e48847ff954629c0913607ec5d5ddc5f0ff28e",
     "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+    "site.css": "97ed27484857d21725cf027cdba39afbd8263d8273a00c6bd5bdd8fe5249562b",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-    "amado/index.html": "c2c4381b08c48e384fc3b94122e4989d0e5b7903832bb5d76b6645a934cbacb7",
+    "amado/index.html": "97bb67aef40da6d4bdb3751e0bb27a9cc432a86c22363516f06ab5dd9583196a",
     "amado/styles.css": "87fe813835b3e19b5c5cacca65d64b5f08a791832a0f6c7a55db261b8a74fcda",
     "amado/app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
-    "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
+    "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
   },
   "site_assets_sha256": {
-    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+    "index.html": "be176aeafbab4ce94fb2d69952e48847ff954629c0913607ec5d5ddc5f0ff28e",
     "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+    "site.css": "97ed27484857d21725cf027cdba39afbd8263d8273a00c6bd5bdd8fe5249562b",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-    "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
+    "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
   },
   "served_site_assets_sha256": {
-    "index.html": "3e872a5dad5e77ba1304cda6c60b1b10e18794c2be5aebeb44e2ae7f02e221c8",
+    "index.html": "be176aeafbab4ce94fb2d69952e48847ff954629c0913607ec5d5ddc5f0ff28e",
     "ontologia/index.html": "adb569235adf0ce2968136233a6a0a1d055157c221abd6dacf134ed6ea047026",
-    "site.css": "cc4762326f5d79f320e7e064423e38c764f8438cfb4af15f086ec7a4b8a8f8d9",
+    "site.css": "97ed27484857d21725cf027cdba39afbd8263d8273a00c6bd5bdd8fe5249562b",
     "shell.css": "dfd44f2fffc278012355f282b4b9859ff38813482d0e88d8566394d588bdc9f1",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-    "sitemap.xml": "80ed64ee489aef0a28147242f94999be3c6af1832ec725dce2cd3455289a0428"
+    "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
   },
   "layout_dimensions": {
     "home_text_200_reflow": {
@@ -2128,12 +2204,13 @@
   "sitemap_urls": [
     "https://natacsham.github.io/MADO/",
     "https://natacsham.github.io/MADO/ontologia/",
-    "https://natacsham.github.io/MADO/amado/"
+    "https://natacsham.github.io/MADO/amado/",
+    "https://natacsham.github.io/MADO/amado/guiado.html"
   ],
   "robots": {
     "status": "NOT_ASSERTED",
     "reason": "robots.txt deve estar na raiz da origem; o projeto está em /MADO/. Submissão do sitemap ao mecanismo de busca é uma etapa externa."
   },
   "completed": true,
-  "finished_at_utc": "2026-10-07T05:31:24.000Z"
+  "finished_at_utc": "2026-10-07T12:50:35.970Z"
 }

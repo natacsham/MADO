@@ -233,6 +233,24 @@ try{
       check('amado_top_focus',await page.evaluate(()=>['inicio','page-title'].includes(document.activeElement?.id)));
       report.pages[name].contrast_default=await textSamples();
       check('amado_contrast_sample',report.pages[name].contrast_default.every(x=>x.ratio>=x.minimum));
+      const originalURL=page.url().split('#')[0];
+      const switcher=page.getByRole('navigation',{name:'Apresentação do AMADO',exact:true});
+      const views=await switcher.locator('a').evaluateAll(nodes=>nodes.map(el=>({text:el.textContent.trim(),href:el.href,current:el.getAttribute('aria-current')})));
+      report.pages[name].view_navigation=views;
+      check('amado_two_presentations_linked',views.length===2&&views.filter(x=>x.current==='page').length===1&&views[0].text==='Visão atual'&&views[0].current==='page'&&views[0].href===base+'amado/'&&views[1].text.startsWith('Visão guiada')&&views[1].href===base+'amado/guiado.html');
+      check('amado_view_change_discloses_discard',(await switcher.innerText()).includes('Ao mudar de visão, o caso aberto é descartado.'));
+      await keyboardFocus('.view-switch a[href$="guiado.html"]');
+      await page.keyboard.press('Enter');
+      await page.waitForURL(base+'amado/guiado.html');
+      const guidedSwitch=page.getByRole('navigation',{name:'Apresentação do AMADO',exact:true});
+      await guidedSwitch.waitFor();
+      check('guided_view_current_navigation',await guidedSwitch.locator('a[aria-current="page"]').count()===1&&/Visão guiada/.test(await guidedSwitch.locator('a[aria-current="page"]').innerText()));
+      const returnLink=guidedSwitch.getByRole('link',{name:'Visão atual',exact:true});
+      check('guided_view_return_link',await returnLink.count()===1&&new URL(await returnLink.getAttribute('href'),page.url()).href===originalURL);
+      await returnLink.focus();await page.keyboard.press('Enter');
+      await page.waitForURL(originalURL);await idle();
+      check('amado_view_navigation_keyboard_roundtrip',page.url()===originalURL&&await page.locator('#runtime-error').innerText()==='');
+      report.pages[name].guided_scope='Somente navegação entre apresentações; funcionamento e geração na visão guiada são avaliados no relatório próprio.';
     }
     if(name==='home'){
       const body=await page.locator('body').innerText();
@@ -241,6 +259,21 @@ try{
       check('home_explanatory_example_preserved',await page.locator('#exemplo .steps>li').count()>=3);
       const cardTitles=await page.locator('main .cards h3').allInnerTexts();
       check('home_no_three_artifact_triptych',!['Arcabouço','MADO','AMADO'].every(term=>cardTitles.some(title=>title.trim()===term)));
+      const problem=page.locator('.research-problem');
+      const problemText=(await problem.innerText()).replace(/\s+/g,' ');
+      const preservedStatements=[
+        'Encontrar informação não é o mesmo que saber como empregá-la.',
+        'Normas, estudos, artefatos, personas e resultados oferecem conhecimentos diferentes.',
+        'Investiguei como relacioná-los, preservar suas condições e tornar seu emprego em uma nova decisão verificável.',
+        'No Arcabouço Multimodal para Acessibilidade Digital, organizei esse percurso.',
+        'A MADO representa o conhecimento e suas relações; o AMADO permite consultar essa mesma base e acompanhar a construção de uma orientação.'
+      ];
+      check('home_problem_content_preserved',preservedStatements.every(text=>problemText.includes(text)));
+      check('home_problem_three_functional_blocks',JSON.stringify(await problem.locator('.problem-block h3').allInnerTexts())===JSON.stringify(['De onde vem o conhecimento','O que relacionei','Uma base para conferir']));
+      report.pages[name].problem_desktop_columns=await problem.locator('.problem-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+      check('home_problem_three_desktop_columns',report.pages[name].problem_desktop_columns===3);
+      check('home_problem_static_not_interactive',await problem.locator('.problem-block').evaluateAll(nodes=>nodes.every(el=>!el.hasAttribute('tabindex')&&getComputedStyle(el).cursor!=='pointer')));
+      check('home_limits_preserved',await page.getByText('Quando não há conhecimento suficiente',{exact:true}).count()===1&&await page.getByText('O que esta demonstração não comprova',{exact:true}).count()===1&&(await page.locator('main').textContent()).includes('Ela não comprova ganho de aprendizagem, cobertura universal ou acessibilidade integral.'));
     }
     if(name!=='amado'){
       const text=await page.locator('body').innerText();
@@ -294,6 +327,10 @@ try{
     }
     await page.setViewportSize({width:320,height:900});
     await assertReflow(name+'_reflow_320');
+    if(name==='home'){
+      report.pages[name].problem_mobile_columns=await page.locator('.problem-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+      check('home_problem_single_mobile_column',report.pages[name].problem_mobile_columns===1);
+    }
     await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
     await page.screenshot({path:path.join(artifacts,name+'-mobile.png'),fullPage:true});
     await page.screenshot({path:path.join(artifacts,name+'-mobile-viewport.png')});
