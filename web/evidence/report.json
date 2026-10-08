@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-08T02:07:52.932289+00:00",
+  "compiled_at_utc": "2026-10-08T02:11:57.159581+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -576,6 +576,21 @@
       },
       "executed_in_current_delta": false,
       "scope": "Prior guided-flow execution; not counted as executed by the current navigation check."
+    },
+    "public_navigation_checks": {
+      "all_runtime_css_data_queries_and_ontology_bytes_preserved": true,
+      "both_amado_html_only_navigation_label_changed": true,
+      "original_served_html_matches": true,
+      "original_navigation_labels": true,
+      "original_documentation_reached_by_tab": true,
+      "original_documentation_link_destination": true,
+      "original_return_to_amado": true,
+      "guided_served_html_matches": true,
+      "guided_navigation_labels": true,
+      "guided_documentation_reached_by_tab": true,
+      "guided_documentation_link_destination": true,
+      "guided_return_to_amado": true,
+      "no_base_runtime_or_case_request": true
     }
   },
   "limits": [
@@ -621,7 +636,7 @@
       "url": "public-content-audit.json"
     },
     "distribution-audit.json": {
-      "sha256": "dbba07e87372e9d5ab635f75231280a89bdd553b2c846568221492d1729e8798",
+      "sha256": "71e2e5ad0b49a16486f400399fa4d9e18b58484cdf0a0d65f16ecc665a45d5af",
       "url": "distribution-audit.json"
     },
     "build-manifest.json": {
@@ -647,13 +662,18 @@
     "navigation-delta-report.json": {
       "sha256": "3e7f9af8bedf0477ae0639e3a8229544fd55b1cbc6c82164aa7a18b0a2d9d9be",
       "url": "navigation-delta-report.json"
+    },
+    "navigation-public-report.json": {
+      "sha256": "4172b2750296e469c7f97f6a833373d2f44cceffb6b0f7857f499c00e233bb63",
+      "url": "navigation-public-report.json"
     }
   },
-  "public_smoke_status": "PENDING_FOR_CURRENT_BUILD",
+  "public_smoke_status": "NAVIGATION_VERIFIED_FUNCTIONAL_EXECUTION_HISTORICAL",
   "navigation_delta_status": "VERIFIED_CURRENT_NAVIGATION_ONLY_CHANGE",
   "guided_public_status": "NOT_VERIFIED_CURRENT_BUILD",
   "historical_public_smoke": {
     "report": "public-smoke.json",
     "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation."
-  }
+  },
+  "public_navigation_status": "VERIFIED_CURRENT_NAVIGATION_ONLY_CHANGE"
 }
