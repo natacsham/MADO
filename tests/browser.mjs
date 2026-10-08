@@ -4,6 +4,7 @@ import path from 'node:path';
 import http from 'node:http';
 import assert from 'node:assert/strict';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import {coreInvariantAudit, historicalReport, typographySnapshot, assertAmadoTypography, assertFixedViewportDoubling} from './presentation-metrics.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const web = path.join(root, 'web');
@@ -30,6 +31,7 @@ const publicURL=process.env.AMADO_PUBLIC_URL || '';
 const shellDelta=process.env.AMADO_SHELL_DELTA==='1';
 const contentDelta=process.env.AMADO_CONTENT_DELTA==='1';
 const guidedDelta=process.env.AMADO_GUIDED_DELTA==='1';
+const editorialDelta=process.env.AMADO_EDITORIAL_DELTA==='1';
 const origin = publicURL ? new URL(publicURL).origin : `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch({headless:true,executablePath:process.env.AMADO_CHROMIUM || path.join(process.env.LOCALAPPDATA,'ms-playwright/chromium-1243/chrome-win64/chrome.exe')});
 const context = await browser.newContext({viewport:{width:1280,height:900}});
@@ -94,7 +96,11 @@ async function generateFree() {
   return Date.now()-started;
 }
 try {
-  if (publicURL || process.env.AMADO_DELTA_ONLY === '1' || shellDelta || contentDelta || guidedDelta) {
+  if(editorialDelta){
+    report.core_invariants=await coreInvariantAudit(root);
+    report.historical_baseline=historicalReport(root,'evidence/browser-report.json');
+  }
+  if (publicURL || process.env.AMADO_DELTA_ONLY === '1' || shellDelta || contentDelta || guidedDelta || editorialDelta) {
     const directedURL=publicURL || origin+'/mado/amado/';
     if (publicURL) report.public_url=publicURL;
     const loadStarted=Date.now();
@@ -113,7 +119,7 @@ try {
       assert.equal(report.loading_status.state,'loading');
       assert(report.loading_status.text.trim().length>0);
       await page.locator('[data-font-increase]').click();
-      assert.equal(await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)),22.5);
+      assert.equal(await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)),20);
       await page.locator('[data-font-reset]').click();
       await page.locator('[data-site-contrast]').click();
       assert.equal(await page.locator('html').getAttribute('data-contrast'),'high');
@@ -143,6 +149,15 @@ try {
     assert.equal(await page.locator('#modal-configuration .mode-card').count(),7);
     report.timings.public_generation_ms=Date.now()-generationStarted;
     report.checks.public_interview_seven_configurations=true;
+    if(editorialDelta){
+      const before=await typographySnapshot(page);assertAmadoTypography(before);
+      for(let n=0;n<4;n++)await page.locator('[data-font-increase]').click();
+      const after=await typographySnapshot(page);
+      report.typography={desktop:before,desktop_200:after,desktop_ratios:assertFixedViewportDoubling(before,after)};
+      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      await page.locator('[data-font-reset]').click();
+      report.checks.original_typography_and_fixed_viewport_doubling=true;
+    }
     if (process.env.AMADO_DELTA_ONLY === '1' || shellDelta) {
       // No voice is synthesized here; this checks the stop control's action
       // while the real worker is busy, without an OS-voice dependency.
@@ -179,6 +194,17 @@ try {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     await page.screenshot({path:path.join(artifacts,'public-mobile.png')});
     report.checks.public_mobile_reflow_reduced_motion=true;
+    if(editorialDelta){
+      const before=await typographySnapshot(page);assertAmadoTypography(before,true);
+      for(let n=0;n<4;n++)await page.locator('[data-font-increase]').click();
+      const after=await typographySnapshot(page);
+      report.typography.mobile=before;report.typography.mobile_200=after;
+      report.typography.mobile_ratios=assertFixedViewportDoubling(before,after);
+      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      await page.screenshot({path:path.join(artifacts,'editorial-mobile-200.png')});
+      await page.locator('[data-font-reset]').click();
+      report.checks.original_mobile_typography_200_preserves_content=true;
+    }
     await page.setViewportSize({width:1280,height:900});
     await page.locator('#free-tab').click(); await idle();
     if(shellDelta){
@@ -418,18 +444,31 @@ try {
   }
   }
   assert.equal(external.length,0); assert(methods.every(m=>m==='GET')); assert.equal(errors.length,0);
+  if(editorialDelta){
+    assert.deepEqual(await coreInvariantAudit(root),report.core_invariants);
+    report.checks.editorial_preserves_semantic_and_runtime_files=true;
+  }
   report.checks.no_case_network_requests=true;
   report.completed=true;
 } catch(error) {
   report.failure=String(error.stack || error); process.exitCode=1;
   await page.screenshot({path:path.join(artifacts,'failure.png'),fullPage:true});
 } finally {
-  const reportName=publicURL ? 'public-smoke.json' : guidedDelta ? 'report-guided-delta.json' : contentDelta ? 'report-content-delta.json' : shellDelta ? 'report-shell-delta.json' : process.env.AMADO_DELTA_ONLY === '1' ? 'report-delta.json' : process.env.AMADO_RECOVERY_ONLY === '1' ? 'report-recovery.json' : process.env.AMADO_PROBES_ONLY === '1' ? 'report-probes.json' : 'report.json';
+  const reportName=publicURL ? 'public-smoke.json' : editorialDelta ? 'report-editorial-typography.json' : guidedDelta ? 'report-guided-delta.json' : contentDelta ? 'report-content-delta.json' : shellDelta ? 'report-shell-delta.json' : process.env.AMADO_DELTA_ONLY === '1' ? 'report-delta.json' : process.env.AMADO_RECOVERY_ONLY === '1' ? 'report-recovery.json' : process.env.AMADO_PROBES_ONLY === '1' ? 'report-probes.json' : 'report.json';
   await fs.writeFile(path.join(artifacts,reportName),JSON.stringify(report,null,2));
   if (report.completed) {
     const publicPath=path.join(root,'evidence',publicURL ? 'public-smoke.json' : 'browser-report.json');
     const publicReport={...report,type:'SYNTHETIC_BROWSER_REGRESSION_NOT_HUMAN_SESSION',executed_at:new Date().toISOString()};
-    if(!publicURL && guidedDelta){
+    if(editorialDelta){
+      publicReport.change_verification={
+        baseline:report.historical_baseline,
+        change:'Revisão editorial e tipográfica; sem mudança no aplicativo, adaptador guiado, motor, base, consultas ou ponte.',
+        scope:'Executados nesta revisão: caso principal com sete configurações, exemplo de leitor de tela, limpeza, fontes efetivas a 100/200% em viewport fixo, reflow desktop/320px e ausência de envio do caso. A equivalência de conteúdo, estados, teclado e recuperação da visão guiada são executados separadamente em guided-report.json. Não foram reexecutadas as sondagens semânticas completas.',
+        guided_view_report:'guided-report.json',guided_view_verified_by_this_run:false,
+        unchanged_semantic_and_runtime_files:report.core_invariants.all_unchanged
+      };
+      await fs.writeFile(publicPath,JSON.stringify(publicReport,null,2)+'\n');
+    }else if(!publicURL && guidedDelta){
       const baseline=JSON.parse(await fs.readFile(path.join(root,'evidence/browser-before-guided-view.json'),'utf8'));
       for(const key of ['core_sha256','bridge_sha256','base_zip_sha256','files'])assert.deepEqual(baseline.build[key],report.build[key]);
       for(const name of ['app.js','styles.css','worker.mjs','client.mjs'])assert.equal(baseline.build.frontend_sha256[name],report.build.frontend_sha256[name]);

@@ -5,6 +5,7 @@ import http from 'node:http';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
+import {coreInvariantAudit, historicalReport, typographySnapshot, assertAmadoTypography, assertFixedViewportDoubling} from './presentation-metrics.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const web=path.join(root,'web');
@@ -143,6 +144,8 @@ async function checkLocalLinks(name){
   check(name+'_local_links_and_anchors',checked.length>0&&checked.every(link=>link.status===200&&link.anchor_exists));
 }
 try{
+  report.core_invariants=await coreInvariantAudit(root);
+  report.historical_baseline=historicalReport(root,'evidence/site-presentation-report.json');
   check('site_assets_match_manifest',Object.keys(report.site_assets_sha256).length>=5 && JSON.stringify(report.site_assets_sha256)===JSON.stringify(report.build.site_assets_sha256));
   report.served_site_assets_sha256={};
   for(const name of Object.keys(report.site_assets_sha256)){
@@ -197,13 +200,19 @@ try{
       check(name+'_keyboard_visible_focus',focus.visible&&focus.in_view&&focus.outline_style!=='none'&&parseFloat(focus.outline_width)>=2);
       const originalSize=await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
       report.pages[name].font_base=originalSize;
-      check(name+'_preserved_font_base',originalSize===(name==='amado'?18:16));
+      check(name+'_font_base_16',originalSize===16);
+      report.pages[name].typography_desktop=await typographySnapshot(page);
+      if(name==='amado')assertAmadoTypography(report.pages[name].typography_desktop);
+      if(name==='home')check('home_h1_desktop_40',report.pages[name].typography_desktop.headings.h1[0].pixels===40);
       await page.keyboard.press('Enter');
       check(name+'_keyboard_text_enlargement',await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))>originalSize);
       for(let n=0;n<25;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
       const enlarged=await page.locator('html').evaluate(el=>({style:el.style.fontSize,pixels:parseFloat(getComputedStyle(el).fontSize)}));
       report.pages[name].font_200=enlarged;
       check(name+'_text_200_percent',Math.abs(enlarged.pixels/originalSize-2)<.02);
+      report.pages[name].typography_desktop_200=await typographySnapshot(page);
+      report.pages[name].desktop_doubling=assertFixedViewportDoubling(report.pages[name].typography_desktop,report.pages[name].typography_desktop_200);
+      check(name+'_actual_fonts_double_fixed_viewport',true);
       await assertReflow(name+'_text_200_reflow');
       await page.locator('[data-font-reset]').click();
       check(name+'_font_reset',await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===originalSize);
@@ -254,6 +263,8 @@ try{
     }
     if(name==='home'){
       const body=await page.locator('body').innerText();
+      const headline=async selector=>(await page.locator(selector).textContent()).trim();
+      check('home_approved_headlines',(await headline('h1'))==='Apoio a decisões de acessibilidade na interação digital'&&(await headline('#exemplo h2'))==='Como o conhecimento orienta uma decisão'&&(await headline('#exemplo .eyebrow'))==='Exemplo de aplicação'&&(await headline('#multimodal'))==='O papel das modalidades na orientação');
       report.pages[name].technical_terms_visible=body.match(/\b(?:RDF|OWL|SHACL|SPARQL|Pyodide|K\d{2}|CA\d{2}|ART-[A-Z]+-\d+)\b/g)||[];
       check('home_no_unexplained_identifiers',report.pages[name].technical_terms_visible.length===0);
       check('home_explanatory_example_preserved',await page.locator('#exemplo .steps>li').count()>=3);
@@ -264,12 +275,14 @@ try{
       const preservedStatements=[
         'Encontrar informação não é o mesmo que saber como empregá-la.',
         'Normas, estudos, artefatos, personas e resultados oferecem conhecimentos diferentes.',
-        'Investiguei como relacioná-los, preservar suas condições e tornar seu emprego em uma nova decisão verificável.',
-        'No Arcabouço Multimodal para Acessibilidade Digital, organizei esse percurso.',
+        'O Arcabouço Multimodal para Acessibilidade Digital organiza as relações entre esses conhecimentos, preservando suas condições e permitindo conferir seu emprego em uma nova decisão.',
         'A MADO representa o conhecimento e suas relações; o AMADO permite consultar essa mesma base e acompanhar a construção de uma orientação.'
       ];
       check('home_problem_content_preserved',preservedStatements.every(text=>problemText.includes(text)));
-      check('home_problem_three_functional_blocks',JSON.stringify(await problem.locator('.problem-block h3').allInnerTexts())===JSON.stringify(['De onde vem o conhecimento','O que relacionei','Uma base para conferir']));
+      check('home_problem_three_functional_blocks',JSON.stringify(await problem.locator('.problem-block h3').allInnerTexts())===JSON.stringify(['De onde vem o conhecimento','Como o conhecimento se articula','Uma base para conferir']));
+      report.pages[name].example_desktop_grid=await page.locator('#exemplo .steps').evaluate(el=>({columns:getComputedStyle(el).gridTemplateColumns.split(' ').length,items:[...el.children].map(item=>({top:item.getBoundingClientRect().top,left:item.getBoundingClientRect().left}))}));
+      const grid=report.pages[name].example_desktop_grid;
+      check('home_example_two_by_two',grid.columns===2&&grid.items.length===4&&Math.abs(grid.items[0].top-grid.items[1].top)<1&&Math.abs(grid.items[2].top-grid.items[3].top)<1&&grid.items[2].top>grid.items[0].top);
       report.pages[name].problem_desktop_columns=await problem.locator('.problem-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
       check('home_problem_three_desktop_columns',report.pages[name].problem_desktop_columns===3);
       check('home_problem_static_not_interactive',await problem.locator('.problem-block').evaluateAll(nodes=>nodes.every(el=>!el.hasAttribute('tabindex')&&getComputedStyle(el).cursor!=='pointer')));
@@ -278,7 +291,7 @@ try{
     if(name!=='amado'){
       const text=await page.locator('body').innerText();
       check(name+'_authorship_and_acronym',text.includes('Natacsha Ordones Raposo de Melo')&&text.includes('Multimodal Accessibility Decision Ontology'));
-      if(name==='home')check('home_authorial_voice',text.includes('construí a MADO'));
+      if(name==='home')check('home_approved_project_description',text.includes('A MADO organiza conhecimentos sobre acessibilidade e interação multimodal')&&text.includes('Projeto de pesquisa de doutorado de Natacsha Ordones Raposo de Melo.'));
       report.pages[name].long_main_paragraphs=await page.locator('main p').evaluateAll(nodes=>nodes.map(el=>el.textContent.replace(/\s+/g,' ').trim()).filter(text=>text.length>170));
       if(name==='home'){
         const card=page.locator('main .card').first();
@@ -313,6 +326,22 @@ try{
           report.pages[name].concept_disclosures.push({label,keyboard_open_close:true});
         }
         check('ontology_relations_definition_list',await page.locator('#relacoes .model-relations dt').count()===6&&await page.locator('#relacoes .model-relations dd').count()===6);
+        const sequence=page.locator('figure.execution-sequence');
+        const expectedStages=['Informar o caso','Organizar as informações','Conferir e confirmar o contexto','Recuperar conhecimento e relações','Selecionar e compor a decisão','Apresentar a orientação e seus fundamentos'];
+        check('ontology_html_sequence_six_ordered_steps',await sequence.count()===1&&JSON.stringify(await sequence.locator('.sequence-steps > li h3').allInnerTexts())===JSON.stringify(expectedStages));
+        check('ontology_sequence_four_actors',JSON.stringify(await sequence.locator('.sequence-lanes > span').allInnerTexts())===JSON.stringify(['Pessoa','Interface AMADO','Motor AMADO','Base MADO']));
+        check('ontology_sequence_text_not_image',await sequence.locator('svg,canvas,img').count()===0&&await sequence.locator('figcaption').count()===1&&await sequence.locator('.sequence-route').count()===6);
+        check('ontology_sequence_confirmation_before_composition',(await sequence.locator('.sequence-steps > li').nth(2).innerText()).includes('confirma o contexto antes de solicitar a orientação')&&await sequence.locator('.sequence-return').count()===2&&(await sequence.locator('.sequence-steps > li').nth(4).innerText()).includes('Sem dados essenciais ou configuração principal fundamentada e compatível, suspende a decisão.'));
+        const accessibleSequence=await sequence.ariaSnapshot();
+        report.pages[name].sequence_accessible_snapshot=accessibleSequence;
+        const accessibleHeadings=[...accessibleSequence.matchAll(/- heading "([^"]+)" \[level=3\]/g)].map(match=>match[1]);
+        check('ontology_sequence_accessible_order',JSON.stringify(accessibleHeadings)===JSON.stringify(expectedStages)&&(accessibleSequence.match(/- listitem:/g)||[]).length===6);
+        check('ontology_sequence_no_duplicate_actor_lanes',(await sequence.locator('.sequence-lanes').ariaSnapshot()).trim()===''&&await sequence.locator('.sequence-lanes').getAttribute('aria-hidden')==='true');
+        report.pages[name].sequence_accessibility_scope='Árvore acessível gerada pelo navegador: ordem das seis etapas e exclusão dos rótulos visuais duplicados. Não é teste humano com NVDA ou VoiceOver.';
+        check('ontology_preparation_separate',await page.locator('.curation-note').evaluate(el=>Boolean(el.compareDocumentPosition(document.querySelector('.execution-sequence'))&Node.DOCUMENT_POSITION_FOLLOWING))&&(await page.locator('.curation-note').innerText()).includes('O clique não cria as articulações'));
+        check('ontology_reasoner_not_runtime_composer',(await page.locator('.implementation-list').innerText()).includes('não é o mecanismo que compõe a orientação durante o uso da página'));
+        check('ontology_scope_preserved',(await page.locator('.execution-limit').innerText()).includes('não produz conhecimento novo de forma autônoma'));
+        await sequence.screenshot({path:path.join(artifacts,'ontology-sequence-desktop.png')});
       }
       report.pages[name].false_pointer_targets=await page.locator('main *').evaluateAll(nodes=>nodes.filter(el=>el.checkVisibility()&&getComputedStyle(el).cursor==='pointer'&&!el.closest('a[href],button,summary')).map(el=>({tag:el.tagName,text:el.textContent.trim().slice(0,70)})));
       check(name+'_pointer_only_actual_controls',report.pages[name].false_pointer_targets.length===0);
@@ -327,9 +356,13 @@ try{
     }
     await page.setViewportSize({width:320,height:900});
     await assertReflow(name+'_reflow_320');
+    report.pages[name].typography_mobile=await typographySnapshot(page);
+    if(name==='amado')assertAmadoTypography(report.pages[name].typography_mobile,true);
+    if(name==='home')check('home_h1_mobile_32',report.pages[name].typography_mobile.headings.h1[0].pixels===32);
     if(name==='home'){
       report.pages[name].problem_mobile_columns=await page.locator('.problem-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
       check('home_problem_single_mobile_column',report.pages[name].problem_mobile_columns===1);
+      check('home_example_single_mobile_column',await page.locator('#exemplo .steps').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length)===1);
     }
     await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
     await page.screenshot({path:path.join(artifacts,name+'-mobile.png'),fullPage:true});
@@ -337,12 +370,16 @@ try{
     if(name==='ontology'){
       const summary=page.locator('.concept-grid > details > summary').first();
       await summary.click();
+      await page.locator('.execution-sequence').screenshot({path:path.join(artifacts,'ontology-sequence-mobile.png')});
       await assertReflow('ontology_open_concept_reflow_320');
       await page.screenshot({path:path.join(artifacts,'ontology-mobile-concept-open.png'),fullPage:true});
       await summary.click();
     }
     {
       for(let n=0;n<25;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
+      report.pages[name].typography_mobile_200=await typographySnapshot(page);
+      report.pages[name].mobile_doubling=assertFixedViewportDoubling(report.pages[name].typography_mobile,report.pages[name].typography_mobile_200);
+      check(name+'_mobile_actual_fonts_double_fixed_viewport',true);
       await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await settled();
       await page.screenshot({path:path.join(artifacts,name+'-mobile-200.png')});
       await assertReflow(name+'_mobile_text_200_reflow');
@@ -358,7 +395,7 @@ try{
     {
       await page.locator('[data-font-increase]').click();await page.locator('[data-site-contrast]').click();await page.reload();
       if(name==='amado')await idle();
-      check(name+'_preferences_not_restored',await page.locator('html').getAttribute('data-contrast')!=='high'&&await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===(name==='amado'?18:16));
+      check(name+'_preferences_not_restored',await page.locator('html').getAttribute('data-contrast')!=='high'&&await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===16);
     }
   }
   check('distinct_page_titles',new Set(titles).size===3);
@@ -374,6 +411,12 @@ try{
   report.robots={status:'NOT_ASSERTED',reason:'robots.txt deve estar na raiz da origem; o projeto está em /MADO/. Submissão do sitemap ao mecanismo de busca é uma etapa externa.'};
   check('no_external_requests_or_case_post',report.external_requests.length===0&&report.request_methods.every(x=>x==='GET'));
   check('no_javascript_errors',report.errors.length===0);
+  assert.deepEqual(await coreInvariantAudit(root),report.core_invariants);
+  check('editorial_preserves_semantic_and_runtime_files',true);
+  report.change_verification={baseline:report.historical_baseline,
+    change:'Textos públicos, explicação visual em HTML, organização dos blocos e tipografia.',
+    scope:'Verificações de apresentação e fontes efetivas repetidas nesta execução; o baseline histórico não é contado como teste atual. Nenhuma nova avaliação da ontologia ou humana.',
+    unchanged_semantic_and_runtime_files:report.core_invariants.all_unchanged};
   report.completed=true;
 }catch(error){report.completed=false;report.failure=error.message;console.error(error);process.exitCode=1;}
 finally{

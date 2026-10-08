@@ -14,8 +14,8 @@
 }
 .site-header { background: var(--shell-white); border-bottom: 1px solid var(--shell-line); }
 .site-header .wrap, .reading-bar .wrap {
-  width: 100%; max-width: 78rem; margin: 0 auto;
-  padding-inline: clamp(1.1rem, 4vw, 3rem);
+  width: 100%; max-width: 90rem; margin: 0 auto;
+  padding-inline: clamp(1rem, 2.2vw, 2rem);
 }
 .site-header .header-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -34,7 +34,7 @@
 .site-header .nav { display: flex; align-items: center; flex-wrap: wrap; gap: .25rem 1rem; }
 .site-header .nav a {
   display: inline-flex; align-items: center; min-height: 2.75rem;
-  padding: .5rem .2rem; color: var(--shell-accent); font-size: .98rem;
+  padding: .5rem .2rem; color: var(--shell-accent); font-size: 1rem;
   font-weight: 600; text-underline-offset: .2em; text-decoration-thickness: .08em;
 }
 .site-header .nav a:hover { text-decoration-thickness: .15em; }
@@ -46,7 +46,7 @@
 }
 .reading-bar .reading-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; }
 .reading-bar .reading-actions button {
-  font: inherit; font-weight: 650; line-height: 1.4;
+  font: inherit; font-size: 1rem; font-weight: 650; line-height: 1.4;
   min-width: 2.75rem; min-height: 2.75rem; padding: .55rem .75rem;
   border: 1px solid var(--shell-accent); border-radius: .45rem;
   background: var(--shell-white); color: var(--shell-ink); cursor: pointer;
@@ -65,7 +65,7 @@ html[data-contrast=high] .site-header, html[data-contrast=high] .reading-bar {
 @media (max-width: 25rem) {
   .site-header .wrap, .reading-bar .wrap { padding-inline: 1rem; }
   .site-header .nav { width: 100%; gap: .25rem .8rem; }
-  .site-header .nav a { font-size: .92rem; }
+  .site-header .nav a { font-size: 1rem; }
 }
 @media (forced-colors: active) {
   .site-header, .reading-bar { border-color: CanvasText; }

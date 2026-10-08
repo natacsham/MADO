@@ -71,7 +71,7 @@
       <div class="page-title">
         <p class="eyebrow">Documentação técnica</p>
         <h1>Modelo e arquivos da MADO</h1>
-        <p class="lead">Na MADO (<span lang="en">Multimodal Accessibility Decision Ontology</span>), representei conceitos, relações e condições de uso do conhecimento. Aqui você pode inspecionar essa estrutura, consultada pelo AMADO.</p>
+        <p class="lead">Consulte os conceitos, as relações, os arquivos e as verificações da MADO (<span lang="en">Multimodal Accessibility Decision Ontology</span>), a estrutura de conhecimento consultada pelo AMADO.</p>
         <span class="version">MADO 1.3.0-rc1 · versão candidata</span>
         <nav aria-label="Nesta página"><ul class="link-list"><li><a href="#modelo">Modelo</a></li><li><a href="#camadas">Implementação</a></li><li><a href="#arquivos">Arquivos e verificações</a></li><li><a href="#autoria">Autoria</a></li></ul></nav>
       </div>
@@ -104,9 +104,68 @@
     </div></section>
 
     <section class="section" id="camadas" aria-labelledby="camadas-titulo"><div class="wrap">
-      <div class="section-head"><h2 id="camadas-titulo">Como o modelo é colocado em uso</h2><p>O AMADO é o instrumento deste projeto para consultar a MADO e compor a orientação. Cada tecnologia cumpre uma função nessa execução.</p></div>
+      <div class="section-head"><h2 id="camadas-titulo">Da descrição do caso à orientação multimodal</h2><p>A interface recebe o caso e apresenta os resultados. O motor do AMADO organiza as informações, consulta a base representada pela MADO e compõe a orientação. A pessoa confere o contexto antes de solicitar essa composição.</p></div>
+      <aside class="curation-note" aria-labelledby="curadoria-titulo">
+        <h3 id="curadoria-titulo">Antes da consulta: preparação do conhecimento</h3>
+        <p>A análise de fontes, estudos, artefatos, personas e resultados produziu conhecimentos articulados, critérios e condições de aplicação. A curadoria registra origem, confirmação e limites, definindo quais relações podem orientar a composição. Os padrões de composição também foram definidos antes do uso. O clique não cria as articulações nem incorpora o caso à base.</p>
+      </aside>
+      <figure class="execution-sequence" aria-labelledby="sequencia-titulo">
+        <figcaption id="sequencia-titulo"><strong>Quem participa de cada etapa</strong><br>As setas indicam a direção das informações. O texto de cada etapa explica o que é enviado, conferido ou produzido.</figcaption>
+        <div class="sequence-lanes" aria-hidden="true">
+          <span>Pessoa</span><span>Interface AMADO</span><span>Motor AMADO</span><span>Base MADO</span>
+        </div>
+        <ol class="sequence-steps">
+          <li class="sequence-person-interface">
+            <div class="sequence-message">
+              <p class="sequence-route"><span class="sequence-number">1.</span> Pessoa <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Interface AMADO</p>
+              <h3>Informar o caso</h3>
+              <p>A pessoa descreve a tarefa, as condições e as dificuldades, ou escolhe um exemplo.</p>
+            </div>
+          </li>
+          <li class="sequence-interface-engine">
+            <div class="sequence-message">
+              <p class="sequence-route"><span class="sequence-number">2.</span> Interface AMADO <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Motor AMADO</p>
+              <h3>Organizar as informações</h3>
+              <p>O motor relaciona a descrição aos conceitos já representados, como tarefa, participação, barreiras e recursos. Não interpreta qualquer narrativa.</p>
+            </div>
+          </li>
+          <li class="sequence-confirmation">
+            <div class="sequence-message">
+              <p class="sequence-route"><span class="sequence-number">3.</span> Motor <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Interface <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Pessoa</p>
+              <h3>Conferir e confirmar o contexto</h3>
+              <p>A pessoa confere a organização, corrige ou complementa os dados e confirma o contexto antes de solicitar a orientação.</p>
+              <p class="sequence-return"><strong>Retorno:</strong> Pessoa <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Interface <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Motor — confirmação e pedido de orientação.</p>
+            </div>
+          </li>
+          <li class="sequence-engine-base">
+            <div class="sequence-message">
+              <p class="sequence-route"><span class="sequence-number">4.</span> Motor AMADO <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Base MADO</p>
+              <h3>Recuperar conhecimento e relações</h3>
+              <p>O motor consulta o grafo com SPARQL para recuperar conhecimentos, articulações e critérios relacionados ao contexto.</p>
+              <p class="sequence-return"><strong>Retorno:</strong> Base <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Motor — registros, relações e fontes para verificar.</p>
+            </div>
+          </li>
+          <li class="sequence-engine">
+            <div class="sequence-message">
+              <p class="sequence-route"><span class="sequence-number">5.</span> Processamento no motor AMADO</p>
+              <h3>Selecionar e compor a decisão</h3>
+              <p>O motor verifica fundamentos, autorização de uso e compatibilidade. Combina padrões em configurações com modalidade, função, recurso, responsável, alternativa e limites.</p>
+              <p>Sem dados essenciais ou configuração principal fundamentada e compatível, suspende a decisão.</p>
+            </div>
+          </li>
+          <li class="sequence-result">
+            <div class="sequence-message">
+              <p class="sequence-route"><span class="sequence-number">6.</span> Motor <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Interface <span aria-hidden="true">→</span><span class="visually-hidden">para</span> Pessoa</p>
+              <h3>Apresentar a orientação e seus fundamentos</h3>
+              <p>A interface mostra a orientação, suas condições e fundamentos. Se a decisão foi suspensa, informa as lacunas ou o limite da base.</p>
+            </div>
+          </li>
+        </ol>
+      </figure>
+      <p class="execution-limit">A composição é determinística e não usa LLM. Ela depende dos conceitos, relações e padrões efetivamente contemplados pela base; não produz conhecimento novo de forma autônoma.</p>
+      <h3>Função das tecnologias</h3>
       <dl class="implementation-list">
-        <div><dt>RDF e OWL 2 DL</dt><dd>Representação de classes, relações, dados e axiomas. O HermiT verifica consistência e inferências.</dd></div>
+        <div><dt>RDF e OWL 2 DL</dt><dd>Representação de classes, relações, dados e axiomas. O HermiT verifica consistência e inferências na verificação técnica da ontologia; não é o mecanismo que compõe a orientação durante o uso da página.</dd></div>
         <div><dt>SHACL</dt><dd>Verificação da integridade dos registros e dos vínculos exigidos.</dd></div>
         <div><dt>SPARQL</dt><dd>Consultas das oito questões de competência, incluindo contexto, conhecimentos, critérios e proveniência.</dd></div>
         <div><dt>Composição no AMADO</dt><dd>Motor Python no navegador, sem LLM. Verifica condições e combina padrões documentados; a interface apresenta a decisão e seus fundamentos.</dd></div>

@@ -36,3 +36,23 @@ prova de aprendizagem ou declaração de conformidade integral de acessibilidade
 
 Nenhuma classe, relação, critério, conhecimento ou regra de decisão foi alterado
 para criar esta apresentação. A versão da tese permanece separada.
+
+## Revisão editorial e de leitura
+
+A revisão aprovada em 7 de outubro de 2026 mantém os dois percursos e ajusta a
+tipografia de ambos. O tamanho original usa a preferência-base do navegador
+(normalmente 16 px); o controle de leitura continua permitindo ampliação até
+200%. Modalidades, recursos, disponibilidade e condições essenciais não são
+tratados como notas pequenas. Títulos usam unidades relativas e parágrafos da
+orientação deixam de receber negrito contínuo.
+
+A Home apresenta o objetivo e um exemplo de aplicação, sem limitar a MADO aos
+formatos usados nesse exemplo. A documentação técnica acrescenta uma sequência
+em HTML, distinguindo o conhecimento previamente registrado da confirmação,
+consulta e composição realizadas no AMADO. O diagrama descreve o funcionamento;
+não é uma execução do motor nem uma nova evidência de eficácia.
+
+O commit `9445c51` preserva a apresentação anterior a esta revisão. Motor, base,
+consultas e conteúdo das decisões permanecem inalterados. As verificações de
+layout e leitura desta revisão são registradas separadamente das evidências da
+tese e não constituem avaliação com participantes.

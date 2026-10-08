@@ -5,6 +5,7 @@ import http from 'node:http';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 import {fileURLToPath,pathToFileURL} from 'node:url';
+import {coreInvariantAudit, historicalReport, typographySnapshot, assertAmadoTypography, assertFixedViewportDoubling} from './presentation-metrics.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const web=path.join(root,'web');
@@ -103,6 +104,8 @@ async function originalCase(){
   const result=await content(original);await original.close();return result;
 }
 try{
+  report.core_invariants=await coreInvariantAudit(root);
+  report.historical_baseline=historicalReport(root,'evidence/guided-report.json');
   for(const [name,expected] of Object.entries(report.source_sha256)){
     const response=await context.request.get(base+name);
     check('served_'+name.replaceAll('.','_')+'_matches',response.status()===200&&sha(await response.body())===expected);
@@ -112,6 +115,9 @@ try{
   const started=Date.now();await page.goto(base+'guiado.html');await idle(page);await stage(1);
   report.timings.load_ms=Date.now()-started;
   check('runtime_ready',await page.locator('#health').getAttribute('data-state')==='ready'&&await text(page,'#runtime-error')==='');
+  report.typography={initial_desktop:await typographySnapshot(page)};
+  assertAmadoTypography(report.typography.initial_desktop);
+  check('initial_functional_labels_at_least_16',true);
   check('no_duplicate_ids',await page.locator('[id]').evaluateAll(nodes=>new Set(nodes.map(x=>x.id)).size===nodes.length));
   check('two_real_tabs_only',await page.locator('[role="tab"]').count()===2&&await page.locator('[data-guide-step]').count()===3);
   check('stage_one_only',await page.locator('#reported-step').isVisible()&&!await page.locator('#organized-step').isVisible()&&!await page.locator('#saida').isVisible());
@@ -126,6 +132,9 @@ try{
   check('review_is_unconfirmed',!await page.locator('#mapping-confirmed').isChecked());
   check('obsolete_navigation_message_cleared',await text(page,'#guide-status')==='');
   check('review_focus',await page.locator('#organized-step > summary').evaluate(el=>document.activeElement===el));
+  report.typography.review_desktop=await typographySnapshot(page);
+  assertAmadoTypography(report.typography.review_desktop);
+  check('review_typographic_hierarchy',true);
   await page.locator('#generate-known').click();await idle(page);
   check('generation_requires_confirmation',await page.locator('body').getAttribute('data-guide-stage')==='2'&&await page.locator('#runtime-error').isVisible()&&!await page.locator('#saida').isVisible());
   await page.locator('#mapping-confirmed').check();
@@ -138,6 +147,9 @@ try{
   const baseline=originalOutcome.value;
   assert.deepEqual(guidedResult,baseline);check('same_content_modes_resources_as_original',true);
   report.comparison={scope:'Síntese, títulos e conteúdo dos blocos, modos, funções, recursos e estados, orientação detalhada, condições, alternativas, acompanhamento, critérios e conhecimentos; apenas wrappers e prefixos numéricos da apresentação são desconsiderados.',original_sha256:sha(JSON.stringify(baseline)),guided_sha256:sha(JSON.stringify(guidedResult)),configurations:guidedResult.configurations.length,steps:guidedResult.steps.length};
+  if(report.historical_baseline.comparison){
+    check('decision_content_matches_pre_editorial_baseline',report.comparison.guided_sha256===report.historical_baseline.comparison.guided_sha256);
+  }
   check('practical_disclosures_closed',await page.locator('#practical-steps > details').count()===guidedResult.steps.length&&await page.locator('#practical-steps > details[open]').count()===0);
   const first=page.locator('#practical-steps > details').first();
   check('modes_function_resources_visible_when_closed',await first.locator('.mode-pills').isVisible()&&await first.locator('.guide-config-purpose').isVisible()&&await first.locator('.guide-config-availability').isVisible());
@@ -156,11 +168,21 @@ try{
   await page.locator('[data-site-contrast]').click();report.contrast_high=await contrastSamples();
   check('measured_high_contrast',report.contrast_high.every(x=>x.ratio>=x.minimum));
   await page.locator('[data-site-contrast]').click();
+  report.typography.result_desktop=await typographySnapshot(page);assertAmadoTypography(report.typography.result_desktop);
+  for(let n=0;n<4;n++)await page.locator('[data-font-increase]').click();
+  report.typography.result_desktop_200=await typographySnapshot(page);
+  report.typography.desktop_ratios=assertFixedViewportDoubling(report.typography.result_desktop,report.typography.result_desktop_200);
+  await reflow('result_desktop_text_200');await page.locator('[data-font-reset]').click();
+  check('desktop_fixed_viewport_fonts_double',true);
   await page.screenshot({path:path.join(artifacts,'result-desktop.png'),fullPage:true});
   await page.setViewportSize({width:320,height:900});await reflow('result_reflow_320');
+  report.typography.result_mobile=await typographySnapshot(page);assertAmadoTypography(report.typography.result_mobile,true);
   await page.screenshot({path:path.join(artifacts,'result-mobile.png'),fullPage:true});
   for(let n=0;n<20;n++)if(await page.locator('[data-font-increase]').isEnabled())await page.locator('[data-font-increase]').click();
-  check('text_reaches_200',await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===36);
+  check('text_reaches_200',await page.locator('html').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))===32);
+  report.typography.result_mobile_200=await typographySnapshot(page);
+  report.typography.mobile_ratios=assertFixedViewportDoubling(report.typography.result_mobile,report.typography.result_mobile_200);
+  check('mobile_fixed_viewport_fonts_double',true);
   await reflow('result_reflow_320_text_200');
   if(layoutDelta){
     report.mobile_reading_width=await first.evaluate(el=>{
@@ -225,6 +247,8 @@ try{
   const finalManifest=JSON.parse(await fs.readFile(path.join(web,'amado/manifest.json'),'utf8'));
   check('manifest_not_changed_during_run',JSON.stringify(finalManifest)===JSON.stringify(report.build));
   const served=await context.request.get(base+'manifest.json');check('served_manifest_matches',JSON.stringify(await served.json())===JSON.stringify(report.build));
+  assert.deepEqual(await coreInvariantAudit(root),report.core_invariants);
+  check('editorial_preserves_semantic_and_runtime_files',true);
   if(layoutDelta){
     const baselineName=process.env.AMADO_GUIDED_BASE?'guided-public-before-layout-polish.json':'guided-before-layout-polish.json';
     const baseline=JSON.parse(await fs.readFile(path.join(root,'evidence',baselineName),'utf8'));
@@ -235,6 +259,12 @@ try{
     check('css_only_invariants_confirmed',true);
     report.scope='Delta de layout da visão guiada: somente espaçamento móvel em guided.css; motor e comportamento preservados por comparação de hashes.';
     report.change_verification={baseline_report:baselineName,baseline_build:baseline.build,baseline_check_count:Object.values(baseline.checks).filter(Boolean).length,change:'Espaçamentos laterais móveis em pixels para preservar largura de leitura quando o texto é ampliado; nenhuma mudança na lógica do adaptador ou do motor.',scope:'Reexecutados caso principal, equivalência com a visão original, confirmações, teclado, disclosures, contraste e reflow 320 px/200%. Os testes completos de outro exemplo, narrativa insuficiente, invalidação, limpeza e recuperação pertencem ao baseline de 60 verificações identificado; não foram repetidos após este ajuste somente de CSS.',unchanged_engine_base_bridge_queries:true,unchanged_guided_javascript:true};
+  }
+  if(!layoutDelta){
+    report.change_verification={baseline:report.historical_baseline,
+      change:'Revisão editorial e tipográfica; comportamento guiado e conteúdo decisório preservados.',
+      scope:'Reexecutados confirmação, sete configurações e equivalência do conteúdo com a outra apresentação e o baseline, navegação por etapas, teclado, invalidação, outro exemplo, narrativa incompleta, limpeza, falha de carregamento e recuperação; medidas tipográficas efetivas, ampliação a 200% no mesmo viewport e reflow a 320px. Não é nova validação OWL nem avaliação humana.',
+      unchanged_semantic_and_runtime_files:report.core_invariants.all_unchanged};
   }
   report.completed=true;
 }catch(error){report.completed=false;report.failure=String(error.stack||error).replaceAll(root,'<workspace>').replaceAll(root.replaceAll('\\','/'),'<workspace>');console.error(error);await page.screenshot({path:path.join(artifacts,'failure.png'),fullPage:true}).catch(()=>{});process.exitCode=1;}
