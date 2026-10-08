@@ -2,7 +2,7 @@
   "version": "1.3.0-rc1",
   "instrument": "AMADO",
   "status": "TECHNICALLY_CHECKED_RELEASE_CANDIDATE",
-  "compiled_at_utc": "2026-10-08T01:39:34.598406+00:00",
+  "compiled_at_utc": "2026-10-08T01:48:04.950862+00:00",
   "checks": {
     "technical_passed": true,
     "technical_engine_matches": true,
@@ -21,7 +21,9 @@
     "presentation_passed": true,
     "presentation_assets_match": true,
     "guided_view_passed": true,
-    "guided_view_build_matches": true
+    "guided_view_build_matches": true,
+    "public_smoke_passed": true,
+    "public_smoke_build_matches": true
   },
   "results": {
     "unit_tests": 56,
@@ -540,6 +542,19 @@
       "manifest_not_changed_during_run": true,
       "served_manifest_matches": true,
       "editorial_preserves_semantic_and_runtime_files": true
+    },
+    "public_smoke_checks": {
+      "published_assets_match_verified_build": true,
+      "public_interview_seven_configurations": true,
+      "original_typography_and_fixed_viewport_doubling": true,
+      "public_mobile_reflow_reduced_motion": true,
+      "original_mobile_typography_200_preserves_content": true,
+      "accessible_progress_and_control_names": true,
+      "measured_palette_contrast": true,
+      "public_screen_reader_example": true,
+      "public_clear_discards_case": true,
+      "editorial_preserves_semantic_and_runtime_files": true,
+      "no_case_network_requests": true
     }
   },
   "limits": [
@@ -600,22 +615,14 @@
       "url": "guided-report.json"
     },
     "guided-public-report.json": {
-      "sha256": "b3e1dad59dc3fad7fb92fe9fc0e7fa3622e3bb26ae6125a353ab061619c11aaa",
+      "sha256": "0aab7416041b0d2be713666b8a076992642130636ded0447ed78a94336cd54d7",
       "url": "guided-public-report.json"
     },
-    "guided-public-before-layout-polish.json": {
-      "sha256": "810cd08e39ff01be081b0af67d527f893862bfe730406a896872c6a1e4e73fac",
-      "url": "guided-public-before-layout-polish.json"
-    },
     "public-smoke.json": {
-      "sha256": "5bf703c5a92a71fb0278cae22362bda32bb70689856bcc2176ebe62ee5e2a0df",
+      "sha256": "40f71b94e16d51867f1879f7851ad06b5216b3b24b607a5f482faf2887e88f16",
       "url": "public-smoke.json"
     }
   },
-  "public_smoke_status": "PENDING_FOR_CURRENT_BUILD",
-  "guided_public_status": "NOT_VERIFIED_CURRENT_BUILD",
-  "historical_public_smoke": {
-    "report": "public-smoke.json",
-    "reason": "The recorded smoke tested an earlier build; not evidence for the current presentation."
-  }
+  "public_smoke_status": "VERIFIED_CURRENT_BUILD",
+  "guided_public_status": "VERIFIED_CURRENT_BUILD"
 }
