@@ -26,11 +26,11 @@ export async function coreInvariantAudit(root) {
   return {baseline_commit: EDITORIAL_BASELINE, count: rows.length, all_unchanged: true, files: rows};
 }
 
-export function historicalReport(root, file) {
-  const raw = git(root, ['show', `${EDITORIAL_BASELINE}:${file}`]);
+export function historicalReport(root, file, reference = EDITORIAL_BASELINE) {
+  const raw = git(root, ['show', `${reference}:${file}`]);
   const data = JSON.parse(raw.toString('utf8'));
   assert.equal(data.completed, true, 'The historical report must be a completed execution.');
-  return {git_reference: `${EDITORIAL_BASELINE}:${file}`, sha256: sha(raw),
+  return {git_reference: `${reference}:${file}`, sha256: sha(raw),
     completed: data.completed, prior_checks_passed: Object.values(data.checks || {}).filter(value => value === true).length,
     prior_scope: data.scope || data.change_verification?.scope || null,
     comparison: data.comparison || null,

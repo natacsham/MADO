@@ -64,3 +64,13 @@ A página inicial foi simplificada; foram acrescentados ajustes de leitura, reto
 `evidence/site-presentation-report.json` registra os testes específicos de conteúdo, teclado, contraste, ampliação, largura reduzida, links e metadados. A regressão do AMADO permanece em `browser-report.json`; um teste público somente é considerado atual quando seus arquivos correspondem ao manifesto publicado. Enquanto isso, o relatório consolidado identifica a verificação pública como pendente e mantém o resultado anterior como histórico, sem apresentá-lo como teste da nova interface.
 
 Os controles de leitura não substituem uma avaliação com pessoas usuárias ou leitores de tela. A preparação para busca também não equivale a indexação confirmada: veja [o procedimento de Search Console](indexacao-google.md).
+
+### Documentação técnica: sequência UML e compactação
+
+A revisão seguinte preserva `bbd1df9` no histórico e substitui os cartões escalonados por um diagrama de sequência UML: pessoa, interface, motor e base são linhas de vida; mensagens e retornos mostram a consulta; o fragmento `alt` distingue orientação e insuficiência. A preparação prévia do conhecimento permanece separada da execução. A notação segue a [UML 2.5.1](https://www.omg.org/spec/UML/2.5.1), sem representar medições reais de duração.
+
+A página passa a se chamar **Documentação técnica**, usa a largura disponível e recolhe explicações complementares. Em uma janela de 1280 × 900 px, com texto em 100% e detalhes fechados, a altura da página passou de 4687 para 3085 px; a figura, de aproximadamente 1459 para 693 px. Esses números descrevem o layout testado, não tempo de leitura ou ganho de usabilidade medido com participantes.
+
+O SVG mantém texto selecionável e escala com a ampliação. Em telas estreitas, somente o diagrama tem rolagem horizontal; a opção **Ler a sequência em texto** oferece o mesmo percurso em HTML, com ordem de leitura linear. Foram conferidos teclado, foco, ampliação de 200% e ausência de rolagem horizontal da página em 320 px. Não houve teste humano com leitor de tela nesta revisão.
+
+`tests/documentation-layout.mjs` reproduz a medição atual; a variável `MADO_LAYOUT_REF=bbd1df9` mede a versão anterior diretamente do Git. `site-presentation-report.json` registra os testes da apresentação. `navigation-delta-report.json` registra a comparação de conteúdo e a navegação atual nas duas visões do AMADO: seus HTML mudam apenas o rótulo do link para a documentação. Motor, base, consultas, ontologia e arquivos operacionais permanecem idênticos. O teste de navegação não executa o motor e não conta execuções funcionais anteriores como novas; essas evidências conservam a identificação histórica.

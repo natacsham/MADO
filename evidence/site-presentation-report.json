@@ -2,7 +2,7 @@
   "scope": "Conteúdo, navegação, SEO técnico e apresentação acessível; não revalida motor ou ontologia.",
   "execution_target": "LOCAL_SUBPATH",
   "browser": "154.0.8037.98",
-  "started_at_utc": "2026-10-08T01:35:48.944Z",
+  "started_at_utc": "2026-10-08T02:00:32.447Z",
   "checks": {
     "site_assets_match_manifest": true,
     "served_site_assets_match": true,
@@ -79,6 +79,7 @@
     "ontology_font_base_16": true,
     "ontology_keyboard_text_enlargement": true,
     "ontology_text_200_percent": true,
+    "ontology_rendered_svg_text_doubles": true,
     "ontology_actual_fonts_double_fixed_viewport": true,
     "ontology_text_200_reflow": true,
     "ontology_font_reset": true,
@@ -122,19 +123,30 @@
     "ontology_concept_6_has_definition": true,
     "ontology_concept_6_keyboard_closes": true,
     "ontology_relations_definition_list": true,
-    "ontology_html_sequence_six_ordered_steps": true,
-    "ontology_sequence_four_actors": true,
-    "ontology_sequence_text_not_image": true,
-    "ontology_sequence_confirmation_before_composition": true,
+    "ontology_inline_svg_not_raster": true,
+    "ontology_svg_has_name_description": true,
+    "ontology_uml_four_lifelines": true,
+    "ontology_uml_calls_returns_alternative": true,
+    "ontology_svg_single_accessible_image": true,
+    "ontology_diagram_compact_desktop": true,
+    "ontology_title_single_line_desktop": true,
+    "ontology_flow_title_single_line_desktop": true,
+    "ontology_sequence_text_collapsed": true,
+    "ontology_sequence_text_keyboard_opens": true,
+    "ontology_text_equivalent_six_stages": true,
+    "ontology_text_keeps_confirmation_and_suspension": true,
     "ontology_sequence_accessible_order": true,
-    "ontology_sequence_no_duplicate_actor_lanes": true,
+    "ontology_sequence_text_keyboard_closes": true,
     "ontology_preparation_separate": true,
     "ontology_reasoner_not_runtime_composer": true,
     "ontology_scope_preserved": true,
     "ontology_pointer_only_actual_controls": true,
     "ontology_local_links_and_anchors": true,
     "ontology_reflow_320": true,
+    "ontology_svg_scroll_by_keyboard": true,
+    "ontology_svg_scroll_named": true,
     "ontology_open_concept_reflow_320": true,
+    "ontology_text_equivalent_reflow_320": true,
     "ontology_mobile_actual_fonts_double_fixed_viewport": true,
     "ontology_mobile_text_200_reflow": true,
     "ontology_forced_colors_reflow": true,
@@ -745,7 +757,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "foreground": "rgb(7, 92, 96)",
           "background": [
             255,
@@ -987,7 +999,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "foreground": "rgb(0, 58, 75)",
           "background": [
             255,
@@ -1122,7 +1134,7 @@
         },
         {
           "href": "/MADO/ontologia/",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "status": 200,
           "anchor_exists": true
         },
@@ -1479,12 +1491,12 @@
     },
     "ontology": {
       "metadata": {
-        "title": "Modelo e arquivos da MADO — documentação técnica",
+        "title": "Documentação técnica da MADO",
         "lang": "pt-BR",
         "author": "Natacsha Ordones Raposo de Melo",
         "description": "Documentação técnica da MADO: classes, relações, OWL, SHACL, consultas SPARQL, arquivos para o Protégé e relatórios de verificação.",
         "canonical": "https://natacsham.github.io/MADO/ontologia/",
-        "og_title": "Modelo e arquivos da MADO — documentação técnica",
+        "og_title": "Documentação técnica da MADO",
         "og_url": "https://natacsham.github.io/MADO/ontologia/",
         "jsonld": [
           {
@@ -1542,7 +1554,7 @@
         "headings": {
           "h1": [
             {
-              "text": "Modelo e arquivos da MADO",
+              "text": "Documentação técnica da MADO",
               "pixels": 40,
               "line_height": "48.8px"
             }
@@ -1569,48 +1581,7 @@
               "line_height": "45.872px"
             }
           ],
-          "h3": [
-            {
-              "text": "Antes da consulta: preparação do conhecimento",
-              "pixels": 19.2,
-              "line_height": "23.424px"
-            },
-            {
-              "text": "Informar o caso",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Organizar as informações",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Conferir e confirmar o contexto",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Recuperar conhecimento e relações",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Selecionar e compor a decisão",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Apresentar a orientação e seus fundamentos",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Função das tecnologias",
-              "pixels": 19.2,
-              "line_height": "23.424px"
-            }
-          ]
+          "h3": []
         },
         "functional": [
           {
@@ -1657,21 +1628,128 @@
           },
           {
             "key": "main summary:7",
-            "text": "Escopo das verificações",
+            "text": "Antes da consulta: como o conhecimento foi preparado",
             "pixels": 17,
             "line_height": "28.9px"
           },
           {
             "key": "main summary:8",
-            "text": "Referência e condições de uso",
+            "text": "Ler a sequência em texto",
             "pixels": 17,
             "line_height": "28.9px"
           },
           {
             "key": "main summary:9",
+            "text": "Função das tecnologias na implementação",
+            "pixels": 17,
+            "line_height": "28.9px"
+          },
+          {
+            "key": "main summary:10",
+            "text": "Escopo das verificações",
+            "pixels": 17,
+            "line_height": "28.9px"
+          },
+          {
+            "key": "main summary:11",
+            "text": "Referência e condições de uso",
+            "pixels": 17,
+            "line_height": "28.9px"
+          },
+          {
+            "key": "main summary:12",
             "text": "Privacidade no AMADO",
             "pixels": 17,
             "line_height": "28.9px"
+          }
+        ]
+      },
+      "svg_desktop": {
+        "width": 1200,
+        "texts": [
+          {
+            "text": "sd Consulta e composição",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "«actor»",
+            "rendered_pixel_size": 14
+          },
+          {
+            "text": "Pessoa",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Interface AMADO",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Motor AMADO",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Base MADO",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "1. Informar caso",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "2. Organizar informações",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Contexto organizado",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "3. Apresentar para conferência",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "4. Corrigir e confirmar",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Solicitar orientação",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "5. Consultar base (SPARQL)",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Conhecimentos, critérios e relações",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "Verificar condições e fundamentos",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "alt",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "[condições e fundamentos suficientes]",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "6a. Compor e retornar orientação",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "[dados ou fundamentos insuficientes]",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "6b. Retornar suspensão e lacunas",
+            "rendered_pixel_size": 17
+          },
+          {
+            "text": "7. Apresentar resultado",
+            "rendered_pixel_size": 17
           }
         ]
       },
@@ -1689,7 +1767,7 @@
         "headings": {
           "h1": [
             {
-              "text": "Modelo e arquivos da MADO",
+              "text": "Documentação técnica da MADO",
               "pixels": 80,
               "line_height": "97.6px"
             }
@@ -1716,48 +1794,7 @@
               "line_height": "91.744px"
             }
           ],
-          "h3": [
-            {
-              "text": "Antes da consulta: preparação do conhecimento",
-              "pixels": 38.4,
-              "line_height": "46.848px"
-            },
-            {
-              "text": "Informar o caso",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Organizar as informações",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Conferir e confirmar o contexto",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Recuperar conhecimento e relações",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Selecionar e compor a decisão",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Apresentar a orientação e seus fundamentos",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Função das tecnologias",
-              "pixels": 38.4,
-              "line_height": "46.848px"
-            }
-          ]
+          "h3": []
         },
         "functional": [
           {
@@ -1804,18 +1841,36 @@
           },
           {
             "key": "main summary:7",
-            "text": "Escopo das verificações",
+            "text": "Antes da consulta: como o conhecimento foi preparado",
             "pixels": 34,
             "line_height": "57.8px"
           },
           {
             "key": "main summary:8",
-            "text": "Referência e condições de uso",
+            "text": "Ler a sequência em texto",
             "pixels": 34,
             "line_height": "57.8px"
           },
           {
             "key": "main summary:9",
+            "text": "Função das tecnologias na implementação",
+            "pixels": 34,
+            "line_height": "57.8px"
+          },
+          {
+            "key": "main summary:10",
+            "text": "Escopo das verificações",
+            "pixels": 34,
+            "line_height": "57.8px"
+          },
+          {
+            "key": "main summary:11",
+            "text": "Referência e condições de uso",
+            "pixels": 34,
+            "line_height": "57.8px"
+          },
+          {
+            "key": "main summary:12",
             "text": "Privacidade no AMADO",
             "pixels": 34,
             "line_height": "57.8px"
@@ -1863,54 +1918,6 @@
           "key": "h2:3",
           "before": 37.6,
           "after": 75.2,
-          "ratio": 2
-        },
-        {
-          "key": "h3:0",
-          "before": 19.2,
-          "after": 38.4,
-          "ratio": 2
-        },
-        {
-          "key": "h3:1",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:2",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:3",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:4",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:5",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:6",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:7",
-          "before": 19.2,
-          "after": 38.4,
           "ratio": 2
         },
         {
@@ -1972,12 +1979,119 @@
           "before": 17,
           "after": 34,
           "ratio": 2
+        },
+        {
+          "key": "main summary:10",
+          "before": 17,
+          "after": 34,
+          "ratio": 2
+        },
+        {
+          "key": "main summary:11",
+          "before": 17,
+          "after": 34,
+          "ratio": 2
+        },
+        {
+          "key": "main summary:12",
+          "before": 17,
+          "after": 34,
+          "ratio": 2
         }
       ],
+      "svg_desktop_200": {
+        "width": 2400,
+        "texts": [
+          {
+            "text": "sd Consulta e composição",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "«actor»",
+            "rendered_pixel_size": 28
+          },
+          {
+            "text": "Pessoa",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Interface AMADO",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Motor AMADO",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Base MADO",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "1. Informar caso",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "2. Organizar informações",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Contexto organizado",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "3. Apresentar para conferência",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "4. Corrigir e confirmar",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Solicitar orientação",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "5. Consultar base (SPARQL)",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Conhecimentos, critérios e relações",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "Verificar condições e fundamentos",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "alt",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "[condições e fundamentos suficientes]",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "6a. Compor e retornar orientação",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "[dados ou fundamentos insuficientes]",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "6b. Retornar suspensão e lacunas",
+            "rendered_pixel_size": 34
+          },
+          {
+            "text": "7. Apresentar resultado",
+            "rendered_pixel_size": 34
+          }
+        ]
+      },
       "contrast_default": [
         {
           "selector": "h1",
-          "text": "Modelo e arquivos da MADO",
+          "text": "Documentação técnica da MADO",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             247,
@@ -2037,18 +2151,6 @@
         },
         {
           "selector": "p",
-          "text": "Documentação técnica",
-          "foreground": "rgb(7, 92, 96)",
-          "background": [
-            247,
-            250,
-            249
-          ],
-          "ratio": 7.382234754894216,
-          "minimum": 4.5
-        },
-        {
-          "selector": "p",
           "text": "Consulte os conceitos, as relações, os arquivos e as verificações",
           "foreground": "rgb(64, 93, 97)",
           "background": [
@@ -2057,6 +2159,18 @@
             249
           ],
           "ratio": 6.7640754479756104,
+          "minimum": 4.5
+        },
+        {
+          "selector": "p",
+          "text": "Abra um conceito para consultar sua definição e o identificador u",
+          "foreground": "rgb(64, 93, 97)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 7.1033501023516665,
           "minimum": 4.5
         },
         {
@@ -2157,7 +2271,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "foreground": "rgb(25, 59, 64)",
           "background": [
             255,
@@ -2207,7 +2321,7 @@
       "contrast_high": [
         {
           "selector": "h1",
-          "text": "Modelo e arquivos da MADO",
+          "text": "Documentação técnica da MADO",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -2267,19 +2381,19 @@
         },
         {
           "selector": "p",
-          "text": "Documentação técnica",
-          "foreground": "rgb(0, 58, 75)",
+          "text": "Consulte os conceitos, as relações, os arquivos e as verificações",
+          "foreground": "rgb(32, 32, 32)",
           "background": [
             255,
             255,
             255
           ],
-          "ratio": 12.303564830665552,
+          "ratio": 16.29325535858735,
           "minimum": 4.5
         },
         {
           "selector": "p",
-          "text": "Consulte os conceitos, as relações, os arquivos e as verificações",
+          "text": "Abra um conceito para consultar sua definição e o identificador u",
           "foreground": "rgb(32, 32, 32)",
           "background": [
             255,
@@ -2387,7 +2501,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "foreground": "rgb(0, 0, 0)",
           "background": [
             255,
@@ -2436,9 +2550,7 @@
       ],
       "long_main_paragraphs": [
         "AplicacaoDeCriterio liga uma configuração a um critério e a seus conhecimentos de apoio e origens específicos. Essa aplicação não se reduz à relação geral fundamentadoPor.",
-        "A interface recebe o caso e apresenta os resultados. O motor do AMADO organiza as informações, consulta a base representada pela MADO e compõe a orientação. A pessoa confere o contexto antes de solicitar essa composição.",
         "A análise de fontes, estudos, artefatos, personas e resultados produziu conhecimentos articulados, critérios e condições de aplicação. A curadoria registra origem, confirmação e limites, definindo quais relações podem orientar a composição. Os padrões de composição também foram definidos antes do uso. O clique não cria as articulações nem incorpora o caso à base.",
-        "A composição é determinística e não usa LLM. Ela depende dos conceitos, relações e padrões efetivamente contemplados pela base; não produz conhecimento novo de forma autônoma.",
         "Perfil OWL 2 DL e HermiT; SHACL; oito questões de competência; testes de fundamentação, incompatibilidade, retirada de recursos e insuficiência; comparação entre execução local e navegador.",
         "Textos de terceiros sem autorização e registros privados não são redistribuídos. Referências e localizações permanecem disponíveis; a conferência documental exige consultar as fontes.",
         "MELO, Natacsha Ordones Raposo de. MADO — Ontologia do Arcabouço Multimodal para Acessibilidade Digital: ontologia e instrumento AMADO. Versão 1.3.0-rc1. Repositório do projeto.",
@@ -2472,8 +2584,51 @@
           "keyboard_open_close": true
         }
       ],
-      "sequence_accessible_snapshot": "- figure \"Quem participa de cada etapa As setas indicam a direção das informações. O texto de cada etapa explica o que é enviado, conferido ou produzido.\":\n  - strong: Quem participa de cada etapa\n  - text: As setas indicam a direção das informações. O texto de cada etapa explica o que é enviado, conferido ou produzido.\n  - list:\n    - listitem:\n      - paragraph: 1. Pessoa para Interface AMADO\n      - heading \"Informar o caso\" [level=3]\n      - paragraph: A pessoa descreve a tarefa, as condições e as dificuldades, ou escolhe um exemplo.\n    - listitem:\n      - paragraph: 2. Interface AMADO para Motor AMADO\n      - heading \"Organizar as informações\" [level=3]\n      - paragraph: O motor relaciona a descrição aos conceitos já representados, como tarefa, participação, barreiras e recursos. Não interpreta qualquer narrativa.\n    - listitem:\n      - paragraph: 3. Motor para Interface para Pessoa\n      - heading \"Conferir e confirmar o contexto\" [level=3]\n      - paragraph: A pessoa confere a organização, corrige ou complementa os dados e confirma o contexto antes de solicitar a orientação.\n      - paragraph:\n        - strong: \"Retorno:\"\n        - text: Pessoa para Interface para Motor — confirmação e pedido de orientação.\n    - listitem:\n      - paragraph: 4. Motor AMADO para Base MADO\n      - heading \"Recuperar conhecimento e relações\" [level=3]\n      - paragraph: O motor consulta o grafo com SPARQL para recuperar conhecimentos, articulações e critérios relacionados ao contexto.\n      - paragraph:\n        - strong: \"Retorno:\"\n        - text: Base para Motor — registros, relações e fontes para verificar.\n    - listitem:\n      - paragraph: 5. Processamento no motor AMADO\n      - heading \"Selecionar e compor a decisão\" [level=3]\n      - paragraph: O motor verifica fundamentos, autorização de uso e compatibilidade. Combina padrões em configurações com modalidade, função, recurso, responsável, alternativa e limites.\n      - paragraph: Sem dados essenciais ou configuração principal fundamentada e compatível, suspende a decisão.\n    - listitem:\n      - paragraph: 6. Motor para Interface para Pessoa\n      - heading \"Apresentar a orientação e seus fundamentos\" [level=3]\n      - paragraph: A interface mostra a orientação, suas condições e fundamentos. Se a decisão foi suspensa, informa as lacunas ou o limite da base.",
-      "sequence_accessibility_scope": "Árvore acessível gerada pelo navegador: ordem das seis etapas e exclusão dos rótulos visuais duplicados. Não é teste humano com NVDA ou VoiceOver.",
+      "svg_accessible_snapshot": "- 'img \"Consulta e composição de uma orientação no AMADO Quatro participantes: pessoa, interface AMADO, motor AMADO e base MADO. A pessoa informa o caso e confirma sua organização. O motor consulta a base, verifica condições e fundamentos e retorna uma orientação ou a suspensão com lacunas. A sequência completa está disponível em texto logo após a figura.\"': sd Consulta e composição «actor» Pessoa Interface AMADO Motor AMADO Base MADO 1. Informar caso 2. Organizar informações Contexto organizado 3. Apresentar para conferência 4. Corrigir e confirmar Solicitar orientação 5. Consultar base (SPARQL) Conhecimentos, critérios e relações Verificar condições e fundamentos alt [condições e fundamentos suficientes] 6a. Compor e retornar orientação [dados ou fundamentos insuficientes] 6b. Retornar suspensão e lacunas 7. Apresentar resultado",
+      "diagram_desktop_height": 693.21875,
+      "sequence_accessible_snapshot": "- group:\n  - text: Ler a sequência em texto\n  - list:\n    - listitem:\n      - strong: Informar o caso.\n      - text: \"Pessoa → interface: descrição da tarefa, condições e dificuldades, ou escolha de um exemplo.\"\n    - listitem:\n      - strong: Organizar as informações.\n      - text: \"Interface → motor → interface: os dados são relacionados aos conceitos representados; o motor devolve o contexto organizado. Não interpreta qualquer narrativa.\"\n    - listitem:\n      - strong: Conferir e confirmar.\n      - text: \"Interface → pessoa → interface: a pessoa revisa, corrige ou complementa o contexto, confirma e solicita a orientação.\"\n    - listitem:\n      - strong: Consultar a base.\n      - text: \"Interface → motor → base: o motor executa consultas SPARQL. Base → motor: conhecimentos, articulações, critérios e fontes recuperados.\"\n    - listitem:\n      - strong: Verificar e compor.\n      - text: O motor confere autorização de uso, condições, restrições e apoios dos critérios. Havendo sustentação, compõe configurações com modalidade, função, recurso, responsável, alternativa e limites; sem dados ou fundamentos suficientes, suspende.\n    - listitem:\n      - strong: Apresentar o resultado.\n      - text: \"Motor → interface → pessoa: orientação fundamentada ou suspensão com as lacunas e os limites identificados.\"\n  - paragraph:\n    - text: O diagrama representa o fluxo lógico de interação, não tempos de execução.\n    - link \"Referência da notação UML\":\n      - /url: https://www.omg.org/spec/UML/2.5.1\n    - text: .",
+      "sequence_accessibility_scope": "SVG com nome e descrição; alternativa HTML em seis etapas, aberta por teclado e examinada na árvore acessível. Não é teste humano com NVDA ou VoiceOver.",
+      "compact_layout": {
+        "viewport": 1280,
+        "page_height": 3085,
+        "section_height": 1210.796875,
+        "figure_height": 693.21875
+      },
+      "layout_baseline": {
+        "reference": "bbd1df9",
+        "sources": {
+          "ontologia/index.html": "77181477aee9bfb1c48d4319463737ef955158866a9d6138b3a9103dccf6b59f",
+          "site.css": "2a8dfc7f159d040844dfa4d68355608c56a98d1baa78f17988d16da4f00e56c3",
+          "shell.css": "19f4323d1fb7b9b842114eb41187e96e9f835467f215d57a568105b8449e7e44",
+          "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773"
+        },
+        "measurements": [
+          {
+            "viewport": 1440,
+            "document_height": 4687,
+            "scroll_width": 1440,
+            "main_height": 4397.03125,
+            "sequence_section_height": 2515.640625,
+            "diagram_height": 1458.71875,
+            "svg_height": null,
+            "h1_lines": 1,
+            "h1_font": 40,
+            "root_font": 16
+          },
+          {
+            "viewport": 1280,
+            "document_height": 4687,
+            "scroll_width": 1280,
+            "main_height": 4397.03125,
+            "sequence_section_height": 2515.640625,
+            "diagram_height": 1458.71875,
+            "svg_height": null,
+            "h1_lines": 1,
+            "h1_font": 40,
+            "root_font": 16
+          }
+        ]
+      },
       "false_pointer_targets": [],
       "local_links": [
         {
@@ -2496,7 +2651,7 @@
         },
         {
           "href": "/MADO/ontologia/",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "status": 200,
           "anchor_exists": true
         },
@@ -2595,7 +2750,7 @@
         "headings": {
           "h1": [
             {
-              "text": "Modelo e arquivos da MADO",
+              "text": "Documentação técnica da MADO",
               "pixels": 32,
               "line_height": "39.04px"
             }
@@ -2622,48 +2777,7 @@
               "line_height": "32.208px"
             }
           ],
-          "h3": [
-            {
-              "text": "Antes da consulta: preparação do conhecimento",
-              "pixels": 19.2,
-              "line_height": "23.424px"
-            },
-            {
-              "text": "Informar o caso",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Organizar as informações",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Conferir e confirmar o contexto",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Recuperar conhecimento e relações",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Selecionar e compor a decisão",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Apresentar a orientação e seus fundamentos",
-              "pixels": 18.4,
-              "line_height": "22.448px"
-            },
-            {
-              "text": "Função das tecnologias",
-              "pixels": 19.2,
-              "line_height": "23.424px"
-            }
-          ]
+          "h3": []
         },
         "functional": [
           {
@@ -2710,18 +2824,36 @@
           },
           {
             "key": "main summary:7",
-            "text": "Escopo das verificações",
+            "text": "Antes da consulta: como o conhecimento foi preparado",
             "pixels": 17,
             "line_height": "28.9px"
           },
           {
             "key": "main summary:8",
-            "text": "Referência e condições de uso",
+            "text": "Ler a sequência em texto",
             "pixels": 17,
             "line_height": "28.9px"
           },
           {
             "key": "main summary:9",
+            "text": "Função das tecnologias na implementação",
+            "pixels": 17,
+            "line_height": "28.9px"
+          },
+          {
+            "key": "main summary:10",
+            "text": "Escopo das verificações",
+            "pixels": 17,
+            "line_height": "28.9px"
+          },
+          {
+            "key": "main summary:11",
+            "text": "Referência e condições de uso",
+            "pixels": 17,
+            "line_height": "28.9px"
+          },
+          {
+            "key": "main summary:12",
             "text": "Privacidade no AMADO",
             "pixels": 17,
             "line_height": "28.9px"
@@ -2738,7 +2870,7 @@
         "headings": {
           "h1": [
             {
-              "text": "Modelo e arquivos da MADO",
+              "text": "Documentação técnica da MADO",
               "pixels": 64,
               "line_height": "78.08px"
             }
@@ -2765,48 +2897,7 @@
               "line_height": "64.416px"
             }
           ],
-          "h3": [
-            {
-              "text": "Antes da consulta: preparação do conhecimento",
-              "pixels": 38.4,
-              "line_height": "46.848px"
-            },
-            {
-              "text": "Informar o caso",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Organizar as informações",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Conferir e confirmar o contexto",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Recuperar conhecimento e relações",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Selecionar e compor a decisão",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Apresentar a orientação e seus fundamentos",
-              "pixels": 36.8,
-              "line_height": "44.896px"
-            },
-            {
-              "text": "Função das tecnologias",
-              "pixels": 38.4,
-              "line_height": "46.848px"
-            }
-          ]
+          "h3": []
         },
         "functional": [
           {
@@ -2853,18 +2944,36 @@
           },
           {
             "key": "main summary:7",
-            "text": "Escopo das verificações",
+            "text": "Antes da consulta: como o conhecimento foi preparado",
             "pixels": 34,
             "line_height": "57.8px"
           },
           {
             "key": "main summary:8",
-            "text": "Referência e condições de uso",
+            "text": "Ler a sequência em texto",
             "pixels": 34,
             "line_height": "57.8px"
           },
           {
             "key": "main summary:9",
+            "text": "Função das tecnologias na implementação",
+            "pixels": 34,
+            "line_height": "57.8px"
+          },
+          {
+            "key": "main summary:10",
+            "text": "Escopo das verificações",
+            "pixels": 34,
+            "line_height": "57.8px"
+          },
+          {
+            "key": "main summary:11",
+            "text": "Referência e condições de uso",
+            "pixels": 34,
+            "line_height": "57.8px"
+          },
+          {
+            "key": "main summary:12",
             "text": "Privacidade no AMADO",
             "pixels": 34,
             "line_height": "57.8px"
@@ -2912,54 +3021,6 @@
           "key": "h2:3",
           "before": 26.4,
           "after": 52.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:0",
-          "before": 19.2,
-          "after": 38.4,
-          "ratio": 2
-        },
-        {
-          "key": "h3:1",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:2",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:3",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:4",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:5",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:6",
-          "before": 18.4,
-          "after": 36.8,
-          "ratio": 2
-        },
-        {
-          "key": "h3:7",
-          "before": 19.2,
-          "after": 38.4,
           "ratio": 2
         },
         {
@@ -3018,6 +3079,24 @@
         },
         {
           "key": "main summary:9",
+          "before": 17,
+          "after": 34,
+          "ratio": 2
+        },
+        {
+          "key": "main summary:10",
+          "before": 17,
+          "after": 34,
+          "ratio": 2
+        },
+        {
+          "key": "main summary:11",
+          "before": 17,
+          "after": 34,
+          "ratio": 2
+        },
+        {
+          "key": "main summary:12",
           "before": 17,
           "after": 34,
           "ratio": 2
@@ -3551,7 +3630,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "foreground": "rgb(7, 92, 96)",
           "background": [
             255,
@@ -3709,7 +3788,7 @@
         },
         {
           "selector": ".nav a",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "foreground": "rgb(0, 58, 75)",
           "background": [
             255,
@@ -3747,12 +3826,12 @@
       "view_navigation": [
         {
           "text": "Visão atual",
-          "href": "http://127.0.0.1:65364/MADO/amado/",
+          "href": "http://127.0.0.1:60387/MADO/amado/",
           "current": "page"
         },
         {
           "text": "Visão guiada Nova",
-          "href": "http://127.0.0.1:65364/MADO/amado/guiado.html",
+          "href": "http://127.0.0.1:60387/MADO/amado/guiado.html",
           "current": null
         }
       ],
@@ -3778,7 +3857,7 @@
         },
         {
           "href": "/MADO/ontologia/",
-          "text": "Modelo e arquivos",
+          "text": "Documentação técnica",
           "status": 200,
           "anchor_exists": true
         },
@@ -4322,20 +4401,20 @@
     "case_history": false,
     "llm": false,
     "frontend_sha256": {
-      "index.html": "97bb67aef40da6d4bdb3751e0bb27a9cc432a86c22363516f06ab5dd9583196a",
+      "index.html": "c7a740accd3cb6f7a6c70c6bc45e8ade0a7c8c028a9544a4e81631081eb3dbe4",
       "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
       "styles.css": "aa9e6edcf5c40dc0fd3dcb2e9e53a1c5be560825cabbc911aae8a7d1d1596424",
       "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
       "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc",
-      "guiado.html": "05a4a8e588391a3070bc45a383b9138dc9f93e5a2aa0750c34876bde8780e6d0",
+      "guiado.html": "b34173c3a594e2dd2f398e1dc50230ed8a79bebce94ca00262f4232dc069bfaf",
       "guided.js": "3dcaf686742a9af2cd65c37b215a4d341f7ce1ec720f42d0701352535e661236",
       "guided.css": "339c66c48dcb8c9aabd4320084f0d2de81222c3988e05bc5cd4b9f6f59fa1e6f",
       "views.css": "70000b61e3ae2e404f6e778966706eee1a4258b1a7f6da85ba3c7d1036c56564"
     },
     "site_assets_sha256": {
-      "index.html": "00a235c55c47441b8dbb17c14895f85788fd6271bcce21e410560a48a2abc8f9",
-      "ontologia/index.html": "77181477aee9bfb1c48d4319463737ef955158866a9d6138b3a9103dccf6b59f",
-      "site.css": "2a8dfc7f159d040844dfa4d68355608c56a98d1baa78f17988d16da4f00e56c3",
+      "index.html": "680394c3ca6f73563fdfcc101f4d3f276cb6bfcf6d22b6fe4929b8ade6f671c5",
+      "ontologia/index.html": "50bd431c0d0d0ae105a7c610d461d734be1c496a533fa46a6e80f48c08b39064",
+      "site.css": "b2f8e4240650eaf41c1292fa48993597eb382a0c49d26588b69df5aa7deb1fc8",
       "shell.css": "19f4323d1fb7b9b842114eb41187e96e9f835467f215d57a568105b8449e7e44",
       "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
       "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
@@ -4355,20 +4434,20 @@
     }
   },
   "source_sha256": {
-    "index.html": "00a235c55c47441b8dbb17c14895f85788fd6271bcce21e410560a48a2abc8f9",
-    "ontologia/index.html": "77181477aee9bfb1c48d4319463737ef955158866a9d6138b3a9103dccf6b59f",
-    "site.css": "2a8dfc7f159d040844dfa4d68355608c56a98d1baa78f17988d16da4f00e56c3",
+    "index.html": "680394c3ca6f73563fdfcc101f4d3f276cb6bfcf6d22b6fe4929b8ade6f671c5",
+    "ontologia/index.html": "50bd431c0d0d0ae105a7c610d461d734be1c496a533fa46a6e80f48c08b39064",
+    "site.css": "b2f8e4240650eaf41c1292fa48993597eb382a0c49d26588b69df5aa7deb1fc8",
     "shell.css": "19f4323d1fb7b9b842114eb41187e96e9f835467f215d57a568105b8449e7e44",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
-    "amado/index.html": "97bb67aef40da6d4bdb3751e0bb27a9cc432a86c22363516f06ab5dd9583196a",
+    "amado/index.html": "c7a740accd3cb6f7a6c70c6bc45e8ade0a7c8c028a9544a4e81631081eb3dbe4",
     "amado/styles.css": "aa9e6edcf5c40dc0fd3dcb2e9e53a1c5be560825cabbc911aae8a7d1d1596424",
     "amado/app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
     "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
   },
   "site_assets_sha256": {
-    "index.html": "00a235c55c47441b8dbb17c14895f85788fd6271bcce21e410560a48a2abc8f9",
-    "ontologia/index.html": "77181477aee9bfb1c48d4319463737ef955158866a9d6138b3a9103dccf6b59f",
-    "site.css": "2a8dfc7f159d040844dfa4d68355608c56a98d1baa78f17988d16da4f00e56c3",
+    "index.html": "680394c3ca6f73563fdfcc101f4d3f276cb6bfcf6d22b6fe4929b8ade6f671c5",
+    "ontologia/index.html": "50bd431c0d0d0ae105a7c610d461d734be1c496a533fa46a6e80f48c08b39064",
+    "site.css": "b2f8e4240650eaf41c1292fa48993597eb382a0c49d26588b69df5aa7deb1fc8",
     "shell.css": "19f4323d1fb7b9b842114eb41187e96e9f835467f215d57a568105b8449e7e44",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
     "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
@@ -4519,18 +4598,18 @@
     ]
   },
   "historical_baseline": {
-    "git_reference": "9445c51:evidence/site-presentation-report.json",
-    "sha256": "cb51339b5abf79c96ff287108ff173658f3f9edd5ca979b0922b5bc2416fbef9",
+    "git_reference": "bbd1df9:evidence/site-presentation-report.json",
+    "sha256": "ea3617bbec5952ef04e6e9eaab81ed53349b7501ab32703ec14c7cb7f4066aa1",
     "completed": true,
-    "prior_checks_passed": 167,
+    "prior_checks_passed": 188,
     "prior_scope": "Conteúdo, navegação, SEO técnico e apresentação acessível; não revalida motor ou ontologia.",
     "comparison": null,
     "warning": "Historical evidence; its checks are not counted as executed by the current run."
   },
   "served_site_assets_sha256": {
-    "index.html": "00a235c55c47441b8dbb17c14895f85788fd6271bcce21e410560a48a2abc8f9",
-    "ontologia/index.html": "77181477aee9bfb1c48d4319463737ef955158866a9d6138b3a9103dccf6b59f",
-    "site.css": "2a8dfc7f159d040844dfa4d68355608c56a98d1baa78f17988d16da4f00e56c3",
+    "index.html": "680394c3ca6f73563fdfcc101f4d3f276cb6bfcf6d22b6fe4929b8ade6f671c5",
+    "ontologia/index.html": "50bd431c0d0d0ae105a7c610d461d734be1c496a533fa46a6e80f48c08b39064",
+    "site.css": "b2f8e4240650eaf41c1292fa48993597eb382a0c49d26588b69df5aa7deb1fc8",
     "shell.css": "19f4323d1fb7b9b842114eb41187e96e9f835467f215d57a568105b8449e7e44",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
     "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
@@ -4561,6 +4640,10 @@
       "scroll": 320
     },
     "ontology_open_concept_reflow_320": {
+      "viewport": 320,
+      "scroll": 320
+    },
+    "ontology_text_equivalent_reflow_320": {
       "viewport": 320,
       "scroll": 320
     },
@@ -4602,18 +4685,18 @@
   },
   "change_verification": {
     "baseline": {
-      "git_reference": "9445c51:evidence/site-presentation-report.json",
-      "sha256": "cb51339b5abf79c96ff287108ff173658f3f9edd5ca979b0922b5bc2416fbef9",
+      "git_reference": "bbd1df9:evidence/site-presentation-report.json",
+      "sha256": "ea3617bbec5952ef04e6e9eaab81ed53349b7501ab32703ec14c7cb7f4066aa1",
       "completed": true,
-      "prior_checks_passed": 167,
+      "prior_checks_passed": 188,
       "prior_scope": "Conteúdo, navegação, SEO técnico e apresentação acessível; não revalida motor ou ontologia.",
       "comparison": null,
       "warning": "Historical evidence; its checks are not counted as executed by the current run."
     },
-    "change": "Textos públicos, explicação visual em HTML, organização dos blocos e tipografia.",
-    "scope": "Verificações de apresentação e fontes efetivas repetidas nesta execução; o baseline histórico não é contado como teste atual. Nenhuma nova avaliação da ontologia ou humana.",
+    "change": "Documentação técnica compacta, diagrama de sequência UML em SVG com equivalente HTML recolhível e nome atualizado do link de navegação.",
+    "scope": "Verificações atuais de apresentação, dimensões, equivalente textual, teclado, ampliação e reflow. O baseline histórico não é contado como teste atual. O motor não recebe nova avaliação semântica nem humana.",
     "unchanged_semantic_and_runtime_files": true
   },
   "completed": true,
-  "finished_at_utc": "2026-10-08T01:36:18.095Z"
+  "finished_at_utc": "2026-10-08T02:01:07.663Z"
 }

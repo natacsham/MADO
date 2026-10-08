@@ -43,20 +43,20 @@
   "case_history": false,
   "llm": false,
   "frontend_sha256": {
-    "index.html": "97bb67aef40da6d4bdb3751e0bb27a9cc432a86c22363516f06ab5dd9583196a",
+    "index.html": "c7a740accd3cb6f7a6c70c6bc45e8ade0a7c8c028a9544a4e81631081eb3dbe4",
     "app.js": "cba7dbe6f8951b1f6f77d71f221b768c89cea2d511ff3831dc9cd0c9f0c1c951",
     "styles.css": "aa9e6edcf5c40dc0fd3dcb2e9e53a1c5be560825cabbc911aae8a7d1d1596424",
     "worker.mjs": "c19d8ca179d3392399389b066d473a39ffe1b764ea3e930225a5a9d0f158939f",
     "client.mjs": "d55152f7954a5eaf5dda969e820e18bc394510b59beb19ffd0e44f24664ab3fc",
-    "guiado.html": "05a4a8e588391a3070bc45a383b9138dc9f93e5a2aa0750c34876bde8780e6d0",
+    "guiado.html": "b34173c3a594e2dd2f398e1dc50230ed8a79bebce94ca00262f4232dc069bfaf",
     "guided.js": "3dcaf686742a9af2cd65c37b215a4d341f7ce1ec720f42d0701352535e661236",
     "guided.css": "339c66c48dcb8c9aabd4320084f0d2de81222c3988e05bc5cd4b9f6f59fa1e6f",
     "views.css": "70000b61e3ae2e404f6e778966706eee1a4258b1a7f6da85ba3c7d1036c56564"
   },
   "site_assets_sha256": {
-    "index.html": "00a235c55c47441b8dbb17c14895f85788fd6271bcce21e410560a48a2abc8f9",
-    "ontologia/index.html": "77181477aee9bfb1c48d4319463737ef955158866a9d6138b3a9103dccf6b59f",
-    "site.css": "2a8dfc7f159d040844dfa4d68355608c56a98d1baa78f17988d16da4f00e56c3",
+    "index.html": "680394c3ca6f73563fdfcc101f4d3f276cb6bfcf6d22b6fe4929b8ade6f671c5",
+    "ontologia/index.html": "50bd431c0d0d0ae105a7c610d461d734be1c496a533fa46a6e80f48c08b39064",
+    "site.css": "b2f8e4240650eaf41c1292fa48993597eb382a0c49d26588b69df5aa7deb1fc8",
     "shell.css": "19f4323d1fb7b9b842114eb41187e96e9f835467f215d57a568105b8449e7e44",
     "site.js": "453199b0e1b68cbbb4972392fa19fccfcde30b2800a21476aa03d45e43335773",
     "sitemap.xml": "7ae4a147c35e006a700f3231d4a479240929b18e2513ccac229e8f1122ebe9be"
